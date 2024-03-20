@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "../Controllers/UserController.php";
+    include "../Controllers/EmpleadosController.php";
     
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
@@ -48,11 +48,11 @@
 
             <div class="container">
                 
-                <form action="">
+                <form>
                     
+                    <h1>Busqueda de usuarios</h1>
+
                     <div class="row">
-                        
-                        <h1>Busqueda de usuarios</h1>
                         
                         <div class="col-md-2">
                             
@@ -65,16 +65,22 @@
                         </div>
 
                         <div class="col-md-10">
+
                             <input type="text" name="buscar" class="form-control mb-3" placeholder="Buscar...">
+
                         </div>
 
-                        <input type="submit" value="Buscar" class="btn btn-primary mt-3 mb-3">
+                        <div class="col">
 
-                        <a href="home.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
+                            <input type="submit" value="Buscar" class="btn btn-primary mt-3 mb-3">
+
+                            <a href="home.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
+
+                        </div>
                         
                     </div>
                 
-                </form>
+                </form>                
 
             </div>
 
