@@ -25,8 +25,8 @@
             <?php
 
             if (isset($_POST['user'])){
-                include "Controllers/UserController.php";
-                UserController::login(trim($_POST['user']), trim($_POST['pass']));
+                include "Controllers/User.php";
+                User::login(trim($_POST['user']), trim($_POST['pass']));
             }
             
             ?>

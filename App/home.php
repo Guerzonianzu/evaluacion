@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "../Controllers/EmpleadosController.php";
+    include "../Controllers/Empleados.php";
     
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
