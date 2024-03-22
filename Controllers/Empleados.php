@@ -73,18 +73,38 @@
 
             if (isset($_GET['pag'])){
 
+                $this->pagina = $_GET['pag'];
+            
+            }
+
+            $sql = "select * from trabajadores where nombre != 'Administrador';";
+
+            $resultado = $con->query();
+
+            if($resultado->rowCount() > 0){
+
+                $list = new Paginador($resultado->rowCount());
+
             }
             
             switch($op){
 
                 case "apellido":
                     
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.apellido like '$_GET[buscar]%';";
+
                     break;
 
                 case "dni":
+
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.dni like '$_GET[buscar]%';";
+
                     break;
 
                 case "servicio":
+
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where ser.descripcion_servicio like '$_GET[buscar]%';";
+
                     break;
 
                 default:
