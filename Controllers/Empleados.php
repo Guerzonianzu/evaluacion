@@ -1,42 +1,44 @@
 <?php
 
     include "Conexion.php";
+    include "Paginador.php";
     
     class Empleados {
 
-        public static function getEmpleados(){
+        private $pagina = 0;
 
-            $con = new Conexion;
+        private $elementos = 15;
 
-            //Recoge el parametro pag, en caso de que no exista, lo setea a 1.
-            if(isset($_GET['pag'])){
-                
-                $pagina = $_GET['pag'];
-            
-            } else {
+        public function getEmpleados(){
 
-                $pagina = 1;
-            
+            if (isset($_GET['pag'])){
+
+                $this->pagina = $_GET['pag'];
+
             }
 
-            $elementos = 15;
+            //Nueva conexion a base de datos.
+            $con = new Conexion;
 
-            //(($pagina - 1) * $elementos) indica donde debe empezar a mostrar registros.
-            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($pagina - 1) * $elementos). ", ". $elementos;
+            $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where nombre != 'Administrador';";
 
             $resultado = $con->query($sql);
 
+            //Cantidad maxima de elementos.
             $max = $resultado->rowCount();
 
-            echo "
-                <table class=\"table\">
-                    <thead>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Servicio</th>
-                        <th colspan=\"2\">Acciones</th>
-                    </thead>";
+            //(($pagina - 1) * $elementos) indica donde debe empezar a mostrar registros.
+            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($this->pagina) * $this->elementos). ", ". $this->elementos;
+
+            $resultado = $con->query($sql);
+
+            //Nueva instancia de objeto: Paginador.
+            $list = new Paginador($max);
                 
+            /*
+                Si la consulta a la base de datos nos trae al menos un registro mostrara la informacion dentro de una tabla.
+                Caso contrario avisara que aun no se han cargado los registros.
+            */ 
             if ($max > 0){            
         
                 foreach($resultado as $registro){
@@ -55,6 +57,8 @@
 
                 }
 
+                $list->paginado();
+
             } else {
                 echo "
                 <tbody>
@@ -62,12 +66,10 @@
                 </tbody>";
             }
 
-            echo "</table>";
-
         }
 
 
-        public static function searchEmpleados($op){
+        public function searchEmpleados($op){
             
 
 

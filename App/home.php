@@ -80,7 +80,42 @@
                         
                     </div>
                 
-                </form>                
+                </form>   
+                
+                <div class="row">
+
+                    <table class="table">
+
+                        <thead>
+
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Servicio</th>
+                            <th colspan="2">Acciones</th>
+
+                        </thead>
+
+                        <tbody>
+
+                            <?php
+                                $tabla = new Empleados();
+
+                                if (isset($_GET['op'])){
+
+                                    $tabla->searchEmpleados($_GET['op']);
+
+                                } else {
+
+                                    $tabla->getEmpleados();
+
+                                }
+                            ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
