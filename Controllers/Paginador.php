@@ -12,7 +12,7 @@
 
             /*
                 Si la variable pag contiene algun valor se lo pasara a la variable pagina.
-                Caso contrario esta estara seteada en 1
+                Caso contrario esta estara seteada en 1.
             */
             if (isset($_GET['pag'])){
 
@@ -32,6 +32,10 @@
 
         public function paginado(){
 
+            /*
+                Si el valor de la variable pagina es mayor a 0 entonces habilita el boton de anterior.
+                Caso contrario el boton aparecera deshabilitado
+            */
             if ($this->pagina > 0){
 
                 $anterior = $this->pagina - 1;
@@ -45,6 +49,10 @@
 
             }
 
+            /*
+                Mientras la cantidad de elementos sea menor a la cantidad maxima de elementos nos habilita el boton de siguiente.
+                Caso contrario el boton aparece deshabilitado.
+            */
             if (($this->pagina * $this->elementos) < $this->cont){
 
                 $siguiente = $this->pagina + 1;

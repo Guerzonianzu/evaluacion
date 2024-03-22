@@ -5,7 +5,7 @@
     
     class Empleados {
 
-        private $pagina = 0;
+        private $pagina = 1;
 
         private $elementos = 15;
 
@@ -27,13 +27,13 @@
             //Cantidad maxima de elementos.
             $max = $resultado->rowCount();
 
+            //Nueva instancia de objeto: Paginador.
+            $list = new Paginador($max);
+
             //(($pagina - 1) * $elementos) indica donde debe empezar a mostrar registros.
             $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($this->pagina) * $this->elementos). ", ". $this->elementos;
 
             $resultado = $con->query($sql);
-
-            //Nueva instancia de objeto: Paginador.
-            $list = new Paginador($max);
                 
             /*
                 Si la consulta a la base de datos nos trae al menos un registro mostrara la informacion dentro de una tabla.
@@ -70,8 +70,26 @@
 
 
         public function searchEmpleados($op){
-            
 
+            if (isset($_GET['pag'])){
+
+            }
+            
+            switch($op){
+
+                case "apellido":
+                    
+                    break;
+
+                case "dni":
+                    break;
+
+                case "servicio":
+                    break;
+
+                default:
+                    echo "Llamar a sistemas. Interno 1017";
+            }
 
         }
     }
