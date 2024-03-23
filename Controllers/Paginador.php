@@ -6,9 +6,7 @@
 
         private $elementos;
 
-        private $cont;
-
-        public function __construct($cont){
+        public function __construct(){
 
             /*
                 Si la variable pag contiene algun valor se lo pasara a la variable pagina.
@@ -26,11 +24,9 @@
             
             $this->elementos = 15;
 
-            $this->cont = $cont;
-
         }
 
-        public function paginado(){
+        public function paginado($cont){
 
             /*
                 Si el valor de la variable pagina es mayor a 0 entonces habilita el boton de anterior.
@@ -53,7 +49,7 @@
                 Mientras la cantidad de elementos sea menor a la cantidad maxima de elementos nos habilita el boton de siguiente.
                 Caso contrario el boton aparece deshabilitado.
             */
-            if (($this->pagina * $this->elementos) < $this->cont){
+            if (($this->pagina * $this->elementos) < $cont){
 
                 $siguiente = $this->pagina + 1;
 

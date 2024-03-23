@@ -18,6 +18,8 @@
                         <p>Fallo la conexion con el servidor:" .$e->getMessage(). "</p>
                     </div>";
 
+                    die();
+
             }
 
             define("SQL", "select * from usuarios as usu join trabajadores as tra on tra.id_trabajador = usu.trabajador where usu.usuario = '$user' and usu.contra = '$pass' and tra.activo = 1;");
@@ -57,6 +59,8 @@
                     "<div class=\"alert alert-danger mt-3\" role=\"alert\">
                         <p>Fallo la consulta de base de datos:" .$e->getMessage(). "</p>
                     </div>";
+
+                    die();
 
             }
 
