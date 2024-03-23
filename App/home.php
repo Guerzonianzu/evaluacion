@@ -50,7 +50,7 @@
                 
                 <form>
                     
-                    <h1>Busqueda de usuarios</h1>
+                    <h1>Busqueda de Empleados</h1>
 
                     <div class="row">
                         
