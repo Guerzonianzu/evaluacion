@@ -1,6 +1,7 @@
 <?php
     session_start();
     include "../Controllers/Empleados.php";
+    include "../Controllers/Misc.php";
     
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
@@ -28,7 +29,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a href="listaUsuarios.php" class="nav-link">Listado de usuarios</a>
+                            <a href="users.php" class="nav-link">Listado de usuarios</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
@@ -80,10 +81,16 @@
                         
                     </div>
                 
-                </form>   
+                </form>
+
+                <?php
+
+                    Misc::mostrar();
+
+                ?>
                 
                 <div class="row">
-
+                    
                     <table class="table">
 
                         <thead>

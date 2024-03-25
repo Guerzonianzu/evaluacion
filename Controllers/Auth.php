@@ -1,24 +1,23 @@
 <?php
 
+    include "Conexion.php";
+
     class Auth{
 
         public static function login($user, $pass){
 
             try{
 
-                //Nueva conexion a base de datos.
-                $con = new Conexion();
+                $con = Conexion::conectar();
 
-            } catch (PDOException $e){
+            } catch (PDOException $e) {
 
-                echo 
-                    "<div class=\"alert alert-danger mt-3\" role=\"alert\">
-                        <p>Fallo la conexion con el servidor:" .$e->getMessage(). "</p>
-                    </div>";
-
-                    die();
+                $con->bdError($e);
+                die();
 
             }
+
+            
 
             define("SQL", "select * from usuarios as usu join trabajadores as tra on tra.id_trabajador = usu.trabajador where usu.usuario = '$user' and usu.contra = '$pass' and tra.activo = 1;");
 
@@ -53,12 +52,7 @@
                 
             } catch (PDOException $e){
 
-                echo 
-                    "<div class=\"alert alert-danger mt-3\" role=\"alert\">
-                        <p>Fallo la consulta de base de datos:" .$e->getMessage(). "</p>
-                    </div>";
-
-                    die();
+                $con->bdError($e);
 
             }
 

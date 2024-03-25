@@ -5,17 +5,8 @@
     
     class Empleados {
 
-        private $pagina = 1;
-
-        private $elementos = 15;
 
         public function getEmpleados(){
-
-            if (isset($_GET['pag'])){
-
-                $this->pagina = $_GET['pag'];
-
-            }
 
             try{
 
@@ -47,10 +38,10 @@
             $max = $resultado->rowCount();
 
             //Nueva instancia de objeto: Paginador.
-            $list = new Paginador($max);
+            $list = new Paginador();
 
             //(($pagina - 1) * $elementos) indica donde debe empezar a mostrar registros.
-            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($this->pagina) * $this->elementos). ", ". $this->elementos;
+            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try{
 
@@ -94,10 +85,12 @@
                 </tbody>";
             }
 
+            unset($con);
+
         }
 
 
-        public function searchEmpleados($op){
+        public function searchEmpleados($op){            
 
             try {
 
@@ -112,7 +105,7 @@
             }
 
             //Nueva instancia de objeto: Paginador.
-            $list = new Paginador;
+            $list = new Paginador();
             
             //Seleccion de tipo de busqueda.
             switch($op){
@@ -203,9 +196,6 @@
                                 </tr>";
 
                         }
-
-                        //Llamada la funcion paginado.
-                        $list->paginado($resultado->rowCount());
 
                     } else {
 
