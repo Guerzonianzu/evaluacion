@@ -1,6 +1,4 @@
 <?php
-
-    include "Misc.php";
     
     class Conexion extends PDO{
 
@@ -24,13 +22,26 @@
 
             } catch (PDOException $e){
 
-                return Misc::bdError($e);
+                echo "
+                    <div class=\"alert alert-danger\">
+                        <p>Fallo la conexion con el servidor: ". $e->getMessage(). "</p>
+                    </div>"; 
+                die();
 
             }
             
             return $con;
 
         }
-        
+
+        public function bdError($e){
+
+            echo "
+                <div class=\"alert alert-danger\">
+                    <p>Fallo la conexion con el servidor: ". $e->getMessage(). "</p>
+                </div>"; 
+
+        }
+
     }
 ?>

@@ -3,23 +3,16 @@
     include "Conexion.php";
     include "Paginador.php";
     
+    
     class Empleados {
 
 
         public function getEmpleados(){
 
-            try{
-
-                //Nueva conexion a base de datos.
-                $con = new Conexion;
-
-            } catch (PDOException $e){
-                    
-                echo "<div class=\"alert alert-danger\" role=\"alert\">Fallo la conexion con el servidor: ". $e->getMessage().".</div>";
-                die();
-
-            }
+            //Conexion a base de datos.
+            $con = Conexion::conectar();
             
+            //Consulta a base de datos.
             $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where nombre != 'Administrador' order by tra.apellido;";
 
             try{
@@ -28,15 +21,14 @@
 
             } catch (PDOException $e){
 
-                echo "<div class=\"alert alert-danger\" role=\"alert\">Fallo la consulta con la base de datos: ". $e->getMessage().".</div>";
+                $con->bdError($e);
                 die();
 
             }
-            
 
             //Cantidad maxima de elementos.
             $max = $resultado->rowCount();
-
+            
             //Nueva instancia de objeto: Paginador.
             $list = new Paginador();
 
@@ -49,7 +41,7 @@
 
             } catch (PDOException $e){
 
-                echo "<div class=\"alert alert-danger\" role=\"alert\">Fallo la consulta con la base de datos: ". $e->getMessage().".</div>";
+                $con->bdError($e);
                 die();
 
             }
@@ -69,8 +61,8 @@
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>
                                 <td>$registro[descripcion_servicio]</td>
-                                <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Modificar.php\">Modificar</button></td>
-                                <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Eliminar.php\">Eliminar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
                             </form>
                         </tr>";
 
@@ -85,24 +77,12 @@
                 </tbody>";
             }
 
-            unset($con);
-
         }
 
 
         public function searchEmpleados($op){            
 
-            try {
-
-                //Nueva conexion a base de datos.
-                $con = new Conexion;
-
-            } catch (PDOException $e) {
-
-                echo "<div class=\"alert alert danger\" role=\"alert\">Fallo en la consulta de base de datos: ". $e->getMessage(). ".</div>";
-                die();
-
-            }
+            $con = Conexion::conectar();
 
             //Nueva instancia de objeto: Paginador.
             $list = new Paginador();
@@ -121,7 +101,7 @@
         
                     } catch (PDOException $e){
         
-                        echo "<div class=\"alert alert-danger\" role=\"alert\">Fallo la consulta con la base de datos: ". $e->getMessage().".</div>";
+                        $con->bdError($e);
                         die();
         
                     }
@@ -141,8 +121,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Modificar.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Eliminar.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
@@ -170,7 +150,7 @@
         
                     } catch (PDOException $e){
         
-                        echo "<div class=\"alert alert-danger\" role=\"alert\">Fallo la consulta con la base de datos: ". $e->getMessage().".</div>";
+                        $con->bdError($e);
                         die();
         
                     }
@@ -190,8 +170,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Modificar.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Eliminar.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
@@ -216,7 +196,7 @@
         
                     } catch (PDOException $e){
         
-                        echo "<div class=\"alert alert-danger\" role=\"alert\">Fallo la consulta con la base de datos: ". $e->getMessage().".</div>";
+                        $con->bdError($e);
                         die();
         
                     }
@@ -236,8 +216,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Modificar.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/Eliminar.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 

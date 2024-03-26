@@ -2,6 +2,7 @@
 
     include "../Controllers/User.php";
     include "../Controllers/Misc.php";
+    
     session_start();
 
     if($_SESSION['rol'] == 1){ ?>
@@ -13,7 +14,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Listado de usuarios</title>
             <link rel="stylesheet" href="../style/estilo.css">
-            <script src="../Style/js/bootstrap.min.js"></script>
+            <script src="/Style/Jquery.min.js" type="text/javascript"></script>
         </head>
         <body>
             
@@ -51,9 +52,8 @@
                         <div class="col-md-2">
 
                             <select name="op" class="form-control" id="">
-                                <option value="apellido">Apellido</option>
                                 <option value="dni">DNI</option>
-                                <option value="servicio">Servicio</option>
+                                <option value="apellido">Apellido</option>
                             </select>
 
                         </div>
@@ -66,7 +66,7 @@
 
                         <div class="col">
 
-                            <input type="submit" class="btn btn-primary mb-3 mt-3">
+                            <input type="submit" class="btn btn-primary mb-3 mt-3" value="Buscar">
 
                             <a href="users.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
 
@@ -90,8 +90,8 @@
 
                             <th>Nombre</th>
                             <th>Apellido</th>
-                            <th>Servicio</th>
-                            <th colspan="2">Acciones</th>
+                            <th>Usuario</th>
+                            <th></th>
 
                         </thead>
 

@@ -22,15 +22,6 @@
 
         }
 
-        public static function bdError($e){
-
-            echo "
-                <div class=\"alert alert-danger\">
-                    <p>Fallo la conexion con el servidor: ". $e->getMessage(). ".</p>
-                </div>"; 
-
-        }
-
     }
 
 ?>

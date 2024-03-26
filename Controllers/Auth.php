@@ -6,18 +6,7 @@
 
         public static function login($user, $pass){
 
-            try{
-
-                $con = Conexion::conectar();
-
-            } catch (PDOException $e) {
-
-                $con->bdError($e);
-                die();
-
-            }
-
-            
+            $con = Conexion::conectar();
 
             define("SQL", "select * from usuarios as usu join trabajadores as tra on tra.id_trabajador = usu.trabajador where usu.usuario = '$user' and usu.contra = '$pass' and tra.activo = 1;");
 
@@ -52,7 +41,7 @@
                 
             } catch (PDOException $e){
 
-                $con->bdError($e);
+                $resultado->bdError($e);
 
             }
 
