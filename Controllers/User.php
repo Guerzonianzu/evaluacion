@@ -2,95 +2,83 @@
 
     include "Conexion.php";
     include "Paginador.php";
+    include "Misc.php";
 
-    class User{
+    class User extends Empleados{
 
-        private $dni;
+        private $contra;
 
-        private $contra = '123456';
-
-        private $flag = 1;
+        private $flag;
         
 
-        public function __construct($dni){
+        public function __construct(){
 
-            $this->dni = $dni;
+            parent::__construct();
+
+            $this->contra = '123456';
+            
+            $this->flag = 1;
 
         }
 
         protected function createUser($rol){
 
-            try {
+            $con = Conexion::conectar();
 
-                //Conexion a base de datos.
-                $con = Conexion::conectar();
+            $dni = self::getDNI();
 
-            } catch (PDOException $e){
+            $sql = "select fn_getID('$dni') as dni;";
 
-                $con->bdError($e);
-                die();
+            $resultado = $con->query($sql);
 
-            }
+            if($resultado > 0){
 
-            try{
+                foreach ($resultado as $registro){
 
-                //Consulta para verificar que el empleado exista.
-                $sql = "select id_trabajador from trabajadores where dni = '$this->dni';";
-
-                $resultado = $con->query($sql);
-
-                if($resultado->rowCount() > 0) {
-
-                    foreach ($resultado as $registro){
-
-                        $id = $registro['id_trabajador'];
+                    $id = $registro['dni'];
     
-                    }
-
-                } else {
-                    
-                    //Aviso de que el empleado no existe y redireccion a la lista de usuarios
-                    echo "
-                        <div class=\"alert alert-danger\"> 
-                            <p>El empleado no existe en la base de datos. Sera redireccionado a la pagina principal en 5 segundos.</p>
-                        </div>";
-                    
-                    header("refresh:5;url=/App/users.php");
-
                 }
 
-            } catch (PDOException $e){
-
-                $con->bdError($e);
+            } else {
+                Misc::notFound();
                 die();
-
             }
 
-            try{
+            if (isset($id)){
 
-                //Consulta para agregar el usuario a la base de datos.
-                $sql = "insert into usuarios(trabajador, usuario, contra, rol, flag) values ($id, $this->dni, $this->contra, $rol, $this->flag);";
+                $sql = "insert into usuarios(trabajador, usuario, contra, rol, flag) values ($id, '$dni', '$this->contra', $rol, $this->flag);";
 
-                $resultado = $con->exec($sql);
+                try{
+
+                    $resultado = $con->exec($sql);
+
+                } catch (PDOException $e){
+
+                    $con->bdError($e);
+                    die();
+
+                }
 
                 if ($resultado > 0){
 
-                    header("Location:/App/users.php?ok=1");
+                    header("Location: /App/users.php?ok=1");
+
+                } else {
+
+                    echo "
+                        <div class=\"alert alert danger\" role=\"alert\">
+                            <p>No se ha podido crear el usuario. Por favor contacte con el administrador.</p>
+                        </div>";
 
                 }
 
-            } catch (PDOException $e){
-
-                $con->bdError($e);
-                die();
-
             }
-
-            unset($con, $sql, $resultado);
-
+            
         }
 
-        public function modifyUser(){
+        public function modifyUser($rol){
+
+            
 
         }
 

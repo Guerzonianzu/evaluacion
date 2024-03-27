@@ -2,7 +2,7 @@
 
     class Misc {
 
-        public static function mostrar(){
+        public static function userSuccess(){
 
             if(isset($_GET['ok']) && $_GET['ok'] == 1){
 
@@ -20,6 +20,15 @@
                 
             }
 
+        }
+
+        public static function notFound(){
+
+            echo "
+            <div class=\"alert alert-danger\" role=\"alert\">
+                <p>Registro no encontrado.Por favor intente mas tarde.</p>
+            </div>";
+            
         }
 
     }

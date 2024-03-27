@@ -6,6 +6,54 @@
     
     class Empleados {
 
+        protected $dni;
+
+        private $nombre;
+
+        private $apellido;
+
+        private $estado = 1;
+
+        public function __construct(){
+
+            $this->dni = trim($_POST['dni']);
+
+            $this->nombre = trim($_POST['nombre']);
+
+            $this->apellido = trim($_POST['apellido']);
+
+        }
+
+        protected function getDNI(){
+
+            return $this->dni;
+
+        }
+
+        protected function getNombre(){
+
+            return $this->nombre. " ". $this->apellido;
+
+        }
+
+        public function createEmpleado(){
+
+
+
+        }
+
+        public function modifyEmpleado(){
+
+
+
+        }
+
+        public function deleteEmpleado(){
+
+            
+
+        }
+
 
         public function getEmpleados(){
 
@@ -84,7 +132,7 @@
 
             $con = Conexion::conectar();
 
-            //Nueva instancia de objeto: Paginador.
+            //Nueva instancia de objeto: Paginador. 
             $list = new Paginador();
             
             //Seleccion de tipo de busqueda.

@@ -78,7 +78,7 @@
 
                 <?php
 
-                    Misc::mostrar();
+                    Misc::userSuccess();
 
                 ?>
 
