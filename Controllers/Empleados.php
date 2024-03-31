@@ -12,6 +12,16 @@
 
         private $apellido;
 
+        private $agrupamiento;
+
+        private $servicio;
+
+        private $jefe;
+
+        private $fecha;
+
+        private $formulario = 0;
+
         private $estado = 1;
 
         public function __construct(){
@@ -21,6 +31,14 @@
             $this->nombre = trim($_POST['nombre']);
 
             $this->apellido = trim($_POST['apellido']);
+
+            $this->agrupamiento = trim($_POST['agrupamiento']);
+
+            $this->servicio = trim($_POST['servicio']);
+
+            $this->jefe = trim($_POST['jefe']);
+
+            $this->fecha = trim($_POST['fecha']);
 
         }
 
@@ -38,19 +56,70 @@
 
         public function createEmpleado(){
 
+            $con = Conexion::conectar();
 
+            $sql = "call sp_createEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha, $this->formulario, $this->estado);";
+
+            $resultado = $con->exec($sql);
+
+            if($resultado > 0){
+
+                header("Location: /App/home.php?ok=1");
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\" role=\"alert\">
+                        <p>No se pudo crear el empleado. Por favor intente mas tarde.</p>
+                    </div>";
+
+            }
 
         }
 
-        public function modifyEmpleado(){
+        public function modifyEmpleado($rol){
 
+            $con = Conexion::conectar();
 
+            $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha, $this->formulario, $_GET[id]);";
+
+            $resultado = $con->exec($sql);
+
+            if ($resultado > 0){
+
+                header("Location: /App/home.php?ok=2");
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\" role=\"alert\">
+                        <p>No se pudo crear el empleado. Por favor intente mas tarde.</p>
+                    </div>";
+
+            }
 
         }
 
         public function deleteEmpleado(){
 
-            
+            $con = Conexion::conectar();
+
+            $sql = "call sp_disableEmployee($_GET[id])";
+
+            $resultado = $con->exec($sql);
+
+            if ($resultado > 0){
+
+                header("Location: /App/home.php?ok=3");
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\" role=\"alert\">
+                        <p>No se pudo crear el empleado. Por favor intente mas tarde.</p>
+                    </div>";
+
+            }
 
         }
 
@@ -61,7 +130,7 @@
             $con = Conexion::conectar();
             
             //Consulta a base de datos.
-            $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where nombre != 'Administrador' order by tra.apellido;";
+            $sql = "call sp_getEmployees;";
 
             try{
 
