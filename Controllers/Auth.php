@@ -26,8 +26,7 @@
                         $_SESSION['nombre'] = $registro['nombre'];
                         $_SESSION['apellido'] = $registro['apellido'];
                         $_SESSION['rol'] = $registro['rol'];
-                        $_SESSION['flag'] = $registro['flag'];
-                        header("Location: App/home.php");
+                        $_SESSION['flag'] = $registro['flag'];                        
                     }
                 
                 } else {
@@ -38,6 +37,10 @@
                         </div>";
 
                 }
+
+                $resultado->closeCursor();
+                unset($con, $resultado);
+                header("Location: App/home.php");
                 
             } catch (PDOException $e){
 

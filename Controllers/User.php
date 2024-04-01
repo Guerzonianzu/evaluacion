@@ -1,8 +1,7 @@
 <?php
 
-    include "Conexion.php";
-    include "Paginador.php";
-    include "Misc.php";
+    
+    include "Empleados.php";
 
     class User extends Empleados{
 
@@ -108,7 +107,7 @@
             $resultado = $con->exec($sql);
 
             if ($resultado > 0){
-
+                
                 header("Location: /App/users.php?ok=3");
 
             } else {
@@ -128,7 +127,7 @@
             $con = Conexion::conectar();
 
             //Consulta a base de datos
-            $sql = "select * from usuarios where usuario != 'admin';";
+            $sql = "call sp_getUsers;";
 
             try{
 
@@ -143,6 +142,8 @@
                 die();
 
             }
+
+            $resultado->closeCursor();
 
             //Nueva instancia de objeto. Paginador
             $list = new Paginador();

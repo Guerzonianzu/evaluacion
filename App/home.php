@@ -6,7 +6,7 @@
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
 
-        header("Location: ../Forms/formReinicio.php");
+        header("Location: /Forms/reset.php");
 
     }
 
@@ -14,13 +14,13 @@
     if ($_SESSION['rol'] == 1){ ?>
 
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="es">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Administrador</title>
-            <link rel="stylesheet" href="../style/estilo.css">
-            <script src="../Style/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="/Style/estilo.css">
+            <script src="/Style/js/bootstrap.min.js"></script>
         </head>
         <body>
             

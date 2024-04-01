@@ -146,6 +146,8 @@
 
             //Cantidad maxima de elementos.
             $max = $resultado->rowCount();
+
+            $resultado->closeCursor();
             
             //Nueva instancia de objeto: Paginador.
             $list = new Paginador();
