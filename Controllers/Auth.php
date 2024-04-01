@@ -8,7 +8,7 @@
 
             $con = Conexion::conectar();
 
-            define("SQL", "select * from usuarios as usu join trabajadores as tra on tra.id_trabajador = usu.trabajador where usu.usuario = '$user' and usu.contra = '$pass' and tra.activo = 1;");
+            define("SQL", "call sp_login('$user', '$pass');");
 
             try{
 
@@ -41,7 +41,8 @@
                 
             } catch (PDOException $e){
 
-                $resultado->bdError($e);
+                $con->bdError($e);
+                die();
 
             }
 

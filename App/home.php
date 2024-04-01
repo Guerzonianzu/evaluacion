@@ -85,7 +85,7 @@
 
                 <?php
 
-                    Misc::mostrar();
+                    Misc::employeeSuccess();
 
                 ?>
                 
@@ -105,15 +105,14 @@
                         <tbody>
 
                             <?php
-                                $tabla = new Empleados();
 
                                 if (isset($_GET['op'])){
 
-                                    $tabla->searchEmpleados($_GET['op']);
+                                    Empleados::searchEmpleados($_GET['op']);
 
                                 } else {
 
-                                    $tabla->getEmpleados();
+                                    Empleados::getEmpleados();
 
                                 }
                             ?>

@@ -18,6 +18,40 @@
                         <p>Usuario modificado correctamente</p>
                     </div>";
                 
+            } elseif (isset($_GET['ok']) && $_GET['ok'] == 3) {
+
+                echo "
+                    <div class=\"alert alert-success\" role=\"alert\">
+                        <p>Usuario eliminado correctamente</p>
+                    </div>";
+
+            }
+
+        }
+
+        public static function employeeSuccess(){
+
+            if(isset($_GET['ok']) && $_GET['ok'] == 1){
+
+                echo "
+                    <div class=\"alert alert success\" role=\"alert\">
+                        <p>Empleado creado exitosamente</p>
+                    </div>";
+
+            } elseif (isset($_GET['ok']) && $_GET['ok'] == 2){
+
+                echo "
+                    <div class=\"alert alert success\" role=\"alert\">
+                        <p>Empleado modificado exitosamente</p>
+                    </div>";
+
+            } elseif (isset($_GET['ok']) && $_GET['ok'] == 2){
+
+                echo "
+                    <div class=\"alert alert success\" role=\"alert\">
+                        <p>Empleado eliminado exitosamente</p>
+                    </div>";
+
             }
 
         }

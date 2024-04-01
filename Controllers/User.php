@@ -46,7 +46,7 @@
 
             if (isset($id)){
 
-                $sql = "insert into usuarios(trabajador, usuario, contra, rol, flag) values ($id, '$dni', '$this->contra', $rol, $this->flag);";
+                $sql = "call sp_createUser($id, '$this->dni', '$this->contra', $rol, $this->flag);";
 
                 try{
 
@@ -78,11 +78,47 @@
 
         public function modifyUser($rol){
 
-            
+            $con = Conexion::conectar();
+
+            $sql = "call sp_modifyUser($_POST[id], $_POST[rol])";
+
+            $resultado = $con->exec($sql);
+
+            if($resultado > 0){
+
+                header("Location: /App/users.php?ok=2");
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert danger\" role=\"alert\">
+                        <p>No se ha podido crear el usuario. Por favor contacte con el administrador.</p>
+                    </div>";
+
+            }
 
         }
 
         public function deleteUser(){
+
+            $con = Conexion::conectar();
+
+            $sql = "call sp_disableUser($_GET[id]);";
+
+            $resultado = $con->exec($sql);
+
+            if ($resultado > 0){
+
+                header("Location: /App/users.php?ok=3");
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert danger\" role=\"alert\">
+                        <p>No se ha podido crear el usuario. Por favor contacte con el administrador.</p>
+                    </div>";
+
+            }
 
         }
 
@@ -206,7 +242,7 @@
 
                     } catch (PDOException $e){
 
-                        $con->dbError($e);
+                        $con->bdError($e);
                         die();
 
                     }
