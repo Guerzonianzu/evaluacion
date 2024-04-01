@@ -76,11 +76,11 @@
             
         }
 
-        public function modifyUser($rol){
+        public function modifyUser($id, $rol){
 
             $con = Conexion::conectar();
 
-            $sql = "call sp_modifyUser($_POST[id], $_POST[rol])";
+            $sql = "call sp_modifyUser($id, $rol)";
 
             $resultado = $con->exec($sql);
 
@@ -99,11 +99,11 @@
 
         }
 
-        public function deleteUser(){
+        public function deleteUser($id){
 
             $con = Conexion::conectar();
 
-            $sql = "call sp_disableUser($_GET[id]);";
+            $sql = "call sp_disableUser($id);";
 
             $resultado = $con->exec($sql);
 
