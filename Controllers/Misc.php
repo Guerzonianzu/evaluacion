@@ -65,6 +65,33 @@
             
         }
 
+        public static function getAgrupamientos(){
+
+            include_once "Conexion.php";
+
+            $con = Conexion::conectar();
+
+            $sql = "select * from agrupamientos";
+
+            $resultado = $con->query($sql);
+
+            if($resultado->rowCount() > 0){
+
+                foreach ($resultado as $registro){
+
+                    echo "
+                        <option value=\"$registro[id_agrup]\">
+                            $registro[descripcion_agrup]
+                        </option>";
+                    
+                }
+
+            }
+
+            unset($con, $resultado);
+
+        }
+
     }
 
 ?>

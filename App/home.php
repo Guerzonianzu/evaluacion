@@ -48,6 +48,8 @@
             </nav>
 
             <div class="container">
+
+                <a class="btn btn-primary" href="/Forms/Empleados/create.php">Nuevo empleado</a>
                 
                 <form>
                     

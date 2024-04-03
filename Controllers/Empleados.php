@@ -105,7 +105,7 @@
 
             $con = Conexion::conectar();
 
-            $sql = "call sp_disableEmployee;";
+            $sql = "call sp_disableEmployee($_GET[id]);";
 
             $resultado = $con->exec($sql);
 
