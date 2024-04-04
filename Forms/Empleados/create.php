@@ -2,7 +2,15 @@
 
     session_start();
 
-    if($_SESSION['rol'] == 1){ ?>
+    if($_SESSION['rol'] == 1){ 
+        
+        include "../../Controllers/User.php";
+        include "../../Controllers/Servicios.php";
+        include "../../Controllers/Misc.php";
+        include "../../Controllers/Conexion.php";
+        $con = Conexion::conectar();
+
+        ?>
 
         <!DOCTYPE html>
         <html lang="es">
@@ -40,9 +48,26 @@
 
             <div class="container">
 
-                <form>
+                <?php
 
-                    <h1>Alta de empleado</h1>
+                    if(isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
+
+                        $emp = new User(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
+
+                        $emp->createEmpleado($con);
+
+                        
+                    }
+
+                ?>
+
+                <form method="POST">
+
+                    <div class="row justify-content-center mb-3">
+                        <h1>Alta de empleado</h1>
+                    </div>
+
+                    
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">DNI:</span>
@@ -60,8 +85,9 @@
                         <span class="input-group-text">Agrupamiento:</span>
                         <select class="custom-select" name="agrupamiento" id="">
                             <?php
-                                include_once "../../Controllers/Misc.php";
-                                Misc::getAgrupamientos();
+                                
+                                Misc::getAgrupamientos($con);
+
                             ?>
                         </select>
                     </div>
@@ -70,12 +96,39 @@
                         <span class="input-group-text">Servicio:</span>
                         <select class="custom-select" name="servicio" id="">
                             <?php
-                                include_once "../../Controllers/Servicios.php";
-                                Servicios::selectServicios();
+                                
+                                Servicios::selectServicios($con);
+
                             ?>
                         </select>
                     </div>
 
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Jefe inmediato:</span>
+                        <select class="custom-select" name="jefe" id="">
+                            <?php
+
+                                Empleados::getJefes($con);
+
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rol:</span>
+                        <select class="custom-select" name="rol" id="">
+                            <?php
+
+                                User::getRoles($con);
+
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <input type="submit" class="btn btn-primary mr-5" value="Agregar">
+                        <input type="reset" class="btn btn-danger ml-5" value="Reiniciar">
+                    </div>
                 </form>
             
             </div>

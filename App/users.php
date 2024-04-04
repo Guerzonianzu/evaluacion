@@ -5,7 +5,11 @@
     
     session_start();
 
-    if($_SESSION['rol'] == 1){ ?>
+    if($_SESSION['rol'] == 1){ 
+        
+        $con = Conexion::conectar();
+
+        ?>
 
         <!DOCTYPE html>
         <html lang="es">
@@ -101,11 +105,11 @@
 
                                 if (isset($_GET['op'])){
 
-                                    User::searchUser($_GET['op']);
+                                    User::searchUser($_GET['op'], $con);
 
                                 } else {
 
-                                    User::getUser();
+                                    User::getUser($con);
 
                                 }
                             ?>

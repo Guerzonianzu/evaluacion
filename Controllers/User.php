@@ -10,9 +10,9 @@
         private $flag;
         
 
-        public function __construct(){
+        public function __construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe){
 
-            parent::__construct();
+            parent::__construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
 
             $this->contra = '123456';
             
@@ -20,9 +20,7 @@
 
         }
 
-        protected function createUser($rol){
-
-            $con = Conexion::conectar();
+        protected function createUser($rol, $con){
 
             $dni = self::getDNI();
 
@@ -75,9 +73,7 @@
             
         }
 
-        public function modifyUser($id, $rol){
-
-            $con = Conexion::conectar();
+        public function modifyUser($id, $rol, $con){
 
             $sql = "call sp_modifyUser($id, $rol)";
 
@@ -98,9 +94,7 @@
 
         }
 
-        public function deleteUser($id){
-
-            $con = Conexion::conectar();
+        public function deleteUser($id, $con){
 
             $sql = "call sp_disableUser($id);";
 
@@ -121,10 +115,44 @@
 
         }
 
-        public static function getUser(){
+        public static function getRoles($con){
 
-            //Conexion a base de datos.
-            $con = Conexion::conectar();
+            $sql = "select * from roles order by id_rol desc;";
+
+            try {
+
+                $resultado = $con->query($sql);
+
+            } catch(PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if ($resultado->rowCount() > 0){
+
+                foreach ($resultado as $registro){
+
+                    echo "
+                        <option value=\"$registro[id_rol]\">
+                            $registro[descripcion_rol]
+                        </option>";
+
+                }
+
+            } else {
+
+                echo "
+                    <option value=\"\">
+                        No hay opciones
+                    </option>";
+                
+            }
+
+        }
+
+        public static function getUser($con){
 
             //Consulta a base de datos
             $sql = "call sp_getUsers;";
@@ -189,9 +217,7 @@
 
         }
 
-        public static function searchUser($op){
-
-            $con = Conexion::conectar();
+        public static function searchUser($op, $con){
 
             $list = new Paginador();
 

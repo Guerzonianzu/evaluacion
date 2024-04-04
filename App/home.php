@@ -11,7 +11,11 @@
     }
 
     //Verificacion del rol del usuario.
-    if ($_SESSION['rol'] == 1){ ?>
+    if ($_SESSION['rol'] == 1){ 
+        
+        $con = Conexion::conectar();
+
+        ?>
 
         <!DOCTYPE html>
         <html lang="es">
@@ -110,11 +114,11 @@
 
                                 if (isset($_GET['op'])){
 
-                                    Empleados::searchEmpleados($_GET['op']);
+                                    Empleados::searchEmpleados($_GET['op'], $con);
 
                                 } else {
 
-                                    Empleados::getEmpleados();
+                                    Empleados::getEmpleados($con);
 
                                 }
                             ?>

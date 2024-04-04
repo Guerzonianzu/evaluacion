@@ -1,6 +1,5 @@
 <?php
 
-    include "Conexion.php";
     include "Paginador.php";
     
     
@@ -24,21 +23,21 @@
 
         private $estado = 1;
 
-        public function __construct(){
+        public function __construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe){
 
-            $this->dni = trim($_POST['dni']);
+            $this->dni = trim($dni);
 
-            $this->nombre = trim($_POST['nombre']);
+            $this->nombre = trim($nombre);
 
-            $this->apellido = trim($_POST['apellido']);
+            $this->apellido = trim($apellido);
 
-            $this->agrupamiento = trim($_POST['agrupamiento']);
+            $this->agrupamiento = trim($agrupamiento);
 
-            $this->servicio = trim($_POST['servicio']);
+            $this->servicio = trim($servicio);
 
-            $this->jefe = trim($_POST['jefe']);
+            $this->jefe = trim($jefe);
 
-            $this->fecha_ingreso = trim($_POST['fecha']);
+            $this->fecha_ingreso = trim($fecha_ingreso);
 
         }
 
@@ -54,9 +53,35 @@
 
         }
 
-        public function createEmpleado(){
+        public static function getJefes($con){
 
-            $con = Conexion::conectar();
+            $sql = "call sp_getJefes;";
+
+            $resultado = $con->query($sql);
+
+            if($resultado->rowCount() > 0){
+
+                foreach($resultado as $registro){
+
+                    echo "
+                        <option value=\"$registro[id_trabajador]\">
+                            $registro[nombre_completo]
+                        </option>";
+
+                }
+
+            } else {
+
+                echo "
+                    <option value=\"\">
+                        No hay opciones
+                    </option>";
+
+            }
+
+        }
+
+        public function createEmpleado($con){
 
             $sql = "call sp_createEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha_ingreso, $this->formulario, $this->estado);";
 
@@ -77,9 +102,7 @@
 
         }
 
-        public function modifyEmpleado(){
-
-            $con = Conexion::conectar();
+        public function modifyEmpleado($con){
 
             $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha_ingreso, $this->formulario, $this->estado, $_GET[id]);";
 
@@ -101,9 +124,7 @@
 
         }
 
-        public function deleteEmpleado(){
-
-            $con = Conexion::conectar();
+        public function deleteEmpleado($con){
 
             $sql = "call sp_disableEmployee($_GET[id]);";
 
@@ -125,10 +146,7 @@
         }
 
 
-        public static function getEmpleados(){
-
-            //Conexion a base de datos.
-            $con = Conexion::conectar();
+        public static function getEmpleados($con){
             
             //Consulta a base de datos.
             $sql = "call sp_getEmployees;";
@@ -200,9 +218,7 @@
         }
 
 
-        public static function searchEmpleados($op){            
-
-            $con = Conexion::conectar();
+        public static function searchEmpleados($op, $con){
 
             //Nueva instancia de objeto: Paginador. 
             $list = new Paginador();

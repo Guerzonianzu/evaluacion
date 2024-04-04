@@ -65,11 +65,7 @@
             
         }
 
-        public static function getAgrupamientos(){
-
-            include_once "Conexion.php";
-
-            $con = Conexion::conectar();
+        public static function getAgrupamientos($con){
 
             $sql = "select * from agrupamientos";
 
@@ -88,7 +84,7 @@
 
             }
 
-            unset($con, $resultado);
+            unset($resultado);
 
         }
 

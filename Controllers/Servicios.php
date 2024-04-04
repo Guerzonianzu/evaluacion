@@ -1,12 +1,8 @@
 <?php
 
-    include "Conexion.php";
-
     class Servicios {
 
-        public static function selectServicios(){
-
-            $con = Conexion::conectar();
+        public static function selectServicios($con){
 
             $sql = "call sp_getServicios";
 
@@ -32,6 +28,13 @@
                     
 
                 }
+
+            } else {
+
+                echo "
+                    <option value=\"\">
+                        No hay opciones
+                    </option>";
 
             }
 
