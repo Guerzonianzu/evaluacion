@@ -53,6 +53,56 @@
 
         }
 
+        public static function getInfo($id, $con){
+
+            $sql ="select * from trabajadores where id_trabajador = $id;";
+
+            try {
+
+                $resultado = $con->query($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if ($resultado != false){
+
+                foreach($resultado as $registro){
+
+                    $dni = $registro['dni'];
+                    $nombre = $registro['nombre'];
+                    $apellido = $registro['apellido'];
+                    $agrupamiento = $registro['agrupamiento'];
+                    $servicio = $registro['servicio'];
+                    $jefe = $registro['jefe'];
+
+                }
+
+                echo "
+                    <table class=\"table\">
+                        <thead>
+                            <th>DNI</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                        </thead>
+                        <tbody>
+                            <td>$dni</td>
+                            <td>$nombre</td>
+                            <td>$apellido</td>
+                        </tbody>
+                    </table>";
+
+                $emp = new Empleado($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
+
+                return $emp;
+
+            }
+
+        }
+
         public static function getJefes($con){
 
             $sql = "call sp_getJefes;";

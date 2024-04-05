@@ -56,7 +56,14 @@
 
                         $emp->createEmpleado($con);
 
-                        
+                        if($_POST['rol'] == 2 || $_POST['rol'] == 1){
+
+                            $emp->createUser($con);
+
+                        }
+
+                        header("Location: /App/home.php?ok=1");
+
                     }
 
                 ?>
