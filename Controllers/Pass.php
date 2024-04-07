@@ -2,9 +2,17 @@
 
     class Pass{
 
-        public function restart($id, $con){
+        private $id;
 
-            $sql = "update usuarios set contra = '123456', flag = 1 where id_usuario = $id;";
+        public function __construct($id)
+        {
+            $this->id = $id;
+        }
+
+
+        public function restart($con){
+
+            $sql = "update usuarios set contra = '123456', flag = 1 where id_usuario = $this->id;";
 
             try{
 
@@ -27,6 +35,8 @@
                     <div class=\"alert alert-danger\" role=\"alert\">
                         <p>Ha ocurrido un problema al intentar reiniciar la contraseña. Intente mas tarde.</p>
                     </div>";
+
+                header("refresh:5");
 
             }
 
