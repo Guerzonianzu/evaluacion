@@ -58,7 +58,7 @@
 
                         if($_POST['rol'] == 2 || $_POST['rol'] == 1){
 
-                            $emp->createUser($con);
+                            $emp->createUser($_POST['rol'],$con);
 
                         }
 

@@ -37,8 +37,6 @@
 
             $this->jefe = trim($jefe);
 
-            $this->fecha_ingreso = trim($fecha_ingreso);
-
         }
 
         protected function getDNI(){
@@ -81,7 +79,17 @@
 
                 }
 
-                echo "
+                $emp = new self($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
+
+                return $emp;
+
+            }
+
+        }
+
+        public function showEmpleado(){
+
+            echo "
                     <table class=\"table\">
                         <thead>
                             <th>DNI</th>
@@ -89,17 +97,11 @@
                             <th>Apellido</th>
                         </thead>
                         <tbody>
-                            <td>$dni</td>
-                            <td>$nombre</td>
-                            <td>$apellido</td>
+                            <td>$this->dni</td>
+                            <td>$this->nombre</td>
+                            <td>$this->apellido</td>
                         </tbody>
                     </table>";
-
-                $emp = new Empleado($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
-
-                return $emp;
-
-            }
 
         }
 

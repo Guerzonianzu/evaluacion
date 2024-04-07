@@ -43,12 +43,28 @@
             </nav>
 
             <div class="container">
-                
-                <?php
 
+                <form>
 
+                    <h1>¿Esta seguro que desea eliminar este Empleado?</h1>
 
-                ?>
+                    <?php
+
+                        $emp->showEmpleado();
+
+                        if (isset($_GET['y'])){
+
+                            $emp->deleteEmpleado($con);
+
+                        }
+
+                    ?>
+
+                    <input type="hidden" name="y" value="1">
+                    <input type="submit" class="btn btn-primary" value="Si">
+                    <a href="/App/home.php" class="btn btn-primary">No</a>
+
+                </form>
 
             </div>
             

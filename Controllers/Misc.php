@@ -25,6 +25,13 @@
                         <p>Usuario eliminado correctamente</p>
                     </div>";
 
+            } elseif(isset($_GET['ok']) && $_GET['ok'] = 4){
+
+                echo "
+                    <div class=\"alert alert-success\" role=\"alert\">
+                        <p>Usuario eliminado correctamente</p>
+                    </div>";
+
             }
 
         }
@@ -45,7 +52,7 @@
                         <p>Empleado modificado exitosamente</p>
                     </div>";
 
-            } elseif (isset($_GET['ok']) && $_GET['ok'] == 2){
+            } elseif (isset($_GET['ok']) && $_GET['ok'] == 3){
 
                 echo "
                     <div class=\"alert alert success\" role=\"alert\">

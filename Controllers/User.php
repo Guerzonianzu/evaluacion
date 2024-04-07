@@ -196,7 +196,7 @@
 
                     echo "
                     <tr>
-                        <form action=\"/Forms/Pass/Reinicio.php\">
+                        <form action=\"/Forms/Pass/reset.php\">
                             <input type=\"hidden\" name=\"id\" id=\"id\" value=\"$registro[id_trabajador]\">
                             <td>$registro[nombre]</td>
                             <td>$registro[apellido]</td>
