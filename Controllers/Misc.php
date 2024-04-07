@@ -29,7 +29,7 @@
 
                 echo "
                     <div class=\"alert alert-success\" role=\"alert\">
-                        <p>Usuario eliminado correctamente</p>
+                        <p>Se ha reiniciado la contraseña.</p>
                     </div>";
 
             }

@@ -21,6 +21,13 @@
 
                 header("Location: /App/users.php?ok=4");
 
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\" role=\"alert\">
+                        <p>Ha ocurrido un problema al intentar reiniciar la contraseña. Intente mas tarde.</p>
+                    </div>";
+
             }
 
         }
