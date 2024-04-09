@@ -53,7 +53,7 @@
 
         public static function getInfo($id, $con){
 
-            $sql ="select * from trabajadores where id_trabajador = $id;";
+            $sql ="select * from trabajadores tra join agrupamientos agr on tra.agrupamiento = agr.id_agrup join servicios ser on tra.servicio = ser.id_servicio where id_trabajador = $id;";
 
             try {
 
@@ -73,15 +73,38 @@
                     $dni = $registro['dni'];
                     $nombre = $registro['nombre'];
                     $apellido = $registro['apellido'];
-                    $agrupamiento = $registro['agrupamiento'];
-                    $servicio = $registro['servicio'];
-                    $jefe = $registro['jefe'];
+                    $id_agrup = $registro['agrupamiento'];
+                    $agrupamiento = $registro['descripcion_agrup'];
+                    $id_serv = $registro['servicio'];
+                    $servicio = $registro['descripcion_servicio'];
+                    $id_jefe = $registro['jefe'];
 
                 }
 
-                $emp = new self($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
+                $sql = "select concat(apellido, ' ', nombre) as nombre from trabajadores tra join usuarios usu on tra.id_trabajador = usu.trabajador where usu.rol = 2 and id_trabajador = $id_jefe;";
+
+                $resultado = $con->query($sql);
+
+                foreach ($resultado as $registro){
+                    $jefe = $registro['nombre'];                    
+                }
+
+                $emp = array(
+                    'dni' => $dni,
+                    'nombre' => $nombre,
+                    'apellido' => $apellido,
+                    'id_agrup' => $id_agrup,
+                    'agrupamiento' => $agrupamiento,
+                    'id_serv' => $id_serv,
+                    'servicio' => $servicio,
+                    'id_jefe' => $id_jefe,
+                    'jefe' => $jefe);
 
                 return $emp;
+
+            } else {
+
+                return "No encontrado";
 
             }
 

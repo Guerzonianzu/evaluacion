@@ -47,6 +47,10 @@
 
             <div class="container">
 
+                <div class="row justify-content-center mb-3">
+                    <h1>Modificacion de datos del empleado.</h1>
+                </div>
+
                 <?php
 
                     if(isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
@@ -61,6 +65,7 @@
 
                         }
 
+                        unset($emp, $con);
                         header("Location: /App/home.php?ok=2");
 
                     }
@@ -69,7 +74,64 @@
 
                 <form method="POST">
 
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">DNI:</span>
+                        <input type="text" class="form-control" name="dni" value="<?php echo $emp['dni']; ?>">
+                    </div>
 
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Nombre:</span>
+                        <input type="text" class="from-control" name="nombre" value="<?php echo $emp['nombre']; ?>">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Apellido:</span>
+                        <input type="text" class="form-control" name="apellido" value="<?php echo $emp['apellido']; ?>">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Agrupamiento:</span>
+                        <select class="custom-select" name="agrupamiento" id="">
+                            <option value="<?php echo $emp['id_agrup']; ?>"><?php echo $emp['agrupamiento']; ?></option>
+                            <?php
+                                Misc::getAgrupamientos($con);
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Servicio:</span>
+                        <select name="servicio" id="">
+                            <option value="<?php echo $emp['id_serv']; ?>"><?php echo $emp['servicio']; ?></option>
+                            <?php
+                                User::getRoles($con);
+                            ?>
+                        </select>
+                    </div>
+
+                    <div clas="input-group mb-3">
+                        <span class="input-group-text">Jefe Inmediato:</span>
+                        <select name="jefe" id="">
+                            <option value="<?php echo $emp['id_jefe']; ?>"><?php $emp['jefe']; ?></option>
+                            <?php
+                                Empleados::getJefes();
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group mb-3">Rol:</span>
+                        <select name="rol" id="">
+                            <?php
+                                User::getRoles($con);
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <input type="submit" class="btn btn-primary mr-5" value="Modificar">
+                        <input type="reset" class="btn btn-danger ml-5" value="Reiniciar">
+                    </div>
 
                 </form>
 
@@ -80,6 +142,7 @@
 
 
         <?php
+        
     }
 
 ?>

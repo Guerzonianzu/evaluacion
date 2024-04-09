@@ -19,7 +19,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Alta de empleado</title>
             <link rel="stylesheet" href="/Style/estilo.css">
-            <script src="/Style/js/bootstrap.min.js"></script>
         </head>
         <body>
 
@@ -48,6 +47,10 @@
 
             <div class="container">
 
+                <div class="row justify-content-center mb-3">
+                    <h1>Alta de empleado</h1>
+                </div>
+
                 <?php
 
                     if(isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
@@ -61,20 +64,22 @@
                             $emp->createUser($_POST['rol'],$con);
 
                         }
-
+                        
+                        unset($con, $emp);
                         header("Location: /App/home.php?ok=1");
 
+                    } else {
+
+                        echo "
+                            <div class=\"alert alert-danger\" role=\"alert\">
+                                <p>Error: Por favor compruebe que todos los campos estan completos.</p>
+                            </div>";
+                        
                     }
 
                 ?>
 
                 <form method="POST">
-
-                    <div class="row justify-content-center mb-3">
-                        <h1>Alta de empleado</h1>
-                    </div>
-
-                    
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">DNI:</span>

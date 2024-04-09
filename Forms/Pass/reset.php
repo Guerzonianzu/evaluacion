@@ -65,6 +65,14 @@
 
                     $pass->restart();    
 
+                    } else {
+
+                        echo "
+                            <div class=\"alert alert-danger\" role=\"alert\">
+                                Debe ingresar la contraseña en ambos campos para continuar.
+                            </div>";
+                        
+
                     }
 
                 ?>
@@ -75,12 +83,12 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Nueva contraseña</span>
-                        <input type="password" class="form-control" placeholder="Nueva Contraseña" name="string1" minlength="1" maxlength="255">
+                        <input type="password" class="form-control" placeholder="Nueva Contraseña" name="string1" minlength="1" maxlength="255" required>
                     </div>
 
                     <div class="input-group-mb-3">
                         <span class="input-group-text">Repetir contraseña</span>
-                        <input type="password" class="form-control" placeholder="Repetir Contraseña" name="string2" minlength="1" maxlength="255">
+                        <input type="password" class="form-control" placeholder="Repetir Contraseña" name="string2" minlength="1" maxlength="255" required>
                     </div>
 
                     <input type="submit" class="btn btn-primary" value="Aceptar">

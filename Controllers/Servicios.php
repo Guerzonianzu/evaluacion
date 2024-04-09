@@ -2,6 +2,31 @@
 
     class Servicios {
 
+        private $nombre;
+
+        public function __construct($nombre){
+
+            $this->nombre = $nombre;
+
+        }
+
+        public function createServicio($con){
+
+            $sql = "insert into servicios(descripcion_servicio) values ($this->nombre);";
+
+            try {
+
+                $resultado = $con->exec($sql);
+
+            } catch(PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+        }
+
         public static function selectServicios($con){
 
             $sql = "call sp_getServicios";
