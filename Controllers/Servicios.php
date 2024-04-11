@@ -25,6 +25,37 @@
 
             }
 
+            if($resultado > 0){
+
+                header("Location: /App/servicios.php?ok=1");
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\" role=\"alert\">
+                        <p>No se ha podido registrar el nuevo servicio. Por favor intente mas tarde.</p>    
+                    </div>";
+                
+
+            }
+        }
+
+        public function modifyServicio($id, $con){
+
+                
+
+        }
+
+        public function disableServicio($id, $con){
+
+
+
+        }
+
+        public static function getServicios(){
+
+
+
         }
 
         public static function selectServicios($con){
