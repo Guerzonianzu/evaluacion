@@ -47,6 +47,8 @@
 
             <div class="container">
 
+                <a class="btn btn-primary" href="/Forms/Users/create.php"></a>
+
                 <form>
                     
                     <h1>Busqueda de usuarios</h1>

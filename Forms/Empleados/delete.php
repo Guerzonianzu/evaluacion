@@ -6,7 +6,8 @@
 
         include "../../Controllers/Empleados.php";
         $con = Conexion::conectar();
-        $emp = Empleados::getInfo($_GET['id'], $con);
+        $id = $_GET['id'];
+        $emp = Empleados::getInfo($id, $con);
 
         ?>
 
@@ -61,6 +62,7 @@
 
                     ?>
 
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <input type="hidden" name="y" value="1">
                     <input type="submit" class="btn btn-primary" value="Si">
                     <a href="/App/home.php" class="btn btn-primary">No</a>
@@ -73,6 +75,10 @@
         </html>
 
     <?php
+    } else {
+
+        header("Location: /index.php");
+
     }
 
 ?>

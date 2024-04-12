@@ -4,10 +4,12 @@
 
     if($_SESSION['rol'] == 1){
 
-        include "../../Controllers/Conexion.php";
         include "../../Controllers/User.php";
-
+        include "../../Controllers/Servicios.php";
+        include "../../Controllers/Misc.php";
+        include "../../Controllers/Conexion.php";
         $con = Conexion::conectar();
+        $id = $_GET['id'];
         $emp = Empleados::getInfo($_GET['id'], $con);
 
         ?>
@@ -74,6 +76,8 @@
 
                 <form method="POST">
 
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+
                     <div class="input-group mb-3">
                         <span class="input-group-text">DNI:</span>
                         <input type="text" class="form-control" name="dni" value="<?php echo $emp['dni']; ?>">
@@ -104,7 +108,7 @@
                         <select name="servicio" id="">
                             <option value="<?php echo $emp['id_serv']; ?>"><?php echo $emp['servicio']; ?></option>
                             <?php
-                                User::getRoles($con);
+                                Servicios::selectServicios($con);
                             ?>
                         </select>
                     </div>
@@ -143,6 +147,10 @@
 
         <?php
         
+    } else {
+
+        header("Location: /index.php");
+
     }
 
 ?>

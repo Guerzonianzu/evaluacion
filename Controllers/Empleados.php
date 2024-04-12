@@ -191,7 +191,7 @@
 
                 echo "
                     <div class=\"alert alert-danger\" role=\"alert\">
-                        <p>No se ha podido registrar el empleado. Por favor intente mas tarde.</p>
+                        <p>No se ha podido modificar la informacion del empleado. Por favor intente mas tarde.</p>
                     </div>";
                 
 
