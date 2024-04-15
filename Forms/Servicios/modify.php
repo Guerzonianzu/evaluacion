@@ -39,7 +39,7 @@
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
 
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="row justify-content-center mb-3">
-                        <input type="submit" class="btn btn-primary mr-5" value="Agregar">
+                        <input type="submit" class="btn btn-primary mr-5" value="Modificar">
                         <input type="reset" class="btn btn-danger ml-5" value="Reiniciar">
                     </div>
 
