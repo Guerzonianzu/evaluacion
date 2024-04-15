@@ -90,6 +90,27 @@
 
         }
 
+        public static function formSuccess(){
+
+            if (isset($_GET['ok']) && $_GET['ok'] == 1){
+
+                echo "
+                    <div class=\"alert alert-success\" role=\"alert\">
+                        <p>Formulario enviado correctamente.</p>
+                    </div>";
+
+            } elseif (isset($_GET['ok']) && $_GET['ok'] == 2) {
+
+                echo "
+                    <div class=\"alert alert-success\" role=\"alert\">
+                        <p>Contraseña reiniciada exitosamente</p>
+                    </div>";
+                
+
+            }
+
+        }
+
         public static function notFound(){
 
             echo "
