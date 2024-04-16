@@ -1,21 +1,9 @@
 <?php
     session_start();
     if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){ 
+        
         $id = $_GET['id'];
-        require '../../conexion.php';
-        $c = conectar();
-        $sql = "select * from evaluaciones where evaluado = $id";
-        $resultado = mysqli_query($c, $sql);
-        while($registro = mysqli_fetch_assoc($resultado)){
-            $p1 = $registro['pregunta1'];
-            $p2 = $registro['pregunta2'];
-            $p3 = $registro['pregunta3'];
-            $p4 = $registro['pregunta4'];
-            $p5 = $registro['pregunta5'];
-            $p6 = $registro['pregunta6'];
-            $p7 = $registro['pregunta7'];
-            $p8 = $registro['pregunta8'];
-        }
+        
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -49,18 +37,6 @@
                 <div class="row">
                     <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE ADMINISTRACIÓN - AUXILIARES ADMINISTRATIVOS/AS</b></h1>
                     <p>Datos del prestador:</p>
-                    <?php
-                        $sql = "select * from trabajadores where id_trabajador = $id";
-                        $resultado = mysqli_query($c, $sql);
-                        if(mysqli_affected_rows($c) > 0){
-                            while($registro = mysqli_fetch_assoc($resultado)){?>
-                                <div class="col" style="margin-top: 10px"><p><b>Nombre: <?php echo "$registro[nombre]"; ?></b></p></div>
-                                <div class="col" style="margin-top: 10px"><p><b>Apellido: <?php echo "$registro[apellido]"; ?></b></p></div>
-                                <div class="col" style="margin-top: 10px"><p><b>DNI: <?php echo "$registro[DNI]"; ?></b></p></div>
-                            <?php
-                            }
-                        }
-                    ?>
                 </div>
                 <form method="POST" action="../envios.php">
                     <div class="row">
@@ -69,30 +45,6 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p1){
-                                    
-                                    case 40:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 32:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 24:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 16:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 8:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                     <div class="row">
@@ -101,30 +53,6 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p2){
-                                    
-                                    case 10:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 8:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 6:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 4:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 2:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                     <div class="row">
@@ -133,30 +61,6 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p3){
-                                    
-                                    case 10:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 8:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 6:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 4:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 2:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                     <div class="row">
@@ -165,30 +69,6 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p4){
-                                    
-                                    case 10:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 8:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 6:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 4:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 2:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                     <div class="row">
@@ -197,30 +77,6 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p5){
-                                    
-                                    case 10:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 8:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 6:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 4:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 2:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                     <div class="row">
@@ -229,30 +85,6 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p6){
-                                    
-                                    case 10:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 8:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 6:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 4:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 2:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                     <div class="row">
@@ -261,36 +93,10 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
-                            <?php 
-                                switch($p7){
-                                    
-                                    case 10:
-                                        echo "Excelente.";
-                                        break;
-
-                                    case 8:
-                                        echo "Muy bueno.";
-                                        break;
-
-                                    case 6:
-                                        echo "Bueno.";
-                                        break;
-
-                                    case 4:
-                                        echo "Regular.";
-                                        break;
-
-                                    case 2:
-                                        echo "Deficiente.";
-                                        break;
-                                }
-                            ?>
                         </p>
                     </div>
                 </form>
-                <?php
-                    mysqli_close($c);
-                ?>
+
             </div>
         </body>
         </html>
