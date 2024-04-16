@@ -2,8 +2,9 @@
     session_start();
     if($_SESSION['rol'] == 2){ 
         $id = $_GET['id'];
-        require '../../conexion.php';
-        $c = conectar();
+        include "/Controllers/Conexion.php";
+        include "/Controllers/Forms.php";
+        $con = Conexion::conectar();
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -15,42 +16,39 @@
         </head>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../../subpages/main.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="../../subpages/main.php">Inicio<span class="sr-only">(current)</span></a>
-                        </li>               
-                    </ul>
-                </div>
-                <div class="justify-content-end">
+                <a class="navbar-brand" href="#"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <div class="justify-content-end">                        
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="salida.php"><button class="btn btn-primary">Cerrar sesion</button></a>
+                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
+
             <div class="container">
                 <div class="row">
                     <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE ADMINISTRACIÓN - PROFESIONALES GENERALES.</b></h1>
                     <p>Datos del prestador:</p>
+                    
+                </div>
+
+                <div class="row">
                     <?php
-                        $sql = "select * from trabajadores where id_trabajador = $id";
-                        $resultado = mysqli_query($c, $sql);
-                        if(mysqli_affected_rows($c) > 0){
-                            while($registro = mysqli_fetch_assoc($resultado)){?>
-                                <div class="col" style="margin-top: 10px"><p><b>Nombre: <?php echo "$registro[nombre]"; ?></b></p></div>
-                                <div class="col" style="margin-top: 10px"><p><b>Apellido: <?php echo "$registro[apellido]"; ?></b></p></div>
-                                <div class="col" style="margin-top: 10px"><p><b>DNI: <?php echo "$registro[DNI]"; ?></b></p></div>
-                            <?php
-                            }
+
+                        if(isset($_POST['op']) && isset($_POST['op2']) && isset($_POST['op3']) && isset($_POST['op4']) && isset($_POST['op5']) && isset($_POST['op6']) && isset($_POST['op7']) && isset($_POST['op8'])){
+
+                            $form = new Forms();
+                            
+                            $form->registrarEvaluacion($con);
+
                         }
+
+                        Forms::prestador($id, $con);
+
                     ?>
                 </div>
-                <form method="POST" action="../envios.php">
+
+                <form method="POST">
                     <div class="row">
                         <h3>1.	FORMACIÓN TÉCNICA ESPECÍFICA EN EL SERVICIO: Es la que aborda los saberes técnicos específicos propios de cada campo, así como también la contextualización de los contenidos desarrollados en la formación científico-tecnológica de acuerdo a la función a desempeñar y al Servicio del que forma parte.</h3>
                     </div>
@@ -181,9 +179,7 @@
                     <input type="hidden" value="<?php echo "$id"; ?>" name="id">
                     <input type="submit" value="Enviar" class="btn btn-primary">
                 </form>
-                <?php
-                    mysqli_close($c);
-                ?>
+                
             </div>
         </body>
         </html>

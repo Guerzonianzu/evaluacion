@@ -14,7 +14,7 @@
 
             $list = new Paginador();
 
-            $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 order by tra.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try {
 
@@ -64,15 +64,69 @@
 
         public function searchEvaluado($con, $op){
 
+            $list = new Paginador();
+
             switch ($op){
 
                 case "apellido":
 
+                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido = $_GET[buscar] order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
 
                     break;
 
                 case "dni":
+
+                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and dni = $_GET[buscar] order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
+
                     break;
+
+                default:
+
+                    break;
+
+
+                try{
+
+                    $resultado = $con->query($sql);
+
+                } catch (PDOException $e){
+
+                    $con->bdError($e);
+                    die();
+
+                }
+
+                if($resultado != false && $resultado > 0){
+
+                    foreach($resultado as $registro){
+
+                        echo "
+                            <tr>
+                                <form method=\"POST\">
+                                    <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
+                                    <td>$registro[nombre]</td>
+                                    <td>$registro[apellido]</td>";
+                        
+                        if ($registro['estado'] == 1){
+
+                            echo "<input type=\"submit\" class=\"btn btn-primary\" value=\"Evaluar\">";
+
+                        } else {
+
+                            echo "<td><a href=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></a></td>";
+
+                        }
+
+                        echo "
+                                </form>
+                            </tr>";
+
+                    }
+
+                    $list->paginado($resultado->rowCount());
+
+                    unset($resultado);
+                }
 
             }
 
@@ -109,9 +163,30 @@
                         </tbody>
                     </table>";
 
-                
+            }
+
+        }
+
+        public function registrarEvaluacion($con){
+
+            $total = $_POST['op'] + $_POST['op2'] + $_POST['op3'] + $_POST['op4'] + $_POST['op5'] + $_POST['op6'] + $_POST['op7'] + $_POST['op8'];
+
+            $fecha = date('Y-m-d');
+
+            $sql = "insert into evaluaciones(evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador, fecha_evaluacion, total) values ($_POST[id], $_POST[op], $_POST[op2], $_POST[op3], $_POST[op4], $_POST[op5], $_POST[op6], $_POST[op7], $_POST[op8], $_SESSION[trabajador], '$fecha', $total);";
+
+            try {
+
+                $resultado = $con->exec($sql);
+
+            } catch(PDOException $e){
+
+                $con->bdError($e);
+                die();
 
             }
+
+            header("Location: /App/home.php?ok");
 
         }
 

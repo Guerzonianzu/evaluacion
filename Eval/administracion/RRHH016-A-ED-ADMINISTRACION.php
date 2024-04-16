@@ -22,7 +22,7 @@
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
             <div class="container">
@@ -36,6 +36,14 @@
 
                 <div class="row">
                     <?php
+
+                        if(isset($_POST['op']) && isset($_POST['op2']) && isset($_POST['op3']) && isset($_POST['op4']) && isset($_POST['op5']) && isset($_POST['op6']) && isset($_POST['op7']) && isset($_POST['op8'])){
+
+                            $form = new Forms();
+                            
+                            $form->registrarEvaluacion($con);
+
+                        }
 
                         Forms::prestador($id, $con);
 
