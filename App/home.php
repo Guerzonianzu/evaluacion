@@ -142,6 +142,8 @@
         include "../Controllers/Forms.php";
         $con = Conexion::conectar();
 
+        $form = new Forms();
+
         ?>
 
         <!DOCTYPE html>
@@ -154,81 +156,90 @@
         </head>
         <body>
 
-        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <div class="justify-content-end">                        
+                    <?php
+                        echo "$_SESSION[apellido] $_SESSION[nombre]";
+                    ?>
+                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                </div>
+            </nav>
 
-            <form>
+            <div class="container">
+
+                <form>
         
-                <h1>Busqueda de Empleados</h1>
+                    <h1>Busqueda de Empleados</h1>
+
+                    <div class="row">
+                    
+                        <div class="col-md-2">
+                        
+                            <select name="op" class="form-control" id="">
+                                <option value="apellido" selected>Apellido</option>
+                                <option value="dni">DNI</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-10">
+
+                            <input type="text" name="buscar" class="form-control mb-3" placeholder="Buscar...">
+
+                        </div>
+
+                        <div class="col">
+
+                            <input type="submit" value="Buscar" class="btn btn-primary mt-3 mb-3">
+
+                            <a href="home.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
+
+                        </div>
+                    
+                    </div>
+
+                </form>
+
+                <?php
+
+                    Misc::formSuccess();
+
+                ?>
 
                 <div class="row">
                     
-                    <div class="col-md-2">
-                        
-                        <select name="op" class="form-control" id="">
-                            <option value="apellido" selected>Apellido</option>
-                            <option value="dni">DNI</option>
-                            <option value="servicio">Servicio</option>
-                        </select>
+                    <table class="table">
 
-                    </div>
+                        <thead>
 
-                    <div class="col-md-10">
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Servicio</th>
+                            <th colspan="2">Acciones</th>
 
-                        <input type="text" name="buscar" class="form-control mb-3" placeholder="Buscar...">
+                        </thead>
 
-                    </div>
+                        <tbody>
 
-                    <div class="col">
+                            <?php
 
-                        <input type="submit" value="Buscar" class="btn btn-primary mt-3 mb-3">
+                                if (isset($_GET['op'])){
 
-                        <a href="home.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
+                                    $form->searchEvaluado($con, $_GET['op']);
 
-                    </div>
-                    
+                                } else {
+
+                                    $form->getEvaluados($con);
+
+                                }
+                            ?>
+
+                        </tbody>
+
+                    </table>
+
                 </div>
-
-            </form>
-
-            <?php
-
-                Misc::formSuccess();
-
-            ?>
-
-            <div class="row">
-                
-                <table class="table">
-
-                    <thead>
-
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Servicio</th>
-                        <th colspan="2">Acciones</th>
-
-                    </thead>
-
-                    <tbody>
-
-                        <?php
-
-                            if (isset($_GET['op'])){
-
-                                
-
-                            } else {
-
-                                
-
-                            }
-                        ?>
-
-                    </tbody>
-
-                </table>
-
-            </div>
 
             </div>
             

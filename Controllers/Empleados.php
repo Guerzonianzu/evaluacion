@@ -53,7 +53,7 @@
 
         public static function getInfo($id, $con){
 
-            $sql ="select * from trabajadores tra join agrupamientos agr on tra.agrupamiento = agr.id_agrup join servicios ser on tra.servicio = ser.id_servicio where id_trabajador = $id;";
+            $sql ="select * from trabajadores tra join agrupamientos agr on tra.agrupamiento = agr.id_agrup join servicios ser on tra.servicio = ser.id_servicio where id_trabajador = $id and tra.activo = 1;";
 
             try {
 
