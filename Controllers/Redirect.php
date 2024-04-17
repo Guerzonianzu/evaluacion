@@ -131,7 +131,11 @@
                         break;
         
                     case 24:
-                        header("Location: /Eval/enfermeria/RRHH016-PJQCO-ED-ENFERMERIA?id=$id");
+                        header("Location: /Eval/enfermeria/RRHH016-PJQCO-ED-ENFERMERIA.php?id=$id");
+                        break;
+
+                    case 25:
+                        header("Location: /Eval/infraestructura/RRHH016-TSM-ED-INFRAESTRUCTURA.php?id=$id");
                         break;
         
                     default:
@@ -241,7 +245,11 @@
                         break;
         
                     case 24:
-                        header("Location: /Prev/enfermeria/RRHH016-PJQCO-ED-ENFERMERIA?id=$id");
+                        header("Location: /Prev/enfermeria/RRHH016-PJQCO-ED-ENFERMERIA.php?id=$id");
+                        break;
+
+                    case 25:
+                        header("Location: /Prev/infraestructura/RRHH016-TSM-ED-INFRAESTRUCTURA.php?id=$id");
                         break;
         
                     default:

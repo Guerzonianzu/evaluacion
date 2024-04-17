@@ -1,8 +1,14 @@
 <?php
     session_start();
     if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){ 
+
+        include "/Controllers/Conexion.php";
+        include "/Controllers/Forms.php";
         
         $id = $_GET['id'];
+        $con = Conexion::conectar();
+        $form = new Forms;
+        $values = $form->getLastEvaluacion($id, $con);
         
         ?>
         <!DOCTYPE html>
@@ -11,33 +17,35 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>RRHH016-A-ED-ADMINISTRACIÓN</title>
-            <link rel="stylesheet" href="../../style/estilo.css">
+            <link rel="stylesheet" href="/Style/estilo.css">
         </head>
         <body>
+            
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../../subpages/main.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="../../subpages/main.php">Inicio<span class="sr-only">(current)</span></a>
-                        </li>               
-                    </ul>
-                </div>
-                <div class="justify-content-end">
+                <a class="navbar-brand" href="#"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <div class="justify-content-end">                        
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="salida.php"><button class="btn btn-primary">Cerrar sesion</button></a>
+                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
+            
             <div class="container">
+                
                 <div class="row">
                     <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE ADMINISTRACIÓN - AUXILIARES ADMINISTRATIVOS/AS</b></h1>
                     <p>Datos del prestador:</p>
                 </div>
+
+                <div class="row">
+                    <?php
+
+                        $form->prestador($id, $con);
+
+                    ?>
+                </div>
+
                 <form method="POST" action="../envios.php">
                     <div class="row">
                         <h3>1.	PRODUCTIVIDAD: Capacidad de generar resultados con la calidad esperada y en el tiempo oportuno, a fin de lograr los objetivos y metas propuestas. Habilidad para resolver los problemas planteados en su Servicio en tiempo y forma, realizando las tareas asignadas con la calidad de servicio.</h3>
