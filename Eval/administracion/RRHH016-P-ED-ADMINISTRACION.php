@@ -12,7 +12,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>RRHH016-P-ED-ADMINISTRACIÓN</title>
-            <link rel="stylesheet" href="../../style/estilo.css">
+            <link rel="stylesheet" href="/Style/estilo.css">
         </head>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">

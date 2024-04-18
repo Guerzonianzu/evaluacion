@@ -8,7 +8,7 @@
         $id = $_GET['id'];
         $con = Conexion::conectar();
         $form = new Forms;
-        $values = $form->getLastEvaluacion($id, $con);
+        $values = $form->showCalificaciones($id, $con);
         
         ?>
         <!DOCTYPE html>
@@ -46,13 +46,14 @@
                     ?>
                 </div>
 
-                <form method="POST" action="../envios.php">
+                <form method="POST">
                     <div class="row">
                         <h3>1.	PRODUCTIVIDAD: Capacidad de generar resultados con la calidad esperada y en el tiempo oportuno, a fin de lograr los objetivos y metas propuestas. Habilidad para resolver los problemas planteados en su Servicio en tiempo y forma, realizando las tareas asignadas con la calidad de servicio.</h3>
                     </div>
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p1']; ?>
                         </p>
                     </div>
                     <div class="row">
@@ -61,6 +62,7 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p2']; ?>
                         </p>
                     </div>
                     <div class="row">
@@ -69,6 +71,7 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p3']; ?>
                         </p>
                     </div>
                     <div class="row">
@@ -77,6 +80,7 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p4']; ?>
                         </p>
                     </div>
                     <div class="row">
@@ -85,6 +89,7 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p5']; ?>
                         </p>
                     </div>
                     <div class="row">
@@ -93,6 +98,7 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p6']; ?>
                         </p>
                     </div>
                     <div class="row">
@@ -101,6 +107,7 @@
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
+                            <?php echo $values['p7']; ?>
                         </p>
                     </div>
                 </form>

@@ -9,7 +9,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Sistema de evaluacion</h1>
+        <div class="row justify-content-center">
+            <h1>EVALUACIÓN DE DESEMPEÑO 2023</h1>
+        </div>
+        <div class="row justify-content-center">
+            <H1>HCANK</H1>    
+        </div>
+        
+        
             <form method="POST">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>

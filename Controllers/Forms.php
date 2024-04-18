@@ -560,8 +560,7 @@
                         'p3' => 0,
                         'p4' => 0,
                         'p5' => 0,
-                        'p6' => 0,
-                        'p7' => 0
+                        'p6' => 0
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -696,54 +695,293 @@
                     break;
 
                 case '14':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '15':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion15($values['p3']);
+                    $calificaciones['p4'] = self::verificacion15($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '16':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0,
+                        'p8' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion5($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion5($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+                    $calificaciones['p8'] = self::verificacion10($values['p8']);
+
+                    return $calificaciones;
                 
                     break;
                 
                 case '17':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '18':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '19':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion15($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion15($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '20':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '21':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
             
                     break;
                 
                 case '22':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '23':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '24':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 case '25':
+
+                    $calificaciones = array(
+                        'p1' => 0,
+                        'p2' => 0,
+                        'p3' => 0,
+                        'p4' => 0,
+                        'p5' => 0,
+                        'p6' => 0,
+                        'p7' => 0
+                    );
+
+                    $calificaciones['p1'] = self::verificacion40($values['p1']);
+                    $calificaciones['p2'] = self::verificacion10($values['p2']);
+                    $calificaciones['p3'] = self::verificacion10($values['p3']);
+                    $calificaciones['p4'] = self::verificacion10($values['p4']);
+                    $calificaciones['p5'] = self::verificacion10($values['p5']);
+                    $calificaciones['p6'] = self::verificacion10($values['p6']);
+                    $calificaciones['p7'] = self::verificacion10($values['p7']);
+
+                    return $calificaciones;
                 
                     break;
 
                 default:
+
+                    echo "No se ha encontrado el formulario. Se lo redireccionara a la pagina de inicio.";
+                    echo "Si no lo redirecciona por favor haga clic <a href=\"/App/home.php\">Aquí</a>";
                     
                     break;
             }

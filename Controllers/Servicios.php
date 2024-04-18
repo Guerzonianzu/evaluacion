@@ -1,5 +1,7 @@
 <?php
 
+    include "Paginador.php";
+
     class Servicios {
 
         private $nombre;
@@ -106,7 +108,7 @@
 
             try{
 
-                $resultado = $con->query($sql);
+                $resultado2 = $con->query($sql);
 
             } catch (PDOException $e){
 
@@ -115,15 +117,15 @@
 
             }
 
-            if($resultado != false){
+            if($resultado2 != false){
 
-                $max = $resultado->rowCount();
+                $max = $resultado2->rowCount();
 
-                $resultado->closeCursor();
+                $resultado2->closeCursor();
 
                 $list = new Paginador();
 
-                $sql = "select * servicios limit ".($list->pagina)*$list->elementos.", ". $list->elementos. ";";
+                $sql = "select * from servicios limit ".($list->pagina)*$list->elementos.", ". $list->elementos. ";";
 
                 try{
 

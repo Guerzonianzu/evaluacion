@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "../Controllers/Conexion.php";
     include "../Controllers/Empleados.php";
     include "../Controllers/Misc.php";
     
@@ -36,10 +37,10 @@
                             <a href="users.php" class="nav-link">Listado de usuarios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
+                            <a class="nav-link" href="servicios.php">Listado de servicios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                            <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
                         </li>
                     </ul>
                 </div>

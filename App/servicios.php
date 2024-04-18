@@ -4,6 +4,10 @@
 
     if($_SESSION['rol'] == 1){
 
+        include "../Controllers/Conexion.php";
+        include "../Controllers/Servicios.php";
+        include "../Controllers/Misc.php";
+
         $con = Conexion::conectar();
 
         ?>
@@ -14,6 +18,7 @@
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Listado de servicios</title>
+                <link rel="stylesheet" href="/Style/estilo.css">
             </head>
             <body>
 
@@ -42,7 +47,7 @@
                 
                 <div class="container">
 
-                    <a class="btn btn-primary" href="/Forms/Servicios/create.php"></a>
+                    <a class="btn btn-primary" href="/Forms/Servicios/create.php">Nuevo servicio</a>
 
                     <form>
 
@@ -70,7 +75,11 @@
 
                     <?php
 
-                        Misc::serviceSucces();
+                        if(isset($_GET['ok'])){
+
+                            Misc::serviceSucces();
+
+                        }                        
 
                     ?>
 
