@@ -23,7 +23,7 @@
 
         public function passHash(){
 
-            return hash('sha512', $this->salt. $this->pass);
+            return password_hash($this->pass, PASSWORD_DEFAULT, [10]);
 
         }
 

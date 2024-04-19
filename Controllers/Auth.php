@@ -9,8 +9,6 @@
 
             $con = Conexion::conectar();
 
-            $pass = new Pass();
-
             $sql = "call sp_getPass('$user');";
 
             try{
@@ -25,8 +23,6 @@
 
             if ($resultado != false){
 
-                echo "Entro al if N° 1";
-
                 foreach ($resultado as $registro){
 
                     $contra = $registro['contra'];
@@ -35,9 +31,7 @@
 
                 unset($resultado, $registro);
 
-                if($contra == $pass->passHash()){
-
-                    echo "Entro al if N° 2";
+                if(password_verify($_POST['pass'], $contra)){
 
                     $sql = "call sp_login('$user');";
 
