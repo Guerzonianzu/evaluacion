@@ -2,17 +2,36 @@
 
     class Pass{
 
-        private $id;
+        private $pass;
 
-        public function __construct($id)
+        private $salt = "asdjkhqklwejmnbmasbnd";
+
+        public function __construct()
         {
-            $this->id = $id;
+
+            if(isset($_POST['pass'])){
+
+                $this->pass = $_POST['pass'];
+
+            } else {
+
+                $this->pass = '123456';
+
+            }
+            
         }
 
+        public function passHash(){
 
-        public function adminRestart($con){
+            return hash('sha512', $this->salt. $this->pass);
 
-            $sql = "update usuarios set contra = '123456', flag = 1 where id_usuario = $this->id;";
+        }
+
+        public function adminRestart($id, $con){
+
+            $pass = self::passHash();
+
+            $sql = "update usuarios set contra = '$pass', flag = 1 where id_usuario = $_SESSION[user];";
 
             try{
 
@@ -42,7 +61,7 @@
 
         }
 
-        public function restart($con){
+        public function restart($id, $con){
 
             $pass = trim($_POST['string1']);
             $verif = trim($_POST['string2']);
@@ -56,7 +75,11 @@
 
             } else {
 
-                $sql = "update usuarios set contra = $pass where id_usuario = $_SESSION[user];";
+                $this->pass = $pass;
+
+                $contra = self::passHash();
+
+                $sql = "update usuarios set contra = $contra where id_usuario = $_SESSION[user];";
 
                 try{
 
@@ -66,6 +89,19 @@
 
                     $con->bdError($e);
                     die();
+
+                }
+
+                if ($resultado != false && $resultado > 0){
+
+                    header("Location: /App/home.php?ok=4");
+
+                } else {
+
+                    echo "
+                        <div class=\"alert alert-danger\" role=\"alert\">
+                            Se ha producido un error al reiniciar la contraseña. Por favor intente mas tarde.
+                        </div>";
 
                 }
 
