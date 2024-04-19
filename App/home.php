@@ -133,7 +133,125 @@
 
     } else if ($_SESSION['rol'] == 2){
 
+        $form = new Forms();
 
+        ?>
+
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Evaluacion de desempeño</title>
+            <link rel="stylesheet" href="/Style/estilo.css">
+        </head>
+        <body>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <div class="justify-content-end">                        
+                    <?php
+                        echo "$_SESSION[apellido] $_SESSION[nombre]";
+                    ?>
+                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                </div>
+            </nav>
+
+            <div class="container">
+
+                <?php
+
+                    if (isset($_GET['ok']) && $_GET['ok'] == 4){
+
+                        Misc::userSuccess();
+
+                    } elseif(isset($_GET['ok'])){
+
+                        Misc::formSuccess();
+
+                    }
+
+                ?>
+
+                <form>
+        
+                    <h1>Busqueda de Empleados</h1>
+
+                    <div class="row">
+                    
+                        <div class="col-md-2">
+                        
+                            <select name="op" class="form-control" id="">
+                                <option value="apellido" selected>Apellido</option>
+                                <option value="dni">DNI</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-10">
+
+                            <input type="text" name="buscar" class="form-control mb-3" placeholder="Buscar...">
+
+                        </div>
+
+                        <div class="col">
+
+                            <input type="submit" value="Buscar" class="btn btn-primary mt-3 mb-3">
+
+                            <a href="home.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
+
+                        </div>
+                    
+                    </div>
+
+                </form>
+
+                <?php
+
+                    Misc::formSuccess();
+
+                ?>
+
+                <div class="row">
+                    
+                    <table class="table">
+
+                        <thead>
+
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Servicio</th>
+                            <th colspan="2">Acciones</th>
+
+                        </thead>
+
+                        <tbody>
+
+                            <?php
+
+                                if (isset($_GET['op'])){
+
+                                    $form->searchEvaluado($con, $_GET['op']);
+
+                                } else {
+
+                                    $form->getEvaluados($con);
+
+                                }
+                            ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+            
+        </body>
+        </html>
+
+        <?php
 
     } else {
 

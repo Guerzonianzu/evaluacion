@@ -1,48 +1,82 @@
 <?php
 
     include "Conexion.php";
+    include "Pass.php";
 
     class Auth{
 
-        public static function login($user, $pass){
+        public static function login($user){
 
             $con = Conexion::conectar();
 
-            define("SQL", "call sp_login($user, $pass);");
+            $sql = "call sp_getPass('$user');";
 
             try{
 
-                //Consulta a base de datos.
-                $resultado = $con->query(SQL);
+                $resultado = $con->query($sql);
+                
+            } catch (PDOException $e){
 
-                if($resultado->rowCount() > 0){
-                    
-                    foreach($resultado as $registro){
+                $con->bdError($e);
 
-                        //Creacion de variables de sesion.
-                        session_start();
+            }
+
+            if ($resultado != false){
+
+                foreach ($resultado as $registro){
+
+                    $contra = $registro['contra'];
+
+                }
+
+                if(password_verify($_POST['pass'], $contra)){
+
+                    $sql = "call sp_login('$user');";
+
+                    try{
+
+                        $resultado = $con->query($sql);
+
+                    } catch (PDOException $e){
+
+                        $con->bdError($e);
+                        die();
+
+                    }
+
+                    foreach ($resultado as $registro){
+
                         $_SESSION['user'] = $registro['id_usuario'];
                         $_SESSION['trabajador'] = $registro['trabajador'];
                         $_SESSION['nombre'] = $registro['nombre'];
                         $_SESSION['apellido'] = $registro['apellido'];
                         $_SESSION['rol'] = $registro['rol'];
                         $_SESSION['flag'] = $registro['flag'];
-                        header("Location: App/home.php");
+
                     }
-                
+
+                    header("Location: /App/home.php");
+
                 } else {
 
-                    echo 
-                        "<div class=\"alert alert-danger mt-3\" role=\"alert\">
-                            <p>El nombre de usuario o contraseña es incorrecto</p>
+                    echo "
+                        <div class=\"alert alert-danger\">
+                            <p>
+                                La contraseña es incorrecta.
+                            </p>
                         </div>";
 
                 }
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\">
+                        <p>
+                            El usuario o contraseña son incorrectos.
+                        </p>
+                    </div>";
                 
-            } catch (PDOException $e){
-
-                $con->bdError($e);
-
             }
 
         }
