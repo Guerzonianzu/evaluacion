@@ -4,8 +4,6 @@
 
         private $pass;
 
-        private $salt = "asdjkhqklwejmnbmasbnd";
-
         public function __construct()
         {
 
@@ -23,7 +21,7 @@
 
         public function passHash(){
 
-            return password_hash($this->pass, PASSWORD_DEFAULT, [10]);
+            return password_hash($this->pass, PASSWORD_DEFAULT, [8]);
 
         }
 
