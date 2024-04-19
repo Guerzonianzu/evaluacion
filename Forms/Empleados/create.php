@@ -5,7 +5,6 @@
     if($_SESSION['rol'] == 1){ 
         
         include "../../Controllers/User.php";
-        include "../../Controllers/Servicios.php";
         include "../../Controllers/Misc.php";
         include "../../Controllers/Conexion.php";
         $con = Conexion::conectar();
@@ -109,7 +108,7 @@
                         <select class="custom-select" name="servicio" id="">
                             <?php
                                 
-                                Servicios::selectServicios($con);
+                                Empleados::selectServicios($con);
 
                             ?>
                         </select>

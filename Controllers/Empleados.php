@@ -70,18 +70,18 @@
 
                 foreach($resultado as $registro){
 
-                    $dni = $registro['dni'];
+                    $dni = $registro['DNI'];
                     $nombre = $registro['nombre'];
                     $apellido = $registro['apellido'];
                     $id_agrup = $registro['agrupamiento'];
                     $agrupamiento = $registro['descripcion_agrup'];
                     $id_serv = $registro['servicio'];
                     $servicio = $registro['descripcion_servicio'];
-                    $id_jefe = $registro['jefe'];
+                    $id_jefe = $registro['Jefe_inmediato'];
 
                 }
 
-                $sql = "select concat(apellido, ' ', nombre) as nombre from trabajadores tra join usuarios usu on tra.id_trabajador = usu.trabajador where usu.rol = 2 and id_trabajador = $id_jefe;";
+                $sql = "select concat(apellido, ' ', nombre) as nombre from trabajadores tra join usuarios usu on tra.id_trabajador = usu.trabajador where id_trabajador = $id_jefe;";
 
                 $resultado = $con->query($sql);
 
@@ -134,7 +134,7 @@
 
             $resultado = $con->query($sql);
 
-            if($resultado->rowCount() > 0){
+            if($resultado != false || $resultado->rowCount() > 0){
 
                 foreach($resultado as $registro){
 
@@ -177,9 +177,47 @@
 
         }
 
+        public static function selectServicios($con){
+
+            $sql = "call sp_getServicios";
+
+            try{
+
+                $resultado = $con->query($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if($resultado->rowCount() > 0){
+
+                foreach($resultado as $registro){
+
+                    echo "
+                        <option value=\"$registro[id_servicio]\">
+                            $registro[descripcion_servicio]
+                        </option>";
+                    
+
+                }
+
+            } else {
+
+                echo "
+                    <option value=\"\">
+                        No hay opciones
+                    </option>";
+
+            }
+
+        }
+
         public function modifyEmpleado($con){
 
-            $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha_ingreso, $this->formulario, $this->estado, $_GET[id]);";
+            $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha_ingreso, $this->formulario, $this->estado, $_POST[id]);";
 
             $resultado = $con->exec($sql);
 
@@ -223,7 +261,6 @@
 
         public static function getEmpleados($con){
             
-            //Consulta a base de datos.
             $sql = "call sp_getEmployees;";
 
             try{
@@ -237,15 +274,12 @@
 
             }
 
-            //Cantidad maxima de elementos.
             $max = $resultado->rowCount();
 
             $resultado->closeCursor();
             
-            //Nueva instancia de objeto: Paginador.
             $list = new Paginador();
 
-            //(($pagina - 1) * $elementos) indica donde debe empezar a mostrar registros.
             $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try{
@@ -259,10 +293,6 @@
 
             }
                 
-            /*
-            *   Si la consulta a la base de datos nos trae al menos un registro mostrara la informacion dentro de una tabla.
-            *   Caso contrario avisara que aun no se han cargado los registros.
-            */ 
             if ($max > 0){            
         
                 foreach($resultado as $registro){
@@ -274,8 +304,8 @@
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>
                                 <td>$registro[descripcion_servicio]</td>
-                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
-                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/modify.php\">Modificar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/delete.php\">Eliminar</button></td>
                             </form>
                         </tr>";
 
@@ -295,15 +325,12 @@
 
         public static function searchEmpleados($op, $con){
 
-            //Nueva instancia de objeto: Paginador. 
             $list = new Paginador();
             
-            //Seleccion de tipo de busqueda.
             switch($op){
 
                 case "apellido":
                     
-                    //Sentencia SQL para buscar un apellido dentro de la base de datos.
                     $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.apellido like '$_GET[buscar]%' order by tra.apellido asc;";
 
                     try{
@@ -317,10 +344,6 @@
         
                     }
 
-                    /*
-                    *   Si el resultado de la consulta es mayor a 0 nos mostrara los resultados ordenados por apellido.
-                    *   Caso contrario avisara que no pudo encontrar el registro
-                    */
                     if ($resultado->rowCount() > 0){
 
                         foreach ($resultado as $registro){
@@ -332,14 +355,13 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/modify.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/delete.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
                         }
 
-                        //Llamada la funcion paginado.
                         $list->paginado($resultado->rowCount());
 
                     } else {
@@ -352,7 +374,6 @@
 
                 case "dni":
 
-                    //Sentencia SQL para buscar un registro en la base de datos por DNI. Ordenado por apellido.
                     $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.dni like '$_GET[buscar]%' order by tra.apellido;";
 
                     try{
@@ -366,10 +387,6 @@
         
                     }
 
-                    /*
-                    *   Si el resultado de la consulta es mayor a 0 nos mostrara los resultados ordenados por apellido.
-                    *   Caso contrario avisara que no pudo encontrar el registro
-                    */
                     if ($resultado->rowCount() > 0){
 
                         foreach($resultado as $registro){
@@ -381,8 +398,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/modify.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/delete.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
@@ -398,7 +415,6 @@
 
                 case "servicio":
 
-                    //Sentencia SQL para buscar registros por descripcion del servicio. Ordenado por apellido del trabajador.
                     $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where ser.descripcion_servicio like '$_GET[buscar]%' order by tra.apellido;";
 
                     try{
@@ -412,10 +428,6 @@
         
                     }
 
-                    /*
-                    *   Si el resultado de la consulta es mayor a 0 nos mostrara los resultados ordenados por apellido.
-                    *   Caso contrario avisara que no pudo encontrar el registro
-                    */
                     if ($resultado->rowCount() > 0){
 
                         foreach ($resultado as $registro){
@@ -427,14 +439,13 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Modificar.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/Eliminar.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/modify.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/delete.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
                         }
 
-                        //Llamada la funcion paginado.
                         $list->paginado($resultado->rowCount());
 
                     } else {

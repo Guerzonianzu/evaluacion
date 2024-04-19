@@ -5,7 +5,6 @@
     if($_SESSION['rol'] == 1){
 
         include "../../Controllers/User.php";
-        include "../../Controllers/Servicios.php";
         include "../../Controllers/Misc.php";
         include "../../Controllers/Conexion.php";
         $con = Conexion::conectar();
@@ -85,7 +84,7 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Nombre:</span>
-                        <input type="text" class="from-control" name="nombre" value="<?php echo $emp['nombre']; ?>">
+                        <input type="text" class="form-control" name="nombre" value="<?php echo $emp['nombre']; ?>">
                     </div>
 
                     <div class="input-group mb-3">
@@ -105,27 +104,27 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Servicio:</span>
-                        <select name="servicio" id="">
+                        <select class="custom-select" name="servicio" id="">
                             <option value="<?php echo $emp['id_serv']; ?>"><?php echo $emp['servicio']; ?></option>
                             <?php
-                                Servicios::selectServicios($con);
-                            ?>
-                        </select>
-                    </div>
-
-                    <div clas="input-group mb-3">
-                        <span class="input-group-text">Jefe Inmediato:</span>
-                        <select name="jefe" id="">
-                            <option value="<?php echo $emp['id_jefe']; ?>"><?php $emp['jefe']; ?></option>
-                            <?php
-                                Empleados::getJefes();
+                                Empleados::selectServicios($con);
                             ?>
                         </select>
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group mb-3">Rol:</span>
-                        <select name="rol" id="">
+                        <span class="input-group-text">Jefe Inmediato:</span>
+                        <select class="custom-select" name="jefe" id="">
+                            <option value="<?php echo $emp['id_jefe']; ?>"><?php echo $emp['jefe']; ?></option>
+                            <?php
+                                Empleados::getJefes($con);
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rol:</span>
+                        <select class="custom-select" name="rol" id="">
                             <?php
                                 User::getRoles($con);
                             ?>
@@ -134,7 +133,7 @@
 
                     <div class="row justify-content-center">
                         <input type="submit" class="btn btn-primary mr-5" value="Modificar">
-                        <input type="reset" class="btn btn-danger ml-5" value="Reiniciar">
+                        <a href="/App/home.php" class="btn btn-danger">Cancelar</a>
                     </div>
 
                 </form>

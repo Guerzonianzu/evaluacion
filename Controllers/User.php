@@ -154,14 +154,12 @@
 
         public static function getUser($con){
 
-            //Consulta a base de datos
             $sql = "call sp_getUsers;";
 
             try{
 
                 $resultado = $con->query($sql);
 
-                //Cantidad Maxima de elementos
                 $max = $resultado->rowCount();
 
             } catch (PDOException $e){
@@ -173,10 +171,8 @@
 
             $resultado->closeCursor();
 
-            //Nueva instancia de objeto. Paginador
             $list = new Paginador();
 
-            //Selecciona todos los usuarios de los trabajadores y los ordena por apellido.
             $sql = "select * from usuarios as usu join trabajadores as tra on usu.trabajador = tra.id_trabajador where usuario != 'admin' order by tra.apellido limit ". ($list->pagina * $list->elementos). ", ". $list->elementos. ";";
 
             try{
