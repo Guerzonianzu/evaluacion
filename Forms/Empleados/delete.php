@@ -4,10 +4,13 @@
 
     if($_SESSION['rol'] == 1){
 
+        include "../../Controllers/Conexion.php";
         include "../../Controllers/Empleados.php";
         $con = Conexion::conectar();
         $id = $_GET['id'];
         $emp = Empleados::getInfo($id, $con);
+        $empleado = new Empleados($emp['dni'], $emp['nombre'], $emp['apellido'], $emp['id_agrup'], $emp['id_serv'], $emp['id_jefe']);
+        unset($emp);
 
         ?>
 
@@ -52,11 +55,11 @@
 
                     <?php
 
-                        $emp->showEmpleado();
+                        $empleado->showEmpleado();
 
                         if (isset($_GET['y'])){
 
-                            $emp->deleteEmpleado($con);
+                            $empleado->deleteEmpleado($con);
 
                         }
 

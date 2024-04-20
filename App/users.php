@@ -1,5 +1,6 @@
 <?php
 
+    include "../Controllers/Conexion.php";
     include "../Controllers/User.php";
     include "../Controllers/Misc.php";
     
@@ -18,22 +19,21 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Listado de usuarios</title>
             <link rel="stylesheet" href="../style/estilo.css">
-            <script src="/Style/Jquery.min.js" type="text/javascript"></script>
         </head>
         <body>
             
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a href="home.php" class="nav-link">Inicio</a>
+                            <a href="users.php" class="nav-link">Listado de usuarios</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="servicios.php">Listado de servicios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                            <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
                         </li>
                     </ul>
                 </div>
@@ -45,9 +45,7 @@
                 </div>
             </nav>
 
-            <div class="container">
-
-                <a class="btn btn-primary" href="/Forms/Users/create.php"></a>
+            <div class="container"> 
 
                 <form>
                     

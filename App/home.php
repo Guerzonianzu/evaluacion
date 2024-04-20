@@ -7,7 +7,7 @@
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
 
-        header("Location: /Forms/reset.php");
+        header("Location: /Forms/Pass/reset.php");
 
     }
 
@@ -25,7 +25,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Administrador</title>
             <link rel="stylesheet" href="/Style/estilo.css">
-            <script src="/Style/js/bootstrap.min.js"></script>
         </head>
         <body>
             

@@ -9,7 +9,7 @@
 
             $con = Conexion::conectar();
 
-            $sql = "call sp_getPass('$user');";
+            $sql = "select fn_getPass('$user') as contra;";
 
             try{
 
@@ -21,57 +21,59 @@
 
             }
 
-            if ($resultado != false){
+            if (isset($resultado)){
 
-                foreach ($resultado as $registro){
-
-                    $contra = $registro['contra'];
-
-                }
-
-                unset($resultado, $registro);
-
-                if(password_verify($_POST['pass'], $contra)){
-
-                    $sql = "call sp_login('$user');";
-
-                    try{
-
-                        $resultado = $con->query($sql);
-
-                    } catch (PDOException $e){
-
-                        $con->bdError($e);
-                        die();
-
-                    }
-
+                if( $resultado != false || $resultado > 0){
+                    
                     foreach ($resultado as $registro){
 
-                        session_start();
-                        $_SESSION['user'] = $registro['id_usuario'];
-                        $_SESSION['trabajador'] = $registro['trabajador'];
-                        $_SESSION['nombre'] = $registro['nombre'];
-                        $_SESSION['apellido'] = $registro['apellido'];
-                        $_SESSION['rol'] = $registro['rol'];
-                        $_SESSION['flag'] = $registro['flag'];
-
+                        $contra = $registro['contra'];
+    
+                    }
+    
+                    unset($resultado, $registro);
+    
+                    if(password_verify($_POST['pass'], $contra)){
+    
+                        $sql = "call sp_login('$user');";
+    
+                        try{
+    
+                            $resultado = $con->query($sql);
+    
+                        } catch (PDOException $e){
+    
+                            $con->bdError($e);
+                            die();
+    
+                        }
+    
+                        foreach ($resultado as $registro){
+    
+                            session_start();
+                            $_SESSION['user'] = $registro['id_usuario'];
+                            $_SESSION['trabajador'] = $registro['trabajador'];
+                            $_SESSION['nombre'] = $registro['nombre'];
+                            $_SESSION['apellido'] = $registro['apellido'];
+                            $_SESSION['rol'] = $registro['rol'];
+                            $_SESSION['flag'] = $registro['flag'];
+    
+                        }
+    
+                        header("Location: /App/home.php");
+    
+                    } else {
+    
+                        echo "
+                            <div class=\"alert alert-danger\">
+                                <p>
+                                    La contraseña es incorrecta.
+                                </p>
+                            </div>";
+    
                     }
 
-                    header("Location: /App/home.php");
-
                 } else {
-
-                    echo "
-                        <div class=\"alert alert-danger\">
-                            <p>
-                                La contraseña es incorrecta.
-                            </p>
-                        </div>";
-
-                }
-
-            } else {
 
                 echo "
                     <div class=\"alert alert-danger\">
@@ -80,10 +82,11 @@
                         </p>
                     </div>";
                 
+                }
+
             }
 
         }
-
     }
 
 ?>

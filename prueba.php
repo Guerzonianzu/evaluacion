@@ -15,7 +15,7 @@
 
     echo "Coste = ". $coste;
 
-    echo "<br>". password_hash('prueba', PASSWORD_DEFAULT);
+    echo "<br>". password_hash('Cuenca2023', PASSWORD_DEFAULT, [8]);
 
 
 

@@ -9,9 +9,9 @@
 
         $con = Conexion::conectar();
 
-        $pass = new Pass($_GET['id']);
+        $pass = new Pass();
 
-        $pass->adminRestart($con);
+        $pass->adminRestart($_GET['id'], $con);
 
     } elseif (isset($_POST['rol']) && $_SESSION['rol'] == 2){
 
@@ -63,7 +63,7 @@
                     
                     if(isset($_POST['string1']) && isset($_POST['string2'])){
 
-                    $pass->restart();    
+                    $pass->restart($con);
 
                     } else {
 

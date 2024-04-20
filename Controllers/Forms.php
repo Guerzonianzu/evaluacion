@@ -22,7 +22,7 @@
 
             } catch (PDOException $e){
 
-                $con->bdError();
+                $con->bdError($e);
                 die();
 
             }

@@ -193,7 +193,7 @@
                     echo "
                     <tr>
                         <form action=\"/Forms/Pass/reset.php\">
-                            <input type=\"hidden\" name=\"id\" id=\"id\" value=\"$registro[id_trabajador]\">
+                            <input type=\"hidden\" name=\"id\" id=\"id\" value=\"$registro[id_usuario]\">
                             <td>$registro[nombre]</td>
                             <td>$registro[apellido]</td>
                             <td>$registro[usuario]</td>
@@ -241,7 +241,7 @@
                             echo "
                                 <tr>
                                     <form>
-                                        <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
+                                        <input type=\"hidden\" name=\"id\" value=\"$registro[id_usuario]\">
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[usuario]</td>
@@ -277,7 +277,7 @@
                             echo "
                                 <tr>
                                     <form action=\"/Forms/Pass/formReinicio.php\">
-                                        <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
+                                        <input type=\"hidden\" name=\"id\" value=\"$registro[id_usuario]\">
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[usuario]</td>

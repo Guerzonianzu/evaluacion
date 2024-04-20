@@ -29,7 +29,7 @@
 
             $pass = self::passHash();
 
-            $sql = "update usuarios set contra = '$pass', flag = 1 where id_usuario = $_SESSION[user];";
+            $sql = "update usuarios set contra = '$pass', flag = 1 where id_usuario = $id;";
 
             try{
 
@@ -37,12 +37,12 @@
 
             } catch (PDOException $e){
 
-                $con->bdError();
+                $con->bdError($e);
                 die();
 
             }
 
-            if ($resultado != false){
+            if ($resultado != false && $resultado > 0){
 
                 header("Location: /App/users.php?ok=4");
 
@@ -56,10 +56,10 @@
                 header("refresh:5;url=/App/users.php");
 
             }
-
+            
         }
 
-        public function restart($id, $con){
+        public function restart($con){
 
             $pass = trim($_POST['string1']);
             $verif = trim($_POST['string2']);

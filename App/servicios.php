@@ -23,17 +23,17 @@
             <body>
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                    <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="home.php" class="nav-link">Inicio</a>
+                                <a href="users.php" class="nav-link">Listado de usuarios</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
+                                <a class="nav-link" href="servicios.php">Listado de servicios</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                                <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
                             </li>
                         </ul>
                     </div>

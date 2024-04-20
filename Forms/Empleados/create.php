@@ -67,7 +67,7 @@
                         unset($con, $emp);
                         header("Location: /App/home.php?ok=1");
 
-                    } else {
+                    } elseif (isset($_POST['dni'])) {
 
                         echo "
                             <div class=\"alert alert-danger\" role=\"alert\">
@@ -138,7 +138,7 @@
 
                     <div class="row justify-content-center">
                         <input type="submit" class="btn btn-primary mr-5" value="Agregar">
-                        <input type="reset" class="btn btn-danger ml-5" value="Reiniciar">
+                        <a href="/App/home.php" class="btn btn-danger">Cancelar</a>
                     </div>
                 </form>
             

@@ -132,7 +132,18 @@
 
             $sql = "call sp_getJefes;";
 
-            $resultado = $con->query($sql);
+            try {
+
+                $resultado = $con->query($sql);
+
+            } catch(PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            
 
             if($resultado != false || $resultado->rowCount() > 0){
 
@@ -158,7 +169,7 @@
 
         public function createEmpleado($con){
 
-            $sql = "call sp_createEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha_ingreso, $this->formulario, $this->estado);";
+            $sql = "call sp_createEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
 
             $resultado = $con->exec($sql);
 
@@ -217,7 +228,7 @@
 
         public function modifyEmpleado($con){
 
-            $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->fecha_ingreso, $this->formulario, $this->estado, $_POST[id]);";
+            $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado, $_POST[id]);";
 
             $resultado = $con->exec($sql);
 
@@ -280,7 +291,7 @@
             
             $list = new Paginador();
 
-            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' order by trabajadores.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' and activo = 1 order by trabajadores.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try{
 
@@ -331,7 +342,7 @@
 
                 case "apellido":
                     
-                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.apellido like '$_GET[buscar]%' order by tra.apellido asc;";
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.apellido like '$_GET[buscar]%' and activo = 1 order by tra.apellido asc;";
 
                     try{
 
@@ -350,7 +361,7 @@
 
                             echo "
                                 <tr>
-                                    <form>
+                                    <form method=GET>
                                         <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
@@ -374,7 +385,7 @@
 
                 case "dni":
 
-                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.dni like '$_GET[buscar]%' order by tra.apellido;";
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.dni like '$_GET[buscar]%' and activo = 1 order by tra.apellido;";
 
                     try{
 
@@ -415,7 +426,7 @@
 
                 case "servicio":
 
-                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where ser.descripcion_servicio like '$_GET[buscar]%' order by tra.apellido;";
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where ser.descripcion_servicio like '$_GET[buscar]%' and activo = 1 order by tra.apellido;";
 
                     try{
 
