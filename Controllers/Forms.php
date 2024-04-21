@@ -14,7 +14,7 @@
 
             $list = new Paginador();
 
-            $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try {
 
@@ -70,13 +70,13 @@
 
                 case "apellido":
 
-                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido = $_GET[buscar] order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
+                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido like '%$_GET[buscar]%' and formulario != 0 and order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
 
                     break;
 
                 case "dni":
 
-                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and dni = $_GET[buscar] order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
+                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and dni like '%$_GET[buscar]%' and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
 
                     break;
 
