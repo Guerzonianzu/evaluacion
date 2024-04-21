@@ -221,7 +221,7 @@
 
                 case 'dni':
 
-                    $sql = "select * from usuarios as usu join trabajadores as tra on usu.trabajador = tra.id_trabajador where usu.usuario = '%$_GET[buscar]%';";
+                    $sql = "select * from usuarios as usu join trabajadores as tra on usu.trabajador = tra.id_trabajador where usu.usuario like '%$_GET[buscar]%';";
 
                     try {
 
@@ -240,7 +240,7 @@
 
                             echo "
                                 <tr>
-                                    <form>
+                                    <form action=\"/Forms/Pass/reset.php\">
                                         <input type=\"hidden\" name=\"id\" value=\"$registro[id_usuario]\">
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
@@ -276,7 +276,7 @@
 
                             echo "
                                 <tr>
-                                    <form action=\"/Forms/Pass/formReinicio.php\">
+                                    <form action=\"/Forms/Pass/reset.php\">
                                         <input type=\"hidden\" name=\"id\" value=\"$registro[id_usuario]\">
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
@@ -286,6 +286,8 @@
                                 </tr>";
                             
                         }
+
+
 
                     }
 

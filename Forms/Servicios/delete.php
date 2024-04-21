@@ -7,8 +7,8 @@
         include "../../Controllers/Conexion.php";
         include "../../Controllers/Servicios.php";
         $con = Conexion::conectar();
-        $id = $_GET['id'];
-        $serv = Servicios::getInfo();
+
+        $serv = Servicios::getInfo($con);
 
         ?>
 
@@ -23,17 +23,17 @@
         <body>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a href="users.php" class="nav-link">Listado de usuarios</a>
+                            <a href="/App/users.php" class="nav-link">Listado de usuarios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
+                            <a class="nav-link" href="/App/servicios.php">Listado de servicios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                            <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +41,7 @@
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
 
@@ -54,14 +54,14 @@
                     <?php
 
                         echo "
-                            <div class=\"row\">
-                                $serv;
+                            <div class=\"row mb-3\">
+                                $serv[desc]
                             </div>";
                         
 
                         if (isset($_GET['y'])){
 
-                            $serv = new Servicios($serv);
+                            $serv = new Servicios($serv['desc']);
 
                             $serv->deleteServicio($_GET['id'], $con);
 
@@ -69,7 +69,7 @@
 
                     ?>
 
-                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                    <input type="hidden" name="id" value="<?php echo $serv['id'] ?>">
                     <input type="hidden" name="y" value="1">
                     <input type="submit" class="btn btn-primary" value="Si">
                     <a href="/App/home.php" class="btn btn-primary">No</a>
@@ -82,8 +82,6 @@
         </html>
 
         <?php
-
-        unset($con, $id, $serv);
 
     } else {
 

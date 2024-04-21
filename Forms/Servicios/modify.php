@@ -8,6 +8,8 @@
         include "../../Controllers/Servicios.php";
         $con = Conexion::conectar();
 
+        $serv = Servicios::getInfo($con);
+
         ?>
 
         <!DOCTYPE html>
@@ -21,42 +23,17 @@
         <body>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a href="users.php" class="nav-link">Listado de usuarios</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="justify-content-end">                        
-                    <?php
-                        echo "$_SESSION[apellido] $_SESSION[nombre]";
-                    ?>
-                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
-                </div>
-            </nav>
-
-            <div class="container">
-
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                    <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a href="users.php" class="nav-link">Listado de usuarios</a>
+                                <a href="/App/users.php" class="nav-link">Listado de usuarios</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
+                                <a class="nav-link" href="/App/servicios.php">Listado de servicios</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                                <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
                             </li>
                         </ul>
                     </div>
@@ -68,6 +45,8 @@
                     </div>
                 </nav>
 
+            <div class="container">
+
                 <div class="row justify-content-center mb-3">
                     <h1>Modificacion de Servicio</h1>
                 </div>
@@ -78,7 +57,7 @@
 
                         $serv = new Servicios(trim($_POST['servicio']));
 
-                        $serv->modifyServicio;
+                        $serv->modifyServicio($con);
 
                     }
 
@@ -88,7 +67,8 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Nombre del servicio:</span>
-                        <input type="text" class="form-control" placeholder="Nombre del servicio" name="servicio" minlength="1" maxlength="255" required>
+                        <input type="text" class="form-control" value="<?php echo $serv['desc']; ?>" name="servicio" minlength="1" maxlength="255" required>
+                        <input type="hidden" value="<?php echo $serv['id']; ?>" name="id">
                     </div>
 
                     <div class="row justify-content-center mb-3">

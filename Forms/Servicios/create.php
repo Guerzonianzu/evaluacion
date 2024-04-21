@@ -22,17 +22,17 @@
             <body>
                 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                    <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a href="users.php" class="nav-link">Listado de usuarios</a>
+                                <a href="/App/users.php" class="nav-link">Listado de usuarios</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
+                                <a class="nav-link" href="/App/servicios.php">Listado de servicios</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                                <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
                             </li>
                         </ul>
                     </div>
@@ -40,7 +40,7 @@
                         <?php
                             echo "$_SESSION[apellido] $_SESSION[nombre]";
                         ?>
-                        <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                        <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
                     </div>
                 </nav>
 
@@ -54,7 +54,7 @@
 
                         if(isset($_POST['servicio'])){
 
-                            $serv = new Servicio(trim($_POST['servicio']));
+                            $serv = new Servicios(trim($_POST['servicio']));
 
                             $serv->createServicio($con);
 

@@ -29,13 +29,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a href="users.php" class="nav-link">Listado de usuarios</a>
+                            <a href="/App/users.php" class="nav-link">Listado de usuarios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="listaServicios.php">Listado de servicios</a>
+                            <a class="nav-link" href="/App/servicios.php">Listado de servicios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="formularios.php">Vista previa de formularios</a>
+                            <a class="nav-link disable" href="formularios.php">Vista previa de formularios</a>
                         </li>
                     </ul>
                 </div>

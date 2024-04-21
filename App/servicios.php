@@ -58,7 +58,7 @@
                             <div class="input-group mb-3">
 
                                 <span class="input-group-text">Nombre del servicio:</span>
-                                <input type="text" class="form-control" placeholder="Nombre de servicio" name="servicio" minlength=1 maxlength=255>
+                                <input type="text" class="form-control" placeholder="Nombre de servicio" name="op" minlength=1 maxlength=255>
 
                             </div>
 
@@ -77,7 +77,7 @@
 
                         if(isset($_GET['ok'])){
 
-                            Misc::serviceSucces();
+                            Misc::serviceSuccess();
 
                         }                        
 
@@ -96,9 +96,9 @@
 
                                 <?php
 
-                                    if(isset($_GET['buscar'])){
+                                    if(isset($_GET['op'])){
 
-                                        Servicios::searchEmpleados($_GET['buscar'], $con);
+                                        Servicios::searchServicio($_GET['op'], $con);
 
                                     } else {
 

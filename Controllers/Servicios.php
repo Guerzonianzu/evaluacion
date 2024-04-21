@@ -14,7 +14,7 @@
 
         public function createServicio($con){
 
-            $sql = "insert into servicios(descripcion_servicio) values ($this->nombre);";
+            $sql = "insert into servicios(descripcion_servicio) values ('$this->nombre');";
 
             try {
 
@@ -219,7 +219,7 @@
             
             try {
 
-                $resultado = $con->exec($sql);
+                $resultado = $con->query($sql);
 
             } catch (PDOException $e){
 
@@ -228,13 +228,18 @@
 
             }
 
-            if($resultado > 0){
+            if($resultado != false || $resultado > 0){
 
                 foreach ($resultado as $registro){
 
-                    $serv = $registro['descripcion_servicio'];
+                    $id = $registro['id_servicio'];
+                    $desc = $registro['descripcion_servicio'];
 
                 }
+
+                $serv = array('id' => $id, 'desc' => $desc);
+
+                unset ($id, $desc);
 
                 return $serv;
 
