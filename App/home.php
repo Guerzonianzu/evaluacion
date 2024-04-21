@@ -19,8 +19,22 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Administrador</title>
+<<<<<<< Updated upstream
             <link rel="stylesheet" href="../style/estilo.css">
             <script src="../Style/js/bootstrap.min.js"></script>
+=======
+            <link rel="stylesheet" href="/Style/estilo.css">
+            <script>
+                function funcion(){
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '../Controllers/Session.php');
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+                    var rol = document.querySelector('[name=rol]').value;
+                    xhr.send(rol);
+                }
+            </script>
+>>>>>>> Stashed changes
         </head>
         <body>
             
@@ -48,6 +62,19 @@
             </nav>
 
             <div class="container">
+<<<<<<< Updated upstream
+=======
+
+                <div class="row justify-content-end">
+                    <select onchange="funcion()" name="rol">
+                        <option value="1">Administrador</option>
+                        <option value="2">Evaluador</option>
+                    </select>
+                    
+                </div>
+
+                <a class="btn btn-primary" href="/Forms/Empleados/create.php">Nuevo empleado</a>
+>>>>>>> Stashed changes
                 
                 <form>
                     
