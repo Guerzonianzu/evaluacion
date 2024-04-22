@@ -160,7 +160,14 @@
 
                 $resultado = $con->query($sql);
 
-                $max = $resultado->rowCount();
+                if ($resultado != false){
+
+                    $max = $resultado->rowCount();
+
+                } else {
+
+                    $max = 0;
+                }
 
             } catch (PDOException $e){
 
@@ -168,8 +175,6 @@
                 die();
 
             }
-
-            $resultado->closeCursor();
 
             $list = new Paginador();
 
@@ -186,7 +191,7 @@
 
             }
 
-            if($max > 0){
+            if($resultado != false){
 
                 foreach($resultado as $registro){
 
