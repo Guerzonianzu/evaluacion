@@ -2,6 +2,7 @@
 
     
     include "Empleados.php";
+    include "Pass.php";
 
     class User extends Empleados{
 
@@ -14,7 +15,11 @@
 
             parent::__construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
 
-            $this->contra = '123456';
+            $contra = new Pass;
+
+            $this->contra = $contra->passHash();
+
+            unset($contra);
             
             $this->flag = 1;
 
@@ -22,32 +27,25 @@
 
         protected function createUser($rol, $con){
 
-            $dni = self::getDNI();
+            $sql = "select dni from usuarios where usuario = $this->dni;";
 
-            $sql = "select fn_getID('$dni') as dni;";
+            try{
 
-            $resultado = $con->query($sql);
+                $resultado = $con->query($sql);
 
-            if($resultado > 0){
+            } catch (PDOException $e){
 
-                foreach ($resultado as $registro){
-
-                    $id = $registro['dni'];
-    
-                }
-
-            } else {
-                Misc::notFound();
+                $con->bdError($e);
                 die();
             }
 
-            if (isset($id)){
+            if ($resultado = false){
 
-                $sql = "call sp_createUser($id, '$this->dni', '$this->contra', $rol, $this->flag);";
+                $sql = "select id_trabajador from trabajadores where dni = dni;";
 
                 try{
 
-                    $resultado = $con->exec($sql);
+                    $resultado = $con->query($sql);
 
                 } catch (PDOException $e){
 
@@ -56,28 +54,76 @@
 
                 }
 
-                if ($resultado > 0){
+                if($resultado != false || $resultado->rowCount() > 0){
 
-                    header("Location: /App/users.php?ok=1");
+                    foreach ($resultado as $registro){
+
+                        $trabajador = $registro['id_trabajador'];
+        
+                    }
 
                 } else {
 
-                    echo "
-                        <div class=\"alert alert danger\" role=\"alert\">
-                            <p>No se ha podido crear el usuario. Por favor contacte con el administrador.</p>
-                        </div>";
+                    Misc::notFound();
+                    die();
 
                 }
 
+                if (isset($trabajador)){
+
+                    $sql ="insert into usuarios(trabajador, usuario, contra, rol, flag) values ($trabajador, '$this->dni', '$this->contra', $rol, $this->flag);";
+
+                    try{
+
+                        $resultado = $con->exec($sql);
+
+                    } catch (PDOException $e){
+
+                        $con->bdError($e);
+                        die();
+
+                    }
+
+                    if ($resultado > 0){
+
+                        header("Location: /App/users.php?ok=1");
+
+                    } else {
+
+                        echo "
+                            <div class=\"alert alert danger\" role=\"alert\">
+                                <p>No se ha podido crear el usuario. Por favor contacte con el administrador.</p>
+                            </div>";
+
+                    }
+
+                }
+
+            } else {
+
+                echo "
+                    <div class=\"alert alert-danger\">
+                        <p>El usuario ya existe</p>
+                    </div>";
+
             }
-            
+
         }
 
         public function modifyUser($id, $rol, $con){
 
-            $sql = "call sp_modifyUser($id, $rol)";
+            $sql = "update usuarios set rol = $rol where id_usuario = $id";
 
-            $resultado = $con->exec($sql);
+            try{
+
+                $resultado = $con->exec($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
 
             if($resultado > 0){
 
@@ -96,9 +142,18 @@
 
         public function deleteUser($id, $con){
 
-            $sql = "call sp_disableUser($id);";
+            $sql = "delete from usuarios where id_usuario = $id;";
 
-            $resultado = $con->exec($sql);
+            try{
+
+                $resultado = $con->exec($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
 
             if ($resultado > 0){
                 
@@ -154,7 +209,7 @@
 
         public static function getUser($con){
 
-            $sql = "call sp_getUsers;";
+            $sql = "select usuario from usuarios;";
 
             try{
 
@@ -291,8 +346,6 @@
                                 </tr>";
                             
                         }
-
-
 
                     }
 
