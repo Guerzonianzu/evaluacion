@@ -130,7 +130,7 @@
 
         public static function getJefes($con){
 
-            $sql = "call sp_getJefes;";
+            $sql = "select id_trabajador, concat(nombre, ', ', apellido) as nombre_completo from trabajadores tra join usuarios usu on usu.trabajador = tra.id_trabajador where usu.rol = 2;";
 
             try {
 
@@ -169,19 +169,52 @@
 
         public function createEmpleado($con){
 
-            $sql = "call sp_createEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
+            $sql = "select dni from usuarios where dni = $this->dni";
 
-            $resultado = $con->exec($sql);
+            try{
 
-            if($resultado > 0){
+                $resultado = $con->query($sql);
 
-                header("Location: /App/home.php?ok=1");
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if ($resultado = false){
+
+                $sql = "insert into empleados(dni, nombre, apellido, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
+                
+                try {
+
+                    $resultado = $con->exec($sql);
+
+                } catch (PDOException $e){
+
+                    $con->bdError($e);
+                    die();
+
+                }
+    
+                if($resultado != false || $resultado > 0){
+    
+                    header("Location: /App/home.php?ok=1");
+    
+                } else {
+    
+                    echo "
+                        <div class=\"alert alert-danger\" role=\"alert\">
+                            <p>No se ha podido registrar el empleado. Por favor intente mas tarde.</p>
+                        </div>";
+    
+                }
 
             } else {
 
                 echo "
-                    <div class=\"alert alert-danger\" role=\"alert\">
-                        <p>No se ha podido registrar el empleado. Por favor intente mas tarde.</p>
+                    <div class=\"alert alert-danger\">
+                        <p>El Empleado ya existe en la base de datos.</p>
                     </div>";
 
             }
@@ -190,7 +223,7 @@
 
         public static function selectServicios($con){
 
-            $sql = "call sp_getServicios";
+            $sql = "select * from servicios;";
 
             try{
 
@@ -228,9 +261,18 @@
 
         public function modifyEmpleado($con){
 
-            $sql = "call sp_modifyEmployee('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado, $_POST[id]);";
+            $sql = "update trabajadores set dni = '$this->dni', nombre = '$this->nombre', apellido = '$this->apellido', agrupamento = $this->agrupamiento, servicio = $this->servicio, jefe_inmediato = $this->jefe, activo = $this->estado where id_trabajador = $_POST[id];";
 
-            $resultado = $con->exec($sql);
+            try{
+
+                $resultado = $con->exec($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die(); 
+
+            }
 
             if($resultado > 0){
 
@@ -243,14 +285,13 @@
                         <p>No se ha podido modificar la informacion del empleado. Por favor intente mas tarde.</p>
                     </div>";
                 
-
             }
 
         }
 
         public function deleteEmpleado($con){
 
-            $sql = "call sp_disableEmployee($_GET[id]);";
+            $sql = "update trabajadores set activo = 0 where id_trabajador = $_GET[id];";
 
             $resultado = $con->exec($sql);
 
@@ -272,7 +313,7 @@
 
         public static function getEmpleados($con){
             
-            $sql = "call sp_getEmployees;";
+            $sql = "select id_trabajador, nombre, apellido, descripcion_servicio from trabajadores tra join servicios ser on tra.servicio = ser.id_servicio;";
 
             try{
 
@@ -291,7 +332,7 @@
             
             $list = new Paginador();
 
-            $sql = "select * from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' and activo = 1 order by trabajadores.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select id_trabajador, nombre, apellido, descripcion_servicio from trabajadores join servicios on servicios.id_servicio = trabajadores.servicio where nombre != 'Administrador' and activo = 1 order by trabajadores.apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try{
 
@@ -385,7 +426,7 @@
 
                 case "dni":
 
-                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.dni like '$_GET[buscar]%' and activo = 1 order by tra.apellido;";
+                    $sql = "select * from trabajadores as tra join servicios as ser on ser.id_servicio = tra.servicio where tra.dni like '$_GET[buscar]%' and activo = 1 order by tra.apellido asc;";
 
                     try{
 

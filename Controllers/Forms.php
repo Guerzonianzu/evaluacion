@@ -14,7 +14,7 @@
 
             $list = new Paginador();
 
-            $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
 
             try {
 
@@ -27,7 +27,7 @@
 
             }
             
-            if ($resultado != false && $resultado > 0){
+            if ($resultado != false && $resultado->rowCount() > 0){
 
                 foreach($resultado as $registro){
 
@@ -70,17 +70,19 @@
 
                 case "apellido":
 
-                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido like '%$_GET[buscar]%' and formulario != 0 and order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
+                    $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido like '%$_GET[buscar]%' and formulario != 0 and order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
 
                     break;
 
                 case "dni":
 
-                    $sql = "select * from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and dni like '%$_GET[buscar]%' and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
+                    $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and dni like '%$_GET[buscar]%' and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
 
                     break;
 
                 default:
+
+                    $sql = "Error";
 
                     break;
 
@@ -96,7 +98,7 @@
 
                 }
 
-                if($resultado != false && $resultado > 0){
+                if($resultado != false && $resultado->rowCount() > 0){
 
                     foreach($resultado as $registro){
 
@@ -186,7 +188,13 @@
 
             }
 
-            header("Location: /App/home.php?ok");
+            if ($resultado > 0){
+
+                header("Location: /App/home.php?ok");
+
+            }
+
+            
 
         }
 
