@@ -92,7 +92,14 @@
 
         public static function formSuccess(){
 
-            if (isset($_GET['ok'])){
+            if(isset($_GET['ok']) && $_GET['ok'] == 1){
+
+                echo "
+                    <div class=\"alert alert-success\" role=\"alert\">
+                        <p>Contraseña cambiada satisfactoriamente.</p>
+                    </div>";
+
+            } else if (isset($_GET['ok'])){
 
                 echo "
                     <div class=\"alert alert-success\" role=\"alert\">

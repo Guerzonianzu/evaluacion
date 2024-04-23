@@ -36,6 +36,8 @@
             
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                </div>
                 <div class="justify-content-end">                        
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";

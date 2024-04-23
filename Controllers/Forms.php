@@ -14,9 +14,24 @@
 
             $list = new Paginador();
 
-            $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select id_trabajador from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0;";
 
             try {
+
+                $resultado = $con->query($sql);
+
+                $max = $resultado->rowCount();
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            
+            try{
 
                 $resultado = $con->query($sql);
 
@@ -44,7 +59,7 @@
 
                     } else {
 
-                        echo "<td><a href=\"/Controllers/Redirect.php?$registro[id_trabajador]\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></a></td>";
+                        echo "<td><button type=\"submit\" formaction=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button></td>";
 
                     }
 
@@ -56,7 +71,7 @@
 
             }
 
-            $list->paginado($resultado->rowCount());
+            $list->paginado($max);
 
             unset($sql, $resultado);
 
@@ -115,8 +130,8 @@
 
                         } else {
 
-                            echo "<td><a href=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></a></td>";
-
+                            echo "<button type=\"submit\" formaction=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button>";
+                            
                         }
 
                         echo "
@@ -232,7 +247,7 @@
 
             }
 
-            if ($resultado != false && $resultado > 0){
+            if ($resultado != false && $resultado->rowCount() > 0){
 
                 foreach($resultado as $registro){
 

@@ -10,7 +10,7 @@
 
         $id = $_POST['id'];
 
-        $sql = "select formulario from trabajadores where id_trabajador = $_POST[id];";
+        $sql = "select formulario, estado from trabajadores where id_trabajador = $_POST[id];";
 
         try{
 
@@ -32,7 +32,7 @@
 
             }
 
-            if ($estado = 1){
+            if ($estado == 1){
 
                 switch($form){
 
@@ -146,7 +146,7 @@
 
                 }
 
-            } elseif ($estado = 0) {
+            } elseif ($estado == 0) {
 
                 switch($form){
                 

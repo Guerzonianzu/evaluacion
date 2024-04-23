@@ -1,7 +1,7 @@
 <?php
     session_start();
     if($_SESSION['rol'] == 2){ 
-                                
+        
         include "../../Controllers/Conexion.php";
         include "../../Controllers/Forms.php";
         
@@ -16,7 +16,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>RRHH016-A-ED-DOCENCIA</title>
+            <title>RRHH016-PHS-ED-MÉDICA</title>
             <link rel="stylesheet" href="/Style/estilo.css">
         </head>
         <body>
@@ -34,8 +34,9 @@
             </nav>
 
             <div class="container">
+                
                 <div class="row">
-                    <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE DOCENCIA, ÉTICA APLICADA E INVESTIGACIÓN - AUXILIARES ADMINISTRATIVOS/AS</b></h1>
+                    <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN MÉDICA - PROFESIONALES ASISTENCIALES HORAS CONVENIDAS SEMANALES</b></h1>
                     <p>Datos del prestador:</p>
                 </div>
 
@@ -49,7 +50,7 @@
 
                 <form method="POST">
                     <div class="row">
-                        <h3>1.	PRODUCTIVIDAD: Capacidad de promover producción científica/clínica que redunde en mejorar la calidad de la atención al paciente. Habilidad para resolver los problemas planteados en su Servicio en tiempo y forma, realizando las tareas asignada.</h3>
+                        <h3>1.	FORMACIÓN TÉCNICA ESPECÍFICA EN EL SERVICIO: Es la que aborda los saberes técnicos específicos propios de cada campo, así como también la contextualización de los contenidos desarrollados en la formación científico-tecnológica de acuerdo a la función a desempeñar y al Servicio del que forma parte.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -58,7 +59,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <h3>2.	RECIBIR Y ATENDER INSTRUCCIONES: Capacidad para comprender, así como cumplir con atención y disciplina las instrucciones de trabajo, colaborando en todo lo posible o visualización de posibilidades de mejora.</h3>
+                        <h3>2.	RESPONSABILIDAD: Cualidad que tiene la persona de cumplir con exactitud y seriedad sus funciones y compromisos laborales, demuestra esfuerzo, dedicación y preocupación por el trabajo. Cumple su asistencia completa y horario convenido.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -66,8 +67,8 @@
                             <?php echo $values['p2']; ?>
                         </p>
                     </div>
-                    <div class="row";>
-                        <h3>3.	SEGUIMIENTO DE PROCESO: : Compromiso individual respecto del cumplimiento de las diversas normas y procedimientos establecidos, para el desempeño institucional de cada trabajadora y trabajador dentro de cada área del Hospital, y que asegura la mejor calidad de atención, la cual agrega valor organizacional.</h3>
+                    <div class="row">
+                        <h3>3.	REGISTROS MÉDICOS / HISTORIAS CLÍNICAS: Realizar el llenado de la Historia clínica de cada paciente de forma adecuada y completa, y otros registros médicos: consentimientos informados, demás documentos de seguimientos de cada paciente, etc.; dando cumplimiento a la Ley 26.529.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -76,7 +77,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <h3>4.	ORGANIZACIÓN DEL ESPACIO DE TRABAJO: Habilidad para organizar el espacio de trabajo eficazmente y de acuerdo a los lineamientos institucionales, manteniendo orden y la limpieza. Transformación agradable del espacio físico para que sea un sitio agradable y actué como elemento motivacional.</h3>
+                        <h3>4.	CAPACIDAD DE INNOVACIÓN E INVESTIGACIÓN: Curiosidad, agilidad y capacidad de aprendizaje, y permeabilidad al cambio y al desarrollo tecnológico y en constante evolución. Capacidad para fomentar la investigación e innovación y adaptación a los cambios.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -85,7 +86,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <h3>5.	TRABAJO EN EQUIPO: El trabajo en equipo fortalece a cada integrante, desarrollando su función correctamente para el cumplimiento de los objetivos de su Servicio y del Hospital.</h3>
+                        <h3>5.	ORGANIZACIÓN: Habilidad para organizar las actividades y recursos, siguiendo un proceso ordenado en su ejecución, optimizando tiempos y maximizando la eficiencia y eficacia de la Institución. Administración del tiempo. </h3>
                     </div>
                     <div class="row">
                         <p>
@@ -94,7 +95,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <h3>6.	EMPATÍA Y COMPROMISO CON LA INSTITUCIÓN: Comprende la misión y valores del Hospital, así como el rol social y la trascendencia que cumple el Hospital en la comunidad. Se muestra motivado y empático con el público y las personas con las que se vincula dentro de la Institución.</h3>
+                        <h3>6.	CALIDAD DE SERVICIO: Habilidad para asegurar que cada paciente reciba el conjunto de servicios diagnósticos y terapéuticos más adecuado para conseguir una atención sanitaria óptima, teniendo en cuenta todos los factores y los conocimientos del paciente y del servicio, en el marco de un proceso de mejora continua.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -102,8 +103,25 @@
                             <?php echo $values['p6']; ?>
                         </p>
                     </div>
+                    <div class="row">
+                        <h3>7.	EMPATÍA Y TRATO CON EL PACIENTE: Conocimiento y aplicación de la Ley 26.529 de Derechos del Paciente en su Relación con los Profesionales e Instituciones de la Salud. Asimismo, la habilidad para sentir empatía por el paciente que es la comprensión de sus emociones, perspectivas y experiencias.</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <b>CALIFICACION:</b>
+                            <?php echo $values['p7']; ?>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <h3>8.	COMUNICACIÓN Y TRABAJO EN EQUIPO: La comunicación dentro del Servicio y su vinculación con los demás Servicios que intervienen en el Hospital hacen al logro de la mejor calidad de servicio para nuestros/as pacientes. El trabajo en equipo fortalece a cada integrante, que desarrolla su función en cada Servicio para cumplir con los objetivos y lineamientos del Hospital.</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <b>CALIFICACION:</b>
+                            <?php echo $values['p8']; ?>
+                        </p>
+                    </div>
                 </form>
-                
             </div>
         </body>
         </html>

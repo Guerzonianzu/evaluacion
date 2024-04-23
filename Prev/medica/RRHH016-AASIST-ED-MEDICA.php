@@ -1,7 +1,7 @@
 <?php
     session_start();
     if($_SESSION['rol'] == 2){ 
-                                
+        
         include "../../Controllers/Conexion.php";
         include "../../Controllers/Forms.php";
         
@@ -16,7 +16,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>RRHH016-A-ED-DOCENCIA</title>
+            <title>RRHH016-AASIST-ED-MÉDICA</title>
             <link rel="stylesheet" href="/Style/estilo.css">
         </head>
         <body>
@@ -34,11 +34,12 @@
             </nav>
 
             <div class="container">
+                
                 <div class="row">
-                    <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE DOCENCIA, ÉTICA APLICADA E INVESTIGACIÓN - AUXILIARES ADMINISTRATIVOS/AS</b></h1>
+                    <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE MÉDICA - AUXILIARES ADMINISTRATIVOS ASISTENCIALES. </b></h1>
                     <p>Datos del prestador:</p>
                 </div>
-
+                
                 <div class="row">
                     <?php
 
@@ -49,7 +50,7 @@
 
                 <form method="POST">
                     <div class="row">
-                        <h3>1.	PRODUCTIVIDAD: Capacidad de promover producción científica/clínica que redunde en mejorar la calidad de la atención al paciente. Habilidad para resolver los problemas planteados en su Servicio en tiempo y forma, realizando las tareas asignada.</h3>
+                        <h3>1.	PRODUCTIVIDAD: Capacidad de generar resultados con la calidad esperada y en el tiempo oportuno, a fin de lograr los objetivos y metas propuestas. Habilidad para resolver los problemas planteados en su Servicio en tiempo y forma, realizando las tareas asignadas con la calidad de servicio.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -67,7 +68,7 @@
                         </p>
                     </div>
                     <div class="row";>
-                        <h3>3.	SEGUIMIENTO DE PROCESO: : Compromiso individual respecto del cumplimiento de las diversas normas y procedimientos establecidos, para el desempeño institucional de cada trabajadora y trabajador dentro de cada área del Hospital, y que asegura la mejor calidad de atención, la cual agrega valor organizacional.</h3>
+                        <h3>3.	SEGUIMIENTO DE PROCESO: Compromiso individual, consciente y sistemático de las diversas normas y procedimientos establecidos, para el desempeño específico de cada trabajadora y trabajador dentro de cada proceso del Hospital, y que asegura la mejor calidad de servicio y agrega valor a la organización.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -85,7 +86,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <h3>5.	TRABAJO EN EQUIPO: El trabajo en equipo fortalece a cada integrante, desarrollando su función correctamente para el cumplimiento de los objetivos de su Servicio y del Hospital.</h3>
+                        <h3>5.	HABILIDADES COMUNICACIONALES: La comunicación dentro del Servicio y su vinculación con los demás Servicios que intervienen en el Hospital hacen al logro de la mejor calidad de servicio para nuestros/as pacientes.</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -94,12 +95,21 @@
                         </p>
                     </div>
                     <div class="row">
-                        <h3>6.	EMPATÍA Y COMPROMISO CON LA INSTITUCIÓN: Comprende la misión y valores del Hospital, así como el rol social y la trascendencia que cumple el Hospital en la comunidad. Se muestra motivado y empático con el público y las personas con las que se vincula dentro de la Institución.</h3>
+                        <h3>6.	TRABAJO EN EQUIPO: El trabajo en equipo fortalece a cada integrante, desarrollando su función correctamente para el cumplimiento de los objetivos de su Servicio y del Hospital.</h3>
                     </div>
                     <div class="row">
                         <p>
                             <b>CALIFICACION:</b>
                             <?php echo $values['p6']; ?>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <h3>7.	EMPATÍA Y TRATO CON EL PACIENTE: Conocimiento y aplicación de la Ley 26.529 de Derechos del Paciente en su Relación con los Profesionales e Instituciones de la Salud. Asimismo, la habilidad para sentir empatía por el paciente que es la comprensión de sus emociones, perspectivas y experiencias.</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <b>CALIFICACION:</b>
+                            <?php echo $values['p7']; ?>
                         </p>
                     </div>
                 </form>

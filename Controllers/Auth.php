@@ -23,11 +23,7 @@
 
             if (isset($resultado)){
 
-                echo "resultado existe";
-
                 if( $resultado != false || $resultado > 0){
-
-                    echo "es diferente de 0";
                     
                     foreach ($resultado as $registro){
 
