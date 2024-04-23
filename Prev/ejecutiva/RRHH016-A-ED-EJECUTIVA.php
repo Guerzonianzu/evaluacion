@@ -58,9 +58,6 @@
                         </p>
                     </div>
                     <div class="row">
-                        <input class='form-check-input mt-2 ml-3' type='radio' name='op' value="1" required><label for="" style="margin-left:40px"><b>Deficiente</b></label>
-                    </div>
-                    <div class="row">
                         <h3>2.	RECIBIR Y ATENDER INSTRUCCIONES: Capacidad para comprender, así como cumplir con atención y disciplina las instrucciones de trabajo, colaborando en todo lo posible o visualización de posibilidades de mejora.</h3>
                     </div>
                     <div class="row">
