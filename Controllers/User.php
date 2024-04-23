@@ -11,9 +11,9 @@
         private $flag;
         
 
-        public function __construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe){
+        public function __construct($dni, $nombre, $apellido, $fecha_ingreso, $agrupamiento, $servicio, $jefe){
 
-            parent::__construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe);
+            parent::__construct($dni, $nombre, $apellido, $fecha_ingreso, $agrupamiento, $servicio, $jefe);
 
             $contra = new Pass;
 

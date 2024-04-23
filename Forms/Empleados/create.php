@@ -54,7 +54,7 @@
 
                     if(isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
 
-                        $emp = new User(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
+                        $emp = new User(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['ingreso'], $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
 
                         $emp->createEmpleado($con);
 
@@ -134,6 +134,11 @@
 
                             ?>
                         </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha de ingreso:</span>
+                        <input type="date" class="form-control" name="ingreso">
                     </div>
 
                     <div class="row justify-content-center">

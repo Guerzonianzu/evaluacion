@@ -33,18 +33,18 @@
 
                     echo "
                         <tr>
-                            <form method=\"POST\">
+                            <form method=\"POST\" action=\"/Controllers/Redirect.php\">
                                 <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>";
                             
                     if ($registro['estado'] == 1){
 
-                        echo "<input type=\"submit\" class=\"btn btn-primary\" value=\"Evaluar\">";
+                        echo "<td><input type=\"submit\" class=\"btn btn-primary\" value=\"Evaluar\"></td>";
 
                     } else {
 
-                        echo "<td><a href=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></a></td>";
+                        echo "<td><a href=\"/Controllers/Redirect.php?$registro[id_trabajador]\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></a></td>";
 
                     }
 
@@ -104,7 +104,7 @@
 
                         echo "
                             <tr>
-                                <form method=\"POST\">
+                                <form method=\"POST\" action=\"/Controllers/Redirect.php\">
                                     <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                     <td>$registro[nombre]</td>
                                     <td>$registro[apellido]</td>";
@@ -188,10 +188,29 @@
 
             }
 
+
+
             if ($resultado > 0){
 
-                header("Location: /App/home.php?ok");
+                $sql = "update trabajadores set estado = 0 where id_trabajador = $_POST[id];";
 
+                try {
+
+                    $resultado = $con->exec($sql);
+
+                } catch (PDOException $e){
+
+                    $con->bdError($e);
+                    die();
+
+                }
+                
+                if ($resultado > 0){
+
+                    header("Location: /App/home.php?ok");
+
+                }
+                
             }
 
             

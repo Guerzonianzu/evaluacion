@@ -23,13 +23,15 @@
 
         private $estado = 1;
 
-        public function __construct($dni, $nombre, $apellido, $agrupamiento, $servicio, $jefe){
+        public function __construct($dni, $nombre, $apellido, $fecha_ingreso, $agrupamiento, $servicio, $jefe){
 
             $this->dni = trim($dni);
 
             $this->nombre = trim($nombre);
 
             $this->apellido = trim($apellido);
+
+            $this->fecha_ingreso = trim($fecha_ingreso);
 
             $this->agrupamiento = trim($agrupamiento);
 
@@ -78,6 +80,7 @@
                     $id_serv = $registro['servicio'];
                     $servicio = $registro['descripcion_servicio'];
                     $id_jefe = $registro['Jefe_inmediato'];
+                    $fecha = $registro['fecha_ingreso'];
 
                 }
 
@@ -98,7 +101,8 @@
                     'id_serv' => $id_serv,
                     'servicio' => $servicio,
                     'id_jefe' => $id_jefe,
-                    'jefe' => $jefe);
+                    'jefe' => $jefe,
+                    'fecha' => $fecha);
 
                 return $emp;
 
@@ -184,7 +188,7 @@
 
             if ($resultado = false){
 
-                $sql = "insert into empleados(dni, nombre, apellido, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
+                $sql = "insert into empleados(dni, nombre, apellido, fecha_ingreso, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', $this->$fecha_ingreso, $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
                 
                 try {
 
@@ -261,7 +265,7 @@
 
         public function modifyEmpleado($con){
 
-            $sql = "update trabajadores set dni = '$this->dni', nombre = '$this->nombre', apellido = '$this->apellido', agrupamento = $this->agrupamiento, servicio = $this->servicio, jefe_inmediato = $this->jefe, activo = $this->estado where id_trabajador = $_POST[id];";
+            $sql = "update trabajadores set dni = '$this->dni', nombre = '$this->nombre', apellido = '$this->apellido', fecha_ingreso = '$this->fecha_ingreso', agrupamento = $this->agrupamiento, servicio = $this->servicio, jefe_inmediato = $this->jefe, activo = $this->estado where id_trabajador = $_POST[id];";
 
             try{
 

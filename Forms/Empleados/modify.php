@@ -56,17 +56,17 @@
 
                     if(isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
 
-                        $emp = new User(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
+                        $empleado = new User(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
 
-                        $emp->modifyEmpleado($con);
+                        $empleado->modifyEmpleado($con);
 
                         if($_POST['rol'] == 1 || $_POST['rol'] == 2){
 
-                            $emp->createUser($_POST['rol'], $con);
+                            $empleado->createUser($_POST['rol'], $con);
 
                         }
 
-                        unset($emp, $con);
+                        unset($empleado, $con);
                         header("Location: /App/home.php?ok=2");
 
                     }
@@ -129,6 +129,11 @@
                                 User::getRoles($con);
                             ?>
                         </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha de ingreso:</span>
+                        <input type="date" class="form-control" name="ingreso" value="<?php echo $emp['fecha'] ?>">
                     </div>
 
                     <div class="row justify-content-center">

@@ -1,5 +1,7 @@
 <?php
 
+    include "Conexion.php";
+
     session_start();
 
     if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){

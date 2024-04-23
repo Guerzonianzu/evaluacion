@@ -17,6 +17,18 @@
 
     echo "<br>". password_hash('Cuenca2023', PASSWORD_DEFAULT, [8]);
 
+        echo "<form action= method=POST>
+            <input type=\"date\" name=\"ingreso\">
+            <input type=\"submit\" value=\"Agregar\">
+        </form>";
+
+        if (isset ($_POST['ingreso'])){
+
+            var_dump($_POST['ingreso']);
+
+        }
+    
+
 
 
 ?>

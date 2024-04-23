@@ -23,7 +23,11 @@
 
             if (isset($resultado)){
 
+                echo "resultado existe";
+
                 if( $resultado != false || $resultado > 0){
+
+                    echo "es diferente de 0";
                     
                     foreach ($resultado as $registro){
 
@@ -31,9 +35,9 @@
     
                     }
     
-                    unset($resultado, $registro);
-    
                     if(password_verify($_POST['pass'], $contra)){
+
+                        echo "Contraseña verificada";
     
                         $sql = "select id_usuario, trabajador, nombre, apellido, rol, flag from usuarios usu join trabajadores tra on usu.trabajador = tra.id_trabajador where usuario = '$user';";
     

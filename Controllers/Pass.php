@@ -77,7 +77,7 @@
 
                 $contra = self::passHash();
 
-                $sql = "update usuarios set contra = $contra where id_usuario = $_SESSION[user];";
+                $sql = "update usuarios set contra = $contra, flag = 0 where id_usuario = $_SESSION[user];";
 
                 try{
 
@@ -90,7 +90,7 @@
 
                 }
 
-                if ($resultado != false && $resultado > 0){
+                if ($resultado !=false ){
 
                     header("Location: /App/home.php?ok=4");
 
@@ -100,6 +100,7 @@
                         <div class=\"alert alert-danger\" role=\"alert\">
                             Se ha producido un error al reiniciar la contraseña. Por favor intente mas tarde.
                         </div>";
+                        var_dump($resultado);
 
                 }
 

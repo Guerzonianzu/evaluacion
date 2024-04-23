@@ -2,7 +2,7 @@
 
     session_start();
 
-    if(isset($_SESSION['rol']) && $_SESSION['rol'] == 1){
+    if($_SESSION['rol'] == 1){
 
         include "../../Controllers/Conexion.php";
         include "../../Controllers/Pass.php";
@@ -13,14 +13,14 @@
 
         $pass->adminRestart($_GET['id'], $con);
 
-    } elseif (isset($_POST['rol']) && $_SESSION['rol'] == 2){
+    } elseif ($_SESSION['rol'] == 2){
 
         include "../../Controllers/Conexion.php";
         include "../../Controllers/Pass.php";
 
         $con = Conexion::conectar();
 
-        $pass = new Pass($_SESSION['user']);
+        $pass = new Pass();
 
         ?>
 
@@ -36,19 +36,6 @@
             
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a href="/App/users.php" class="nav-link">Listado de usuarios</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/App/servicios.php">Listado de servicios</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link disable" href="formularios.php">Vista previa de formularios</a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="justify-content-end">                        
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
@@ -86,7 +73,7 @@
                         <input type="password" class="form-control" placeholder="Nueva Contraseña" name="string1" minlength="1" maxlength="255" required>
                     </div>
 
-                    <div class="input-group-mb-3">
+                    <div class="input-group mb-3">
                         <span class="input-group-text">Repetir contraseña</span>
                         <input type="password" class="form-control" placeholder="Repetir Contraseña" name="string2" minlength="1" maxlength="255" required>
                     </div>

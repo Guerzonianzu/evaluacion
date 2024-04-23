@@ -2,8 +2,8 @@
     session_start();
     if($_SESSION['rol'] == 2){ 
         $id = $_GET['id'];
-        include "/Controllers/Conexion.php";
-        include "/Controllers/Forms.php";
+        include "../../Controllers/Conexion.php";
+        include "../../Controllers/Forms.php";
 
         $con = Conexion::conectar();
         ?>

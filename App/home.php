@@ -3,6 +3,7 @@
     include "../Controllers/Conexion.php";
     include "../Controllers/Empleados.php";
     include "../Controllers/Misc.php";
+
     
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
@@ -39,7 +40,7 @@
                             <a class="nav-link" href="servicios.php">Listado de servicios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link disabled" href="formularios.php">Vista previa de formularios</a>
+                            <a class="nav-link" href="download.php">Descarga de calificaciones</a>
                         </li>
                     </ul>
                 </div>
@@ -138,7 +139,6 @@
 
     } else if ($_SESSION['rol'] == 2){
 
-        include "../Controllers/Conexion.php";
         include "../Controllers/Forms.php";
         $con = Conexion::conectar();
 
@@ -158,6 +158,8 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                </div>
                 <div class="justify-content-end">                        
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
@@ -215,8 +217,7 @@
 
                             <th>Nombre</th>
                             <th>Apellido</th>
-                            <th>Servicio</th>
-                            <th colspan="2">Acciones</th>
+                            <th></th>
 
                         </thead>
 
