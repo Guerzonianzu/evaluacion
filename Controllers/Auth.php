@@ -9,7 +9,7 @@
 
             $con = Conexion::conectar();
 
-            $sql = "select contra from usuarios where usuario = $user;";
+            $sql = "select contra from usuarios where usuario = '$user';";
 
             try{
 
@@ -35,7 +35,7 @@
     
                     if(password_verify($_POST['pass'], $contra)){
     
-                        $sql = "select id_usuario, trabajador, nombre, apellido, rol, flag from usuarios usu join trabajadores tra on usu.trabajador = tra.id_trabajador where usuario = $user;";
+                        $sql = "select id_usuario, trabajador, nombre, apellido, rol, flag from usuarios usu join trabajadores tra on usu.trabajador = tra.id_trabajador where usuario = '$user';";
     
                         try{
     
