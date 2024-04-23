@@ -117,19 +117,19 @@
                         break;
         
                     case 20:
-                        header("Location: /Eval/docencia/RRHH016-AED-DOCENCIA.php?id=$id");
+                        header("Location: /Eval/docencia/RRHH016-A-ED-DOCENCIA.php?id=$id");
                         break;
         
                     case 21:
-                        header("Location: /Eval/enfermeria/RRHH-016-E-ED-ENFERMERIA.php?id=$id");
+                        header("Location: /Eval/enfermeria/RRHH016-E-ED-ENFERMERIA.php?id=$id");
                         break;
         
                     case 22:
-                        header("Location: /Eval/docencia/RRHH-016-P-ED-DOCENCIA.php?id=$id");
+                        header("Location: /Eval/docencia/RRHH016-P-ED-DOCENCIA.php?id=$id");
                         break;
         
                     case 23:
-                        header("Location: /Eval/docencia/RRHH-016-PJQCO-ED-DOCENCIA.php?id=$id");
+                        header("Location: /Eval/docencia/RRHH016-PJQCO-ED-DOCENCIA.php?id=$id");
                         break;
         
                     case 24:
@@ -231,19 +231,19 @@
                         break;
         
                     case 20:
-                        header("Location: /Prev/docencia/RRHH016-AED-DOCENCIA.php?id=$id");
+                        header("Location: /Prev/docencia/RRHH016-A-ED-DOCENCIA.php?id=$id");
                         break;
         
                     case 21:
-                        header("Location: /Prev/enfermeria/RRHH-016-E-ED-ENFERMERIA.php?id=$id");
+                        header("Location: /Prev/enfermeria/RRHH016-E-ED-ENFERMERIA.php?id=$id");
                         break;
         
                     case 22:
-                        header("Location: /Prev/docencia/RRHH-016-P-ED-DOCENCIA.php?id=$id");
+                        header("Location: /Prev/docencia/RRHH016-P-ED-DOCENCIA.php?id=$id");
                         break;
         
                     case 23:
-                        header("Location: /Prev/docencia/RRHH-016-PJQCO-ED-DOCENCIA.php?id=$id");
+                        header("Location: /Prev/docencia/RRHH016-PJQCO-ED-DOCENCIA.php?id=$id");
                         break;
         
                     case 24:

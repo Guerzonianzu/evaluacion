@@ -95,7 +95,7 @@
                 if ($resultado > 0 ){
 
                     $_SESSION['flag'] = 0;
-                    header("Location: /App/home.php?ok=4");
+                    header("Location: /App/home.php?ok=1");
 
                 } else {
 
