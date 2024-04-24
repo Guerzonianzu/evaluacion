@@ -24,7 +24,7 @@
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
 
@@ -33,7 +33,7 @@
                     
                     <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE ADMINISTRACIÓN - AUXILIARES ADMINISTRATIVOS/AS</b></h1>
 
-                    <p>Datos del prestador:</p>
+                    <p>Datos del trabajador/a:</p>
 
                 </div>
 
@@ -47,10 +47,25 @@
                             $form->registrarEvaluacion($con);
 
                         }
-
-                        Forms::prestador($id, $con);
-
+                    
                     ?>
+
+                    <div class="col">
+
+                        <?php
+
+                            Forms::prestador($id, $con);
+
+                        ?>
+
+                    </div>
+
+                    <div class="col">
+
+
+
+                    </div>
+
                 </div>
 
                 <form method="POST">

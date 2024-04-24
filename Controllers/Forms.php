@@ -184,6 +184,73 @@
 
         }
 
+        public static function evaluador($id, $con){
+
+            $sql = "select jefe_inmediato from trabajadores where id_trabajador = $id;";
+
+            try{
+
+                $resultado = $con->query($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if ($resultado != false){
+
+                foreach ($resultado as $registro){
+
+                    $id_eval = $registro['jefe_inmediato'];
+
+                }
+
+                $sql = "select nombre, apellido, dni from trabajadores where id_trabajador = $id_eval;";
+
+                try {
+
+                    $resultado = $con->query($sql);
+
+                } catch (PDOException $e){
+
+                    $con->bdError($e);
+                    die();
+
+                }
+
+                if ($resultado != false){
+
+                    foreach($resultado as $registro){
+
+                        $nombre = $registro['nombre'];
+                        $apellido = $registro['apellido'];
+                        $dni = $registro['dni'];
+
+                    }
+
+                    echo "
+                    <table class=\"table\">
+                        <thead>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                        </thead>
+                        <tbody>
+                            <td>$nombre</td>
+                            <td>$apellido</td>
+                            <td>$dni</td>
+                        </tbody>
+                    </table>";
+
+                }
+
+            }
+            
+
+        }
+
         public function registrarEvaluacion($con){
 
             $total = $_POST['op'] + $_POST['op2'] + $_POST['op3'] + $_POST['op4'] + $_POST['op5'] + $_POST['op6'] + $_POST['op7'] + $_POST['op8'];
@@ -234,7 +301,7 @@
 
         public function getCalificaciones ($id, $con){
 
-            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8 from evaluaciones where evaluado = $id and evaluador = $this->id_jefe order by fecha_evaluacion asc limit 1;";
+            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador from evaluaciones where evaluado = $id and evaluador = $this->id_jefe order by fecha_evaluacion asc limit 1;";
 
             try {
 
@@ -259,7 +326,8 @@
                         'p5' => $registro['pregunta5'],
                         'p6' => $registro['pregunta6'],
                         'p7' => $registro['pregunta7'],
-                        'p8' => $registro['pregunta8']
+                        'p8' => $registro['pregunta8'],
+                        'evaluador' => $registro['evaluador']
                     );
 
                 }

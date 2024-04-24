@@ -36,15 +36,34 @@
             <div class="container">
                 <div class="row">
                     <h1><b>EVALUACIÓN DE DESEMPEÑO DIRECCIÓN DE ADMINISTRACIÓN - PROFESIONALES GENERALES.</b></h1>
-                    <p>Datos del prestador:</p>
                 </div>
 
                 <div class="row">
-                    <?php
 
-                        $form->prestador($id, $con);
+                    <div class="col">
 
-                    ?>
+                        <p>Datos del trabajador/a:</p>
+
+                        <?php
+
+                            $form->prestador($id, $con);
+
+                        ?>
+
+                    </div>
+
+                    <div class="col">
+
+                        <p>Datos del evaluador/a:</p>
+
+                        <?php
+
+                            $form->evaluador($id, $con);
+
+                        ?>
+
+                    </div>
+                    
                 </div>
 
                 <form method="POST">

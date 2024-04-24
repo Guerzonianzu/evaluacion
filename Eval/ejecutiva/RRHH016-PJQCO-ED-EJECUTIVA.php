@@ -25,7 +25,7 @@
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
             
