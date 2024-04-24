@@ -40,7 +40,10 @@
                             <a class="nav-link" href="servicios.php">Listado de servicios</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="download.php">Descarga de calificaciones</a>
+                            <a class="nav-link" href="prev.php">Vista previa(Evaluaciones Realizadas)</a>
+                        </li>
+                        <li class="nav-item disabled">
+                            <a class="nav-link disabled" href="download.php">Descarga de calificaciones</a>
                         </li>
                     </ul>
                 </div>

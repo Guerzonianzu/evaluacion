@@ -251,6 +251,93 @@
 
         }
 
+        public static function getFormularios($con){
+
+            $sql = "select id_trabajador, nombre, apellido, dni from trabajadores where estado = 0;";
+
+            try{
+
+                $resultado = $con->query($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if ($resultado != false){
+
+                foreach ($resultado as $registro){
+
+                    echo 
+                        "<tr>
+                            <form method=\"POST\">
+                                <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
+                                <td>$registro[nombre]</td>
+                                <td>$registro[apellido]</td>
+                                <td>$registro[dni]</td>
+                                <td><button class=\"btn btn-primary\" formaction=\"/Controllers/redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
+                            </form>
+                        </tr>";
+
+                }                
+
+            }
+
+        }
+
+        public static function searchFormularios($con){
+
+            $list = new Paginador();
+
+            $buscar = $_GET['buscar'];
+
+            switch ($_GET['op']){
+
+                case "apellido":
+                    
+                    $sql = "select id_trabajador, nombre, apellido, dni from trabajadores where apellido like '%$buscar%;'";
+                    break;
+                    
+                case "dni":
+
+                    $sql = "select id_trabajador, nombre, apellido, dni from trabajadores where dni like '%$buscar%'";
+                    break;
+            }
+
+            try{
+
+                $resultado = $con->query($sql);
+
+            } catch (PDOException $e){
+
+                $con->bdError($e);
+                die();
+
+            }
+
+            if ($resultado != false){
+
+                foreach ($resultado as $registro){
+
+                    echo 
+                        "<tr>
+                            <form method=\"POST\">
+                                <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
+                                <td>$registro[nombre]</td>
+                                <td>$registro[apellido]</td>
+                                <td>$registro[dni]</td>
+                                <td><button formaction=\"/Controllers/redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
+                            </form>
+                        </tr>";
+
+                }
+
+            }
+
+        }
+
         public function registrarEvaluacion($con){
 
             $total = $_POST['op'] + $_POST['op2'] + $_POST['op3'] + $_POST['op4'] + $_POST['op5'] + $_POST['op6'] + $_POST['op7'] + $_POST['op8'];
@@ -301,7 +388,7 @@
 
         public function getCalificaciones ($id, $con){
 
-            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador from evaluaciones where evaluado = $id and evaluador = $this->id_jefe order by fecha_evaluacion asc limit 1;";
+            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador from evaluaciones where evaluado = $id order by fecha_evaluacion asc limit 1;";
 
             try {
 

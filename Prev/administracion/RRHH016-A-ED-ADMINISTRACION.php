@@ -134,6 +134,21 @@
                     </div>
                 </form>
 
+                <div class="row mt-5">
+                    <div class="col">
+                        -----------------
+                            Firma
+                    </div>
+                    <div class="col">
+                        -----------------
+                            Aclaracion
+                    </div>
+                    <div class="col">
+                        -----------------
+                            DNI
+                    </div>
+                </div>
+
             </div>
         </body>
         </html>
