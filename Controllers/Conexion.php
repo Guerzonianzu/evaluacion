@@ -5,7 +5,7 @@
         private $motor = "mysql";
         private $host = "localhost";
         private $user = "root";
-        private $pass = "Rathian996";
+        private $pass = "";
         private $bd = "evaluaciones";
 
         public function __construct(){

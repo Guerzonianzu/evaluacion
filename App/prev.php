@@ -30,9 +30,12 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="servicios.php">Listado de servicios</a>
                         </li>
-                        <li class="nav-item disable">
-                            <a class="nav-link" href="download.php">Descarga de calificaciones</a>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="prev.php">Vista previa(Evaluaciones realizadas)</a>
                         </li>
+                        <li class="nav-item active">
+                                <a class="nav-link" href="download.php">Descarga de calificaciones</a>
+                            </li>
                     </ul>
                 </div>
                 <div class="justify-content-end">                        
