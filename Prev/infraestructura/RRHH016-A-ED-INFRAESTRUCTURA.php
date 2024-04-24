@@ -1,7 +1,7 @@
 <?php
     session_start();
     if($_SESSION['rol'] == 2){ 
-                                                                                                               
+
         include "../../Controllers/Conexion.php";
         include "../../Controllers/Forms.php";
         
