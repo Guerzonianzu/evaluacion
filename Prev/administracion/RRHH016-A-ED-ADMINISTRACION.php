@@ -137,7 +137,7 @@
                 <div class="row mt-5">
                     <div class="col">
                         -----------------
-                            Firma
+                            Firma del evaluador
                     </div>
                     <div class="col">
                         -----------------
