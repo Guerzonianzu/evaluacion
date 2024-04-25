@@ -132,6 +132,56 @@
                         </p>
                     </div>
                 </form>
+
+                <?php
+
+                    if($_SESSION['rol'] == 1){
+
+                        echo "<p><b>Resultado:</b></p>". $values['total'];
+
+                        echo "
+                            <div class=\"row mt-5\">
+                                <div class=\"col\">
+                                    <p>----------------------</p>
+                                    <br>
+                                    <p>Firma del evaluador/a</p>
+                                </div>
+                                <div class=\"col\">
+                                    <p>----------------------</p>
+                                    <br>
+                                            <p>Aclaración</p>
+                                </div>
+                                <div class=\"col\">
+                                    <p>----------------------</p>
+                                    <br>        
+                                                <p>DNI</p>
+                                </div>
+                            </div>";
+
+                            echo "
+                            <div class=\"row mt-5\">
+                                <div class=\"col\">
+                                    <p>----------------------</p>
+                                    <br>
+                                    <p>Firma del evaluado/a</p>
+                                </div>
+                                <div class=\"col\">
+                                    <p>----------------------</p>
+                                    <br>
+                                            <p>Aclaración</p>
+                                </div>
+                                <div class=\"col\">
+                                    <p>----------------------</p>
+                                    <br>        
+                                                <p>DNI</p>
+                                </div>
+                            </div>";
+                        
+
+                    }
+                
+
+                ?>
                 
             </div>
         </body>
