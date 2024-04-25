@@ -388,7 +388,7 @@
 
         public function getCalificaciones ($id, $con){
 
-            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador from evaluaciones where evaluado = $id order by fecha_evaluacion asc limit 1;";
+            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador, total from evaluaciones where evaluado = $id order by fecha_evaluacion asc limit 1;";
 
             try {
 
@@ -414,6 +414,7 @@
                         'p6' => $registro['pregunta6'],
                         'p7' => $registro['pregunta7'],
                         'p8' => $registro['pregunta8'],
+                        'total' => $registro['total'],
                         'evaluador' => $registro['evaluador']
                     );
 
@@ -590,7 +591,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -614,7 +616,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -638,7 +641,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -662,7 +666,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -686,7 +691,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -710,7 +716,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -734,7 +741,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -757,7 +765,8 @@
                         'p3' => 0,
                         'p4' => 0,
                         'p5' => 0,
-                        'p6' => 0
+                        'p6' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -780,7 +789,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -804,7 +814,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -828,7 +839,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -852,7 +864,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -876,7 +889,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -900,7 +914,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -923,7 +938,8 @@
                         'p3' => 0,
                         'p4' => 0,
                         'p5' => 0,
-                        'p6' => 0
+                        'p6' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -947,7 +963,8 @@
                         'p5' => 0,
                         'p6' => 0,
                         'p7' => 0,
-                        'p8' => 0
+                        'p8' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -972,7 +989,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -996,7 +1014,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1019,7 +1038,8 @@
                         'p3' => 0,
                         'p4' => 0,
                         'p5' => 0,
-                        'p6' => 0
+                        'p6' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1041,7 +1061,8 @@
                         'p3' => 0,
                         'p4' => 0,
                         'p5' => 0,
-                        'p6' => 0
+                        'p6' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1064,7 +1085,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1088,7 +1110,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1112,7 +1135,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1136,7 +1160,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);
@@ -1160,7 +1185,8 @@
                         'p4' => 0,
                         'p5' => 0,
                         'p6' => 0,
-                        'p7' => 0
+                        'p7' => 0,
+                        'total' => $values['total']
                     );
 
                     $calificaciones['p1'] = self::verificacion40($values['p1']);

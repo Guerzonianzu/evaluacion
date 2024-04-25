@@ -134,21 +134,49 @@
                     </div>
                 </form>
 
-                <div class="row mt-5">
-                    <div class="col">
-                        -----------------
-                            Firma del evaluador
-                    </div>
-                    <div class="col">
-                        -----------------
-                            Aclaracion
-                    </div>
-                    <div class="col">
-                        -----------------
-                            DNI
-                    </div>
-                </div>
+                <?php
 
+                if($_SESSION['rol'] == 1){
+
+                    echo "";
+
+                    echo "
+                        <div class=\"row mt-5\">
+                            <div class=\"col\">
+                                ----------------------
+                                Firma del evaluador/a
+                            </div>
+                            <div class=\"col\">
+                                ----------------------
+                                        Aclaración
+                            </div>
+                            <div class=\"col\">
+                                ----------------------
+                                        DNI
+                            </div>
+                        </div>";
+
+                        echo "
+                        <div class=\"row mt-5\">
+                            <div class=\"col\">
+                                ----------------------
+                                Firma del evaluador/a
+                            </div>
+                            <div class=\"col\">
+                                ----------------------
+                                    Aclaración
+                            </div>
+                            <div class=\"col\">
+                                ----------------------
+                                        DNI
+                            </div>
+                        </div>";
+                    
+
+                }
+                
+
+                ?>
             </div>
         </body>
         </html>
