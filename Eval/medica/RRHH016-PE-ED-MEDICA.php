@@ -51,7 +51,7 @@
                     ?>
                 </div>
 
-                <form method="POST" action="../envios.php">
+                <form method="POST">
                     <div class="row">
                         <h3>1.	FORMACIÓN TÉCNICA ESPECÍFICA EN EL SERVICIO: Es la que aborda los saberes técnicos específicos propios de cada campo, así como también la contextualización de los contenidos desarrollados en la formación científico-tecnológica de acuerdo a la función a desempeñar y al Servicio del que forma parte.</h3>
                     </div>

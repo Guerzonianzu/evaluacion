@@ -344,7 +344,7 @@
 
             $fecha = date('Y-m-d');
 
-            $sql = "insert into evaluaciones(evaluado, form, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador, fecha_evaluacion, total) values ($_POST[id], $_POST[id_form], $_POST[op], $_POST[op2], $_POST[op3], $_POST[op4], $_POST[op5], $_POST[op6], $_POST[op7], $_POST[op8], $_SESSION[trabajador], '$fecha', $total);";
+            $sql = "insert into evaluaciones(evaluado, form, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador, fecha_evaluacion, total) values ($_POST[id], $_POST[form], $_POST[op], $_POST[op2], $_POST[op3], $_POST[op4], $_POST[op5], $_POST[op6], $_POST[op7], $_POST[op8], $this->id_jefe, '$fecha', $total);";
 
             try {
 
