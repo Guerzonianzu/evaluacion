@@ -388,7 +388,7 @@
 
         public function getCalificaciones ($id, $con){
 
-            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador, total from evaluaciones where evaluado = $id order by fecha_evaluacion asc limit 1;";
+            $sql = "select pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, evaluador, total from evaluaciones where evaluado = $id order by fecha_evaluacion desc limit 1;";
 
             try {
 
