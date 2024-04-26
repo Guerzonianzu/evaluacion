@@ -180,6 +180,7 @@
                         <input class='form-check-input mt-2 ml-3' type='radio' name='op7' value="2" required><label for="" style="margin-left:40px"><b>Deficiente</b></label>
                     </div>
                     <input type="hidden" value ="0" name="op8">
+                    <input type="hidden" name="id_form" value="4">
                     <input type="hidden" value="<?php echo "$id"; ?>" name="id">
                     <input type="submit" value="Enviar">
                 </form>

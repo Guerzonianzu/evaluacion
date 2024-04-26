@@ -39,5 +39,11 @@
             ?>
             
     </div>
+
+    <footer>
+        <div class="row justify-content-center mt-5">
+            <h6>Gestion de RRHH - Direccion de Admisión</h6>
+        </div>
+    </footer>
 </body>
 </html>

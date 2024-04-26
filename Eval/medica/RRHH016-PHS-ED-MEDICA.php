@@ -196,6 +196,7 @@
                     <div class="row">
                         <input class='form-check-input mt-2 ml-3' type='radio' name='op8' value="2" required><label for="" style="margin-left:40px"><b>Deficiente</b></label>
                     </div>
+                    <input type="hidden" name="id_form" value="16">
                     <input type="hidden" name="id" value="<?php echo "$id"; ?>">
                     <input type="submit" value="Enviar">
                 </form>

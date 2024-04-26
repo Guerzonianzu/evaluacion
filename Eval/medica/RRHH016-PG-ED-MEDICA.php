@@ -162,6 +162,7 @@
                     </div>
                     <input type="hidden" name="op7" value="0">
                     <input type="hidden" name="op8" value="0">
+                    <input type="hidden" name="id_form" value="15">
                     <input type="hidden" name="id" value="<?php echo "$id"; ?>">
                     <input type="submit" value="Enviar" class="btn btn-primary">
                 </form>

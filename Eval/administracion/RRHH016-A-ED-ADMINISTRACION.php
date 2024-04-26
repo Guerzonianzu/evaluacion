@@ -196,6 +196,7 @@
                         <input class='form-check-input mt-2 ml-3' type='radio' name='op7' value="2" required><label for="" style="margin-left:40px"><b>Deficiente</b></label>
                     </div>
                     <input type="hidden" name="op8" value="0">
+                    <input type="hidden" name="id_form" value="1">
                     <input type="hidden" name="id" value="<?php echo "$id"; ?>">
                     <input type="submit" value="Enviar" class="btn btn-primary">
                 </form>

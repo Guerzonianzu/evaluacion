@@ -188,7 +188,7 @@
 
             if ($resultado = false){
 
-                $sql = "insert into empleados(dni, nombre, apellido, fecha_ingreso, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', $this->$fecha_ingreso, $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
+                $sql = "insert into empleados(dni, nombre, apellido, fecha_ingreso, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', $this->fecha_ingreso, $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
                 
                 try {
 

@@ -44,19 +44,21 @@
 
             <div class="container">
 
-                <form method="post">
+                <form method="POST">
+
+                    <h1>Descarga de calificaciones</h1>
 
                     <div class="input-group mb-3">
 
                         <span class="input-group-text">Desde:</span>
-                        <input type="date" name="f_inicio" class="form-control">
+                        <input type="date" name="inicio" class="form-control">
 
                     </div>
 
                     <div class="input-group mb-3">
 
                         <span class="input-group-text">Hasta:</span>
-                        <input type="date" name="f_fin" class="form-control">
+                        <input type="date" name="fin" class="form-control">
 
                     </div>
 
@@ -67,7 +69,7 @@
                     </div>
 
                     <?php
-                        if(isset($_POST['f_inicio']) && isset($_POST['f_fin'])){
+                        if(isset($_POST['inicio']) && isset($_POST['fin'])){
 
                             include "../Controllers/Descarga.php";
                             include "../Controllers/Conexion.php";
@@ -77,6 +79,8 @@
                             $dld = new Descarga();
 
                             $dld->download($con);
+
+
 
                         }
                     ?>
