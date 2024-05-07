@@ -23,7 +23,7 @@
         <body>
             
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <a class="navbar-brand" href="home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -49,6 +49,8 @@
             </nav>
 
             <div class="container"> 
+
+                <button class="btn btn-primary"><a href="../Forms/Users/create.php">Nuevo Usuario</a></button>
 
                 <form>
                     

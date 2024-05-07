@@ -1,19 +1,19 @@
 <?php
 
-    
-    include "Empleados.php";
     include "Pass.php";
 
-    class User extends Empleados{
+    class User{
+
+        private $dni;
 
         private $contra;
 
         private $flag;
         
 
-        public function __construct($dni, $nombre, $apellido, $fecha_ingreso, $agrupamiento, $servicio, $jefe){
+        public function __construct($dni){
 
-            parent::__construct($dni, $nombre, $apellido, $fecha_ingreso, $agrupamiento, $servicio, $jefe);
+            $this->dni = $dni;
 
             $contra = new Pass;
 
@@ -27,7 +27,7 @@
 
         protected function createUser($rol, $con){
 
-            $sql = "select dni from usuarios where usuario = $this->dni;";
+            $sql = "select dni from usuarios where usuario = '$this->dni';";
 
             try{
 
@@ -41,7 +41,7 @@
 
             if ($resultado = false){
 
-                $sql = "select id_trabajador from trabajadores where dni = dni;";
+                $sql = "select id_trabajador from trabajadores where dni = '$this->dni';";
 
                 try{
 
@@ -86,7 +86,7 @@
 
                     if ($resultado > 0){
 
-                        header("Location: /App/users.php?ok=1");
+                        header("Location: ../../App/users.php?ok=1");
 
                     } else {
 

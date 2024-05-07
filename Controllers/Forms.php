@@ -14,7 +14,7 @@
 
             $list = new Paginador();
 
-            $sql = "select id_trabajador from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0;";
+            $sql = "select id_trabajador from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by estado desc;";
 
             try {
 
@@ -29,7 +29,7 @@
 
             }
 
-            $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
+            $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and formulario != 0 order by estado desc limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos;
             
             try{
 
@@ -130,7 +130,7 @@
 
                         } else {
 
-                            echo "<button type=\"submit\" formaction=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button>";
+                            echo "<button type=\"submit\" formaction=\"Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button>";
                             
                         }
 
@@ -277,7 +277,7 @@
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>
                                 <td>$registro[dni]</td>
-                                <td><button class=\"btn btn-primary\" formaction=\"/Controllers/redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"../Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
                             </form>
                         </tr>";
 

@@ -60,7 +60,7 @@
     
                         }
     
-                        header("Location: /App/home.php");
+                        header("Location: App/home.php");
     
                     } else {
     

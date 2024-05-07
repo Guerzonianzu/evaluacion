@@ -8,7 +8,7 @@
     //Verificacion para reinicio de contraseñas.
     if($_SESSION['flag'] == 1){
 
-        header("Location: /Forms/Pass/reset.php");
+        header("Location: ../Forms/Pass/reset.php");
 
     }
 
@@ -25,7 +25,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Administrador</title>
-            <link rel="stylesheet" href="/Style/estilo.css">
+            <link rel="stylesheet" href="../Style/estilo.css">
         </head>
         <body>
             
@@ -57,7 +57,7 @@
 
             <div class="container">
 
-                <a class="btn btn-primary" href="/Forms/Empleados/create.php">Nuevo empleado</a>
+                <a class="btn btn-primary" href="../Forms/Empleados/create.php">Nuevo empleado</a>
                 
                 <form>
                     
@@ -155,7 +155,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Evaluacion de desempeño</title>
-            <link rel="stylesheet" href="/Style/estilo.css">
+            <link rel="stylesheet" href="../Style/estilo.css">
         </head>
         <body>
 

@@ -58,15 +58,6 @@
 
                         $emp->createEmpleado($con);
 
-                        if($_POST['rol'] == 2 || $_POST['rol'] == 1){
-
-                            $emp->createUser($_POST['rol'],$con);
-
-                        }
-                        
-                        unset($con, $emp);
-                        header("Location: /App/home.php?ok=1");
-
                     } elseif (isset($_POST['dni'])) {
 
                         echo "
@@ -126,24 +117,13 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Rol:</span>
-                        <select class="custom-select" name="rol" id="">
-                            <?php
-
-                                User::getRoles($con);
-
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="input-group mb-3">
                         <span class="input-group-text">Fecha de ingreso:</span>
                         <input type="date" class="form-control" name="ingreso">
                     </div>
 
                     <div class="row justify-content-center">
                         <input type="submit" class="btn btn-primary mr-5" value="Agregar">
-                        <a href="/App/home.php" class="btn btn-danger">Cancelar</a>
+                        <a href="../../App/home.php" class="btn btn-danger">Cancelar</a>
                     </div>
                 </form>
             

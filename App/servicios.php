@@ -18,12 +18,12 @@
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Listado de servicios</title>
-                <link rel="stylesheet" href="/Style/estilo.css">
+                <link rel="stylesheet" href="../Style/estilo.css">
             </head>
             <body>
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                    <a class="navbar-brand" href="home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
@@ -50,7 +50,7 @@
                 
                 <div class="container">
 
-                    <a class="btn btn-primary" href="/Forms/Servicios/create.php">Nuevo servicio</a>
+                    <a class="btn btn-primary" href="../Forms/Servicios/create.php">Nuevo servicio</a>
 
                     <form>
 
@@ -128,7 +128,7 @@
 
     } else {
 
-        header("Location: /index.php");
+        header("Location: ../index.php");
 
     }
 

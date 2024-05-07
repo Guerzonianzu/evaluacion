@@ -9,7 +9,7 @@
         $con = Conexion::conectar();
         $id = $_GET['id'];
         $emp = Empleados::getInfo($id, $con);
-        $empleado = new Empleados($emp['dni'], $emp['nombre'], $emp['apellido'], $emp['id_agrup'], $emp['id_serv'], $emp['id_jefe']);
+        $empleado = new Empleados($emp['dni'], $emp['nombre'], $emp['apellido'], $emp['fecha'], $emp['id_agrup'], $emp['id_serv'], $emp['id_jefe']);
         unset($emp);
 
         ?>

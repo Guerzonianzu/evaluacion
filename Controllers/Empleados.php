@@ -55,7 +55,7 @@
 
         public static function getInfo($id, $con){
 
-            $sql ="select * from trabajadores tra join agrupamientos agr on tra.agrupamiento = agr.id_agrup join servicios ser on tra.servicio = ser.id_servicio where id_trabajador = $id and tra.activo = 1;";
+            $sql = "select * from trabajadores tra join agrupamientos agr on tra.agrupamiento = agr.id_agrup join servicios ser on tra.servicio = ser.id_servicio where id_trabajador = $id and tra.activo = 1;";
 
             try {
 
@@ -173,7 +173,7 @@
 
         public function createEmpleado($con){
 
-            $sql = "select dni from usuarios where dni = $this->dni";
+            $sql = "select dni from trabajadores where dni = '$this->dni';";
 
             try{
 
@@ -186,9 +186,9 @@
 
             }
 
-            if ($resultado = false){
+            if ($resultado->rowCount() == 0){
 
-                $sql = "insert into empleados(dni, nombre, apellido, fecha_ingreso, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', $this->fecha_ingreso, $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
+                $sql = "insert into trabajadores(dni, nombre, apellido, fecha_ingreso, agrupamiento, servicio, jefe_inmediato, activo) values ('$this->dni', '$this->nombre', '$this->apellido', '$this->fecha_ingreso', $this->agrupamiento, $this->servicio, $this->jefe, $this->estado);";
                 
                 try {
 
@@ -201,9 +201,9 @@
 
                 }
     
-                if($resultado != false || $resultado > 0){
+                if($resultado != false){
     
-                    header("Location: /App/home.php?ok=1");
+                    header("Location: ../../App/home.php?ok=1");
     
                 } else {
     
@@ -265,7 +265,7 @@
 
         public function modifyEmpleado($con){
 
-            $sql = "update trabajadores set dni = '$this->dni', nombre = '$this->nombre', apellido = '$this->apellido', fecha_ingreso = '$this->fecha_ingreso', agrupamento = $this->agrupamiento, servicio = $this->servicio, jefe_inmediato = $this->jefe, activo = $this->estado where id_trabajador = $_POST[id];";
+            $sql = "update trabajadores set dni = '$this->dni', nombre = '$this->nombre', apellido = '$this->apellido', fecha_ingreso = '$this->fecha_ingreso', agrupamiento = $this->agrupamiento, servicio = $this->servicio, jefe_inmediato = $this->jefe, activo = $this->estado where id_trabajador = $_POST[id];";
 
             try{
 
@@ -280,7 +280,7 @@
 
             if($resultado > 0){
 
-                header("Location: /App/home.php?ok=2");
+                header("Location: ../../App/home.php?ok=2");
 
             } else {
 
@@ -301,7 +301,7 @@
 
             if($resultado > 0){
 
-                header("Location: /App/home.php?ok=3");
+                header("Location: ../../App/home.php?ok=3");
 
             } else {
 
@@ -360,8 +360,8 @@
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>
                                 <td>$registro[descripcion_servicio]</td>
-                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/modify.php\">Modificar</button></td>
-                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/delete.php\">Eliminar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"../Forms/Empleados/modify.php\">Modificar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"../Forms/Empleados/delete.php\">Eliminar</button></td>
                             </form>
                         </tr>";
 
@@ -411,8 +411,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/modify.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/delete.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/Empleados/modify.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/Empleados/delete.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
@@ -454,8 +454,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/modify.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/Empleados/delete.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/Empleados/modify.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/Empleados/delete.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 
@@ -495,8 +495,8 @@
                                         <td>$registro[nombre]</td>
                                         <td>$registro[apellido]</td>
                                         <td>$registro[descripcion_servicio]</td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/modify.php\">Modificar</button></td>
-                                        <td><button class=\"btn btn-primary\" formaction=\"/Forms/User/delete.php\">Eliminar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/modify.php\">Modificar</button></td>
+                                        <td><button class=\"btn btn-primary\" formaction=\"../Forms/User/delete.php\">Eliminar</button></td>
                                     </form>
                                 </tr>";
 

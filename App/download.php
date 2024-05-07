@@ -12,12 +12,12 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Descarga de calificaciones</title>
-            <link rel="stylesheet" href="/Style/estilo.css">
+            <link rel="stylesheet" href="../Style/estilo.css">
         </head>
         <body>
         
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <a class="navbar-brand" href="home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -44,7 +44,7 @@
 
             <div class="container">
 
-                <form method="POST">
+                <form method="POST" action="../Controllers/Descarga.php">
 
                     <h1>Descarga de calificaciones</h1>
 
@@ -68,23 +68,6 @@
 
                     </div>
 
-                    <?php
-                        if(isset($_POST['inicio']) && isset($_POST['fin'])){
-
-                            include "../Controllers/Descarga.php";
-                            include "../Controllers/Conexion.php";
-
-                            $con = Conexion::conectar();
-
-                            $dld = new Descarga();
-
-                            $dld->download($con);
-
-
-
-                        }
-                    ?>
-
                 </form>
 
 
@@ -98,7 +81,7 @@
 
     } else {
 
-        header("Location: /App/home.php");
+        header("Location: home.php");
 
     }
 
