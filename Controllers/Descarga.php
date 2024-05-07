@@ -52,7 +52,7 @@
 
                         case 1:
 
-                            $header = array('Evaluado', 'Productividad', 'Recibir y atender instrucciones', 'Seguimiento de proceso', 'Organización del espacio de trabajo', 'Habilidades Comunicacionales', 'Trabajo en equipo', 'Empatía y compromiso con la institución', '', 'Formulario', 'Evaluador', 'Total');
+                            $header = array('Evaluado', 'Productividad', 'Recibir y atender instrucciones', 'Seguimiento de proceso', 'Organizacion del espacio de trabajo', 'Habilidades Comunicacionales', 'Trabajo en equipo', 'Empatía y compromiso con la institución', '', 'Formulario', 'Evaluador', 'Total');
                             break;
 
                         case 2:
@@ -174,7 +174,7 @@
 
                             $header = array('Evaluado', '', '', '', '', '', '', '', '', 'Formulario', 'Evaluador', 'Total');
                             break;
-                            
+
                     }
 
                     fputcsv($fp, $header);
