@@ -1,5 +1,7 @@
 <?php
 
+    require_once "Paginador.php";
+
     class Forms{
 
         private $id_jefe;
@@ -48,7 +50,7 @@
 
                     echo "
                         <tr>
-                            <form method=\"POST\" action=\"/Controllers/Redirect.php\">
+                            <form method=\"POST\" action=\"../Controllers/Redirect.php\">
                                 <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>";
@@ -59,7 +61,7 @@
 
                     } else {
 
-                        echo "<td><button type=\"submit\" formaction=\"/Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button></td>";
+                        echo "<td><button type=\"submit\" formaction=\"../Controllers/Redirect.php\"><img src=\"../Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button></td>";
 
                     }
 
@@ -85,7 +87,7 @@
 
                 case "apellido":
 
-                    $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido like '%$_GET[buscar]%' and formulario != 0 and order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
+                    $sql = "select id_trabajador, nombre, apellido, estado from trabajadores where jefe_inmediato = $this->id_jefe and activo = 1 and apellido like '%$_GET[buscar]%' and formulario != 0 order by apellido limit ". (($list->pagina) * $list->elementos). ", ". $list->elementos.";";
 
                     break;
 
@@ -119,10 +121,11 @@
 
                         echo "
                             <tr>
-                                <form method=\"POST\" action=\"/Controllers/Redirect.php\">
+                                <form method=\"POST\" action=\"../Controllers/Redirect.php\">
                                     <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                     <td>$registro[nombre]</td>
                                     <td>$registro[apellido]</td>";
+                                    
                         
                         if ($registro['estado'] == 1){
 
@@ -130,7 +133,7 @@
 
                         } else {
 
-                            echo "<button type=\"submit\" formaction=\"Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button>";
+                            echo "<button type=\"submit\" formaction=\"../Controllers/Redirect.php\"><img src=\"../Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista Previa\"></button>";
                             
                         }
 
@@ -253,7 +256,7 @@
 
         public static function getFormularios($con){
 
-            $sql = "select id_trabajador, nombre, apellido, dni from trabajadores where estado = 0;";
+            $sql = "select id_trabajador, nombre, apellido, dni, jefe_inmediato from trabajadores where estado = 0 and formulario != 0 and activo = 1;";
 
             try{
 
@@ -276,7 +279,28 @@
                                 <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>
-                                <td>$registro[dni]</td>
+                                <td>$registro[dni]</td>";
+
+                    $sql = "select concat(nombre, ' ', apellido) as nombre from trabajadores where id_trabajador = $registro[jefe_inmediato];";
+
+                    try{
+
+                        $resultado2 = $con->query($sql);
+
+                    } catch (PDOException $e){
+
+                        $con->bdError($e);
+                        die();
+
+                    }
+
+                    foreach ($resultado2 as $registro2){
+
+                        echo "<td>$registro2[nombre]</td>";
+
+                    }
+
+                    echo "
                                 <td><button class=\"btn btn-primary\" formaction=\"../Controllers/Redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
                             </form>
                         </tr>";
@@ -294,15 +318,42 @@
             $buscar = $_GET['buscar'];
 
             switch ($_GET['op']){
+                case "servicio":
+
+                    $sql = "select id_servicio from servicios where descripcion_servicio like '$_GET[buscar]%';";
+
+                    try{
+
+                        $resultado = $con->query($sql);
+
+                    } catch (PDOException $e){
+
+                        $con->bdError($e);
+                        die();
+
+                    }
+
+                    if($resultado != false){
+
+                        foreach ($resultado as $registro){
+
+                            $servicio = $registro['id_servicio'];
+
+                        }
+
+                    }
+
+                    $sql = "select id_trabajador, nombre, apellido, dni, jefe_inmediato from trabajadores where activo = 1 and servicio = $servicio and formulario != 0 and estado = 0 order by apellido;";
+                    break;
 
                 case "apellido":
                     
-                    $sql = "select id_trabajador, nombre, apellido, dni from trabajadores where apellido like '%$buscar%;'";
+                    $sql = "select id_trabajador, nombre, apellido, dni, jefe_inmediato from trabajadores where activo = 1 and apellido like '$buscar%' and estado = 0 and formulario != 0 order by apellido;";
                     break;
                     
                 case "dni":
 
-                    $sql = "select id_trabajador, nombre, apellido, dni from trabajadores where dni like '%$buscar%'";
+                    $sql = "select id_trabajador, nombre, apellido, dni, jefe_inmediato from trabajadores where activo = 1 and dni like '$buscar%' and estado = 0 and formulario != 0 order by apellido;";
                     break;
             }
 
@@ -327,8 +378,29 @@
                                 <input type=\"hidden\" name=\"id\" value=\"$registro[id_trabajador]\">
                                 <td>$registro[nombre]</td>
                                 <td>$registro[apellido]</td>
-                                <td>$registro[dni]</td>
-                                <td><button formaction=\"/Controllers/redirect.php\"><img src=\"/Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
+                                <td>$registro[dni]</td>";
+
+                                $sql = "select concat(nombre, ' ', apellido) as nombre from trabajadores where id_trabajador = $registro[jefe_inmediato];";
+
+                                try{
+            
+                                    $resultado2 = $con->query($sql);
+            
+                                } catch (PDOException $e){
+            
+                                    $con->bdError($e);
+                                    die();
+            
+                                }
+            
+                                foreach ($resultado2 as $registro2){
+            
+                                    echo "<td>$registro2[nombre]</td>";
+            
+                                }
+                    
+                    echo "
+                                <td><button formaction=\"../Controllers/redirect.php\"><img src=\"../Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
                             </form>
                         </tr>";
 
@@ -376,7 +448,7 @@
                 
                 if ($resultado > 0){
 
-                    header("Location: /App/home.php?ok");
+                    header("Location: ../../App/home.php?ok");
 
                 }
                 

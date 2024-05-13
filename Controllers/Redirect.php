@@ -266,7 +266,7 @@
                         <p>No se ha encontrado el registro. Redirigiendo a la pagina de inicio, si no lo redirige haga clic <a href=\"/App/home.php\">aquí</a></p>
                     </div>";
                 
-                header("refresh:5;url=/App/home.php");
+                header("refresh:5;url= ../App/home.php");
 
             }
 

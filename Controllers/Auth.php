@@ -23,7 +23,7 @@
 
             if (isset($resultado)){
 
-                if( $resultado != false || $resultado > 0){
+                if( $resultado != false){
                     
                     foreach ($resultado as $registro){
 
@@ -32,8 +32,6 @@
                     }
     
                     if(password_verify($_POST['pass'], $contra)){
-
-                        echo "Contraseña verificada";
     
                         $sql = "select id_usuario, trabajador, nombre, apellido, rol, flag from usuarios usu join trabajadores tra on usu.trabajador = tra.id_trabajador where usuario = '$user';";
     
@@ -58,6 +56,21 @@
                             $_SESSION['rol'] = $registro['rol'];
                             $_SESSION['flag'] = $registro['flag'];
     
+                        }
+
+                        $fecha = date("Y-m-d");
+
+                        $sql = "update usuarios set last_login = '$fecha' where id_usuario = $_SESSION[user];";
+
+                        try{
+
+                            $resultado = $con->exec($sql);
+
+                        } catch (PDOException $e){
+
+                            $con->bdError($e);
+                            die();
+
                         }
     
                         header("Location: App/home.php");

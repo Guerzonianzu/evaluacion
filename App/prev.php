@@ -21,7 +21,7 @@
         <body>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/App/home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <a class="navbar-brand" href="home.php"><img src="../img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -57,7 +57,8 @@
                         <div class="col-md-2">
                         
                             <select name="op" class="form-control" id="">
-                                <option value="apellido" selected>Apellido</option>
+                                <option value="servicio">Servicio</option>
+                                <option value="apellido">Apellido</option>
                                 <option value="dni">DNI</option>
                             </select>
 
@@ -73,7 +74,7 @@
 
                             <input type="submit" value="Buscar" class="btn btn-primary mt-3 mb-3">
 
-                            <a href="home.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
+                            <a href="prev.php" class="btn btn-danger mb-3 mt-3">Limpiar busqueda</a>
 
                         </div>
                     
@@ -88,6 +89,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>DNI</th>
+                            <th>Evaluador/a</th>
                             <th></th>
                         </thead>
                         <tbody>

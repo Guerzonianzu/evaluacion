@@ -33,7 +33,7 @@
 
             if(isset($usr)){
 
-                $usr->deleteUser($id, $con);
+                $usr->enableUser($id, $con);
 
             }            
 

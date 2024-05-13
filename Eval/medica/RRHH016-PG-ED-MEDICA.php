@@ -13,19 +13,19 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>RRHH016-PG-ED-MÉDICA</title>
-            <link rel="stylesheet" href="/Style/estilo.css">
+            <link rel="stylesheet" href="../../Style/estilo.css">
         </head>
         <body>
         
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/App/home.php"><img src="/Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
+                <a class="navbar-brand" href="../../App/home.php"><img src="../../Img/hcank.png" width="70px" heigth="50px" alt="inicio"></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 </div>
                 <div class="justify-content-end">                        
                     <?php
                         echo "$_SESSION[apellido] $_SESSION[nombre]";
                     ?>
-                    <a href="/App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
+                    <a href="../../App/logout.php" class="btn btn-primary">Cerrar Sesion</a>
                 </div>
             </nav>
 

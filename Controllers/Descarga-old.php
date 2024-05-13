@@ -179,7 +179,7 @@
 
                     fputcsv($fp, $header);
 
-                    $sql = "select evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, descripcion_formulario, evaluador, total from evaluaciones evs join formularios form on evs.form = form.id_formulario where fecha_evaluacion between '$this->f_inicio' and '$this->f_fin' and form = $i;";
+                    $sql = "select descripcion_form, concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, concat(tra2.nombre, ' ', tra2.apellido), total from evaluaciones evs join formularios form on evs.form = form.id_formulario join trabajadores tra on evs.evaluado = tra.id_trabajador join trabajadores tra2 on evs.evaluador = tra2.id_trabajador where fecha_evaluacion between '$this->inicio' and '$this->fin' and form = $i;";
 
                     try{
 

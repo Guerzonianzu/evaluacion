@@ -50,7 +50,7 @@
 
             <div class="container"> 
 
-                <button class="btn btn-primary"><a href="../Forms/Users/create.php">Nuevo Usuario</a></button>
+                <a class="btn btn-primary" href="../Forms/Users/create.php">Nuevo Usuario</a>
 
                 <form>
                     
@@ -110,11 +110,11 @@
 
                                 if (isset($_GET['op'])){
 
-                                    User::searchUser($_GET['op'], $con);
+                                    Usuario::searchUser($_GET['op'], $con);
 
                                 } else {
 
-                                    User::getUser($con);
+                                    Usuario::getUser($con);
 
                                 }
                             ?>

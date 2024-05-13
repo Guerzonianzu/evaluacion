@@ -29,7 +29,7 @@
 
             if($resultado > 0){
 
-                header("Location: /App/servicios.php?ok=1");
+                header("Location: ../../App/servicios.php?ok=1");
 
             } else {
 
@@ -59,7 +59,7 @@
 
             if ($resultado > 0){
 
-                header("Location: /App/servicios.php?ok=2");
+                header("Location: ../../App/servicios.php?ok=2");
 
             } else {
 
@@ -89,7 +89,7 @@
 
             if ($resultado > 0){
 
-                header("Location: /App/servicios.php?ok=3");
+                header("Location: ../../App/servicios.php?ok=3");
 
             } else {
 
@@ -147,8 +147,8 @@
                                 <form>
                                     <input type=\"hidden\" name=\"id\" value=\"$registro[id_servicio]\">
                                     <td>$registro[descripcion_servicio]</td>
-                                    <td><button class=\"btn btn-primary\" formaction=\"/Forms/Servicios/modify.php\">Modificar</button></td>
-                                    <td><button class=\"btn btn-danger\" formaction=\"/Forms/Servicios/delete.php\">Eliminar</button></td>
+                                    <td><button class=\"btn btn-primary\" formaction=\"../Forms/Servicios/modify.php\">Modificar</button></td>
+                                    <td><button class=\"btn btn-danger\" formaction=\"../Forms/Servicios/delete.php\">Eliminar</button></td>
                                 </form>
                             </tr>";
 
@@ -195,8 +195,8 @@
                             <form>
                                 <input type=\"hidden\" name=\"id\" value=\"$registro[id_servicio]\">
                                 <td>$registro[descripcion_servicio]</td>
-                                <td><button class=\"btn btn-primary\" formaction=\"/Forms/Servicios/modify.php\">Modificar</button></td>
-                                <td><button class=\"btn btn-danger\" formaction=\"/Forms/Servicios/delete.php\">Eliminar</button></td>
+                                <td><button class=\"btn btn-primary\" formaction=\"../Forms/Servicios/modify.php\">Modificar</button></td>
+                                <td><button class=\"btn btn-danger\" formaction=\"../Forms/Servicios/delete.php\">Eliminar</button></td>
                             </form>
                         </tr>";
 
