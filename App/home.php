@@ -42,9 +42,9 @@
                         <li class="nav-item active">
                             <a class="nav-link " href="prev.php">Vista previa(Evaluaciones realizadas)</a>
                         </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link" href="download.php" disabled>Descarga de calificaciones</a>
-                        </li>-->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="download.php">Descarga de calificaciones</a>
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="evaluaciones.php">Tabla de evaluaciones</a>
                         </li>

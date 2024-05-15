@@ -136,7 +136,8 @@
 
                     if($_SESSION['rol'] == 1){
 
-                        echo "<p><b>Resultado:</b></p>". $values['total'];
+                        echo "<p><b>Resultado:</b></p>";
+                        Forms::ponderacion($values['total']);
 
                         echo "
                             <div class=\"row mt-5\">

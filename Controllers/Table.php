@@ -34,7 +34,7 @@
 
         public static function getForms($con){
             $list = new Paginador();
-            $sql = "select concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, fecha_evaluacion, total, concat(tra2.nombre, ' ', tra2.apellido) as evaluador from evaluaciones evs join trabajadores tra on tra.id_trabajador = evaluado join trabajadores tra2 on tra2.id_trabajador = evs.evaluador;";
+            $sql = "select * from evaluaciones evs join trabajadores tra on tra.id_trabajador = evaluado join trabajadores tra2 on tra2.id_trabajador = evs.evaluador;";
             try{
                 $resultado = $con->query($sql);
             } catch (PDOException $e){
@@ -42,7 +42,7 @@
                 die();
             }
             $max = $resultado->rowCount();
-            $sql = "select concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, fecha_evaluacion, total, concat(tra2.nombre, ' ', tra2.apellido) as evaluador from evaluaciones evs join trabajadores tra on tra.id_trabajador = evaluado join trabajadores tra2 on tra2.id_trabajador = evs.evaluador limit ".(($list->pagina)*$list->elementos).", ".$list->elementos.";";
+            $sql = "select concat(tra.nombre, ' ', tra.apellido) as evaluado, ser.descripcion_servicio, concat(tra2.nombre, ' ', tra2.apellido) as evaluador, fecha_evaluacion, total from evaluaciones evs join trabajadores tra on tra.id_trabajador = evaluado join trabajadores tra2 on tra2.id_trabajador = evs.evaluador join servicios ser on ser.id_servicio = tra.servicio limit ".(($list->pagina)*$list->elementos).", ".$list->elementos.";";
             try{
                 $resultado = $con->query($sql);
             } catch(PDOException $e){
@@ -55,8 +55,8 @@
                     "<table class=\"table\" style=\"border:1px;border-color:white\">
                         <thead>
                             <th>Evaluado</th>
-                            <th colspan=\"8\"></th>
                             <th>Evaluador</th>
+                            <th>Servicio</th>
                             <th>Fecha de evaluación</th>
                             <th>Total</th>
                         </thead>";
@@ -64,15 +64,8 @@
                     echo
                         "<tbody>
                             <td>$registro[evaluado]</td>
-                            <td>$registro[pregunta1]</td>
-                            <td>$registro[pregunta2]</td>
-                            <td>$registro[pregunta3]</td>
-                            <td>$registro[pregunta4]</td>
-                            <td>$registro[pregunta5]</td>
-                            <td>$registro[pregunta6]</td>
-                            <td>$registro[pregunta7]</td>
-                            <td>$registro[pregunta8]</td>
                             <td>$registro[evaluador]</td>
+                            <td>$registro[descripcion_servicio]</td>
                             <td>$registro[fecha_evaluacion]</td>
                             <td>$registro[total]</td>
                         </tbody>";
@@ -84,7 +77,7 @@
         }
 
         public static function searchForms($con){
-            $sql = "select concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, fecha_evaluacion, total, concat(tra2.nombre, ' ', tra2.apellido) as evaluador from evaluaciones evs join trabajadores tra on tra.id_trabajador = evaluado join trabajadores tra2 on tra2.id_trabajador = evs.evaluador where form = $_GET[buscar];";
+            $sql = "select concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, concat(tra2.nombre, ' ', tra2.apellido) as evaluador, fecha_evaluacion, total from evaluaciones evs join trabajadores tra on tra.id_trabajador = evaluado join trabajadores tra2 on tra2.id_trabajador = evs.evaluador where form = $_GET[buscar];";
             try{
                 $resultado = $con->query($sql);
             } catch (PDOException $e){

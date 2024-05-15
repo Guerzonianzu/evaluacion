@@ -1284,6 +1284,22 @@
 
         }
 
+        public static function ponderacion($total){
+
+            if ($total <= 20){
+                echo "<p style=\"font-size=30px\">Deficiente</p>"; 
+            } else if ($total > 20 || $total <= 40){
+                echo "<p style=\"font-size=30px\">Regular</p>";
+            } else if ($total > 40 || $total <= 60){
+                echo "<p style=\"font-size=30px\">Bueno</p>";
+            } else if ($total > 60 || $total <= 80){
+                echo "<p style=\"font-size=30px\">Muy bueno</p>";
+            } else if ($total > 80 || $total <= 100){
+                echo "<p style=\"font-size=30px\">Excelente</p>";
+            }
+
+        }
+
     }
 
 ?>
