@@ -142,6 +142,22 @@
 
         }
 
+        public static function conteo($con){
+            $sql = "select evaluado from evaluaciones;";
+            try{
+                $resultado = $con->query($sql);
+            } catch(PDOException $e){
+                $con->bdError($e);
+                die();
+            }
+            if($resultado != false){
+                echo 
+                    "<div class=\"alert alert-success\">
+                        <p>Cantidad de evaluaciones realizadas hasta el momento: ".$resultado->rowCount()."</p>
+                    </div>";
+            }
+        }
+
     }
 
 ?>

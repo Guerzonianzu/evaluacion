@@ -170,7 +170,7 @@
 
                 fputcsv($fp, $header);
                 
-                $sql = "select descripcion_form, concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, concat(tra2.nombre, ' ', tra2.apellido) as evaluador, total from evaluaciones evs join formularios form on evs.form = form.id_formulario join trabajadores tra on evs.evaluado = tra.id_trabajador join trabajadores tra2 on evs.evaluador = tra2.id_trabajador where fecha_evaluacion between '$_POST[inicio]' and '$_POST[fin]' and form = $i;";
+                $sql = "select concat(tra.nombre, ' ', tra.apellido) as evaluado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, descripcion_form, concat(tra2.nombre, ' ', tra2.apellido) as evaluador, total from evaluaciones evs join formularios form on evs.form = form.id_formulario join trabajadores tra on evs.evaluado = tra.id_trabajador join trabajadores tra2 on evs.evaluador = tra2.id_trabajador where fecha_evaluacion between '$_POST[inicio]' and '$_POST[fin]' and form = $i;";
 
                 try{
 
@@ -195,7 +195,8 @@
                             $registro['pregunta5'], 
                             $registro['pregunta6'], 
                             $registro['pregunta7'], 
-                            $registro['pregunta8'], 
+                            $registro['pregunta8'],
+                            $registro['descripcion_form'],
                             $registro['evaluador'], 
                             $registro['total']));
                     }
