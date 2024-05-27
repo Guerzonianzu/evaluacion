@@ -401,7 +401,7 @@
                                 }
                     
                     echo "
-                                <td><button formaction=\"../Controllers/redirect.php\"><img src=\"../Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
+                                <td><button formaction=\"../Controllers/Redirect.php\"><img src=\"../Img/tilde.png\" width=\"25px\" height=\"25px\" alt=\"Vista previa\"></button></td>
                             </form>
                         </tr>";
 

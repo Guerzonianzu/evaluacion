@@ -147,8 +147,6 @@
 
             }
 
-            
-
             if($resultado != false || $resultado->rowCount() > 0){
 
                 foreach($resultado as $registro){
@@ -215,6 +213,36 @@
                 }
 
             } else {
+
+                foreach($resultado as $registro){
+
+                    if (registro['activo'] == 0){
+
+                        $sql = "update trabajadores set activo = 1 where id_trabajador = $registro[id_trabajador];";
+
+                        try{
+
+                            $resultado = $con->exec($sql);
+
+                        } catch (PDOException $e){
+
+                            $con->bdError($e);
+                            die();
+
+                        }
+
+                        if($resultado->rowCount() > 0){
+
+                            echo "
+                                <div class=\"alert alert-success\" role=\"alert\">
+                                    <p>Usuario habilitado.</p>
+                                </div>    
+                            ";
+
+                        }
+
+                    }
+                }
 
                 echo "
                     <div class=\"alert alert-danger\">
