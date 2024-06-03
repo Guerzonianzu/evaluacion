@@ -321,7 +321,7 @@
 
                 case "servicio":
 
-                    $sql = "select id_servicio from servicios where descripcion_servicio like '$_GET[buscar]%';";
+                    $sql = "select id_servicio from servicios where descripcion_servicio like '$_GET[buscar]%' limit 1;";
 
                     try{
 
