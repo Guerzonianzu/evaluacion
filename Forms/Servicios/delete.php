@@ -63,7 +63,7 @@
 
                             $serv = new Servicios($serv['desc']);
 
-                            $serv->deleteServicio($_GET['id'], $con);
+                            $serv->deleteServicio($con);
 
                         }
 
@@ -72,7 +72,7 @@
                     <input type="hidden" name="id" value="<?php echo $serv['id'] ?>">
                     <input type="hidden" name="y" value="1">
                     <input type="submit" class="btn btn-primary" value="Si">
-                    <a href="/App/home.php" class="btn btn-primary">No</a>
+                    <a href="/App/servicios.php" class="btn btn-primary">No</a>
 
                 </form>
 

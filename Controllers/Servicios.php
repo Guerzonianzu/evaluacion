@@ -29,7 +29,9 @@
 
             if($resultado > 0){
 
-                header("Location: ../../App/servicios.php?ok=1");
+                echo "<script>
+                        location.replace('/App/servicios.php?ok=1');
+                    </script>";
 
             } else {
 
@@ -59,7 +61,9 @@
 
             if ($resultado > 0){
 
-                header("Location: ../../App/servicios.php?ok=2");
+                echo "<script>
+                        location.replace('/App/servicios.php?ok=2');
+                    </script>";
 
             } else {
 
@@ -89,7 +93,9 @@
 
             if ($resultado > 0){
 
-                header("Location: ../../App/servicios.php?ok=3");
+                echo "<script>
+                        location.replace('/App/servicios.php?ok=3');
+                    </script>";
 
             } else {
 

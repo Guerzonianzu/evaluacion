@@ -12,7 +12,7 @@
 
             /*
             *   Si la variable pag contiene algun valor se lo pasara a la variable pagina.
-            *   Caso contrario esta estara seteada en 1.
+            *   Caso contrario esta estara seteada en 0.
             */
             if (isset($_GET['pag'])){
 

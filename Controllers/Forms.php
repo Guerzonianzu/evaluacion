@@ -430,8 +430,6 @@
 
             }
 
-
-
             if ($resultado > 0){
 
                 $sql = "update trabajadores set estado = 0 where id_trabajador = $_POST[id];";
@@ -448,15 +446,12 @@
                 }
                 
                 if ($resultado > 0){
-
-                    header("Location: ../../App/home.php?ok");
-
-                }
-                
+                    echo "<script>
+                            alert('Evaluación registrada con exito.');
+                            location.replace('/App/home.php');
+                        </script>";
+                }   
             }
-
-            
-
         }
 
         public function getCalificaciones ($id, $con){
@@ -1297,9 +1292,7 @@
             } else if ($total > 80 && $total <= 100){
                 echo "<p style=\"font-size=30px\">Excelente</p>";
             }
-
         }
-
     }
 
 ?>

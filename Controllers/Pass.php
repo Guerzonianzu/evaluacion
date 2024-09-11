@@ -44,7 +44,10 @@
 
             if ($resultado != false && $resultado > 0){
 
-                header("Location: ../../App/users.php?ok=4");
+                echo "<script>
+                        alert('Se ha reiniciado la contraseña.');
+                        location.replace('/App/users.php');
+                    </script>";
 
             } else {
 
@@ -52,9 +55,6 @@
                     <div class=\"alert alert-danger\" role=\"alert\">
                         <p>Ha ocurrido un problema al intentar reiniciar la contraseña. Intente mas tarde.</p>
                     </div>";
-
-                header("refresh:5;url= ../../App/users.php");
-
             }
             
         }
@@ -95,7 +95,9 @@
                 if ($resultado > 0 ){
 
                     $_SESSION['flag'] = 0;
-                    header("Location: ../../App/home.php?ok=1");
+                    echo "<script>
+                            location.replace('/App/home.php');
+                        </script>";
 
                 } else {
 
@@ -103,13 +105,9 @@
                         <div class=\"alert alert-danger\" role=\"alert\">
                             Se ha producido un error al reiniciar la contraseña. Por favor intente mas tarde.
                         </div>";
-
                 }
-
             }
-
         }
-
     }
 
 ?>

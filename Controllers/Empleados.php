@@ -134,7 +134,7 @@
 
         public static function getJefes($con){
 
-            $sql = "select id_trabajador, concat(nombre, ', ', apellido) as nombre_completo from trabajadores tra join usuarios usu on usu.trabajador = tra.id_trabajador where usu.rol = 2;";
+            $sql = "select id_trabajador, concat(apellido, ', ', nombre) as nombre_completo from trabajadores tra join usuarios usu on usu.trabajador = tra.id_trabajador where usu.rol = 2 order by tra.apellido;";
 
             try {
 
@@ -200,8 +200,11 @@
                 }
     
                 if($resultado != false){
-    
-                    header("Location: ../../App/home.php?ok=1");
+
+                    echo "<script>
+                            alert('Empleado creado correctamente.');
+                            location.replace('/App/home.php');
+                        </script>";
     
                 } else {
     
@@ -235,22 +238,14 @@
 
                             echo "
                                 <div class=\"alert alert-success\" role=\"alert\">
-                                    <p>Usuario habilitado.</p>
+                                    <p>Este empleado ya existe en la base de datos. Empleado/a habilitado/a</p>
                                 </div>    
                             ";
 
                         }
-
                     }
                 }
-
-                echo "
-                    <div class=\"alert alert-danger\">
-                        <p>El Empleado ya existe en la base de datos.</p>
-                    </div>";
-
             }
-
         }
 
         public static function selectServicios($con){
@@ -279,16 +274,13 @@
                     
 
                 }
-
             } else {
 
                 echo "
                     <option value=\"\">
                         No hay opciones
                     </option>";
-
             }
-
         }
 
         public function modifyEmpleado($con){
@@ -307,8 +299,10 @@
             }
 
             if($resultado > 0){
-
-                header("Location: ../../App/home.php?ok=2");
+                echo "<script>
+                        alert('Empleado/a modificado correctamente.');
+                        location.replace('/App/home.php');
+                    </script>";
 
             } else {
 
@@ -325,11 +319,19 @@
 
             $sql = "update trabajadores set activo = 0 where id_trabajador = $_GET[id];";
 
-            $resultado = $con->exec($sql);
+            try{
+                $resultado = $con->exec($sql);
+            } catch (PDOException $e){
+                $con->bdError($e);
+                die();
+            }
 
             if($resultado > 0){
 
-                header("Location: ../../App/home.php?ok=3");
+                echo "<script>
+                        alert('Empleado/a eliminado/a correctamente.');
+                        location.replace('/App/home.php');
+                    </script>";
 
             } else {
 
@@ -488,6 +490,8 @@
                                 </tr>";
 
                         }
+
+                        $list->paginado($resultado->rowCount());
 
                     } else {
 

@@ -56,7 +56,7 @@
 
                     if(isset($_POST['dni']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
 
-                        $empleado = new User(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['ingreso'], $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
+                        $empleado = new Empleados(trim($_POST['dni']), trim($_POST['nombre']), trim($_POST['apellido']), $_POST['ingreso'], $_POST['agrupamiento'], $_POST['servicio'], $_POST['jefe']);
 
                         $empleado->modifyEmpleado($con);
 

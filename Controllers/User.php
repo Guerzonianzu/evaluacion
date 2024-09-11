@@ -99,7 +99,9 @@
 
                         if ($resultado > 0){
 
-                            header("Location: ../../App/users.php?ok=1");
+                            echo "<script>
+                                    location.replace('/App/users.php?ok=1');
+                                </script>";
 
                         } else {
 
@@ -156,7 +158,9 @@
 
             if($resultado > 0){
 
-                header("Location: ../../App/users.php?ok=2");
+                echo "<script>
+                        location.replace('/App/users.php?ok=2');
+                    </script>";
 
             } else {
 
@@ -186,7 +190,10 @@
 
             if ($resultado > 0){
                 
-                header("Location: ../../App/users.php?ok=3");
+                //header("Location: ../../App/users.php?ok=3");
+                echo "<script>
+                        location.replace('/App/users.php?ok=3');
+                    </script>";
 
             } else {
 
@@ -288,15 +295,15 @@
                                 <td>$registro[usuario]</td>
                                 <td><input type=\"submit\" class=\"btn btn-primary\" value=\"Reiniciar Contraseña\"></td>";
                     
-                    if ($registro['estado'] == true){
+                    /*if ($registro['estado'] == true){
 
-                        echo "<td><a class=\"btn btn-danger\" href=\"../Forms/Users/delete.php\">Deshabilitar</a></td>";
+                        echo "<td><a class=\"btn btn-danger\" href=\"../Forms/Users/delete.php?id=". $_registro['id_usuario'] . "\">Deshabilitar</a></td>";
 
                     } else {
 
-                        echo "<td><a class=\"btn btn-success\" href=\"../Forms/Users/enable.php\">Habilitar</a></td>";
+                        echo "<td><a class=\"btn btn-success\" href=\"../Forms/Users/enable.php?id=". $_registro['id_usuario'] . "\">Habilitar</a></td>";
 
-                    }
+                    }*/
 
                     echo "
                             </form>
@@ -406,14 +413,10 @@
                             }
                             echo "
                                     </form>
-                                </tr>";
-                            
+                                </tr>";   
                         }
-
                     }
-
                     break;
-
             }
 
         }

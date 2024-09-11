@@ -1,3 +1,8 @@
+<?php
+    $today = date('Y') - 1;
+
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +37,7 @@
             <?php
 
             if (isset($_POST['user'])){
-                include "Controllers/Auth.php";
+                require_once "Controllers/Auth.php";
                 Auth::login(trim($_POST['user']), trim($_POST['pass']));
             }
             

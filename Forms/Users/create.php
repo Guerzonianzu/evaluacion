@@ -61,7 +61,7 @@
 
                     <div class="row justify-content-center mb-3">
                         <input type="submit" class="btn btn-primary mr-5" value="Crear">
-                        <a href="../../App/home.php" class="btn btn-danger ml-5">Cancelar</a>
+                        <a href="../../App/users.php" class="btn btn-danger ml-5">Cancelar</a>
                     </div>
                 </form>
             </div>

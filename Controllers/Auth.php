@@ -48,7 +48,6 @@
     
                         foreach ($resultado as $registro){
     
-                            session_start();
                             $_SESSION['user'] = $registro['id_usuario'];
                             $_SESSION['trabajador'] = $registro['trabajador'];
                             $_SESSION['nombre'] = $registro['nombre'];
@@ -63,18 +62,14 @@
                         $sql = "update usuarios set last_login = '$fecha' where id_usuario = $_SESSION[user];";
 
                         try{
-
                             $resultado = $con->exec($sql);
-
                         } catch (PDOException $e){
-
                             $con->bdError($e);
                             die();
-
                         }
-    
-                        header("Location: App/home.php");
-    
+                        echo "<script>
+                                location.replace('/App/home.php');
+                            </script>";
                     } else {
     
                         echo "

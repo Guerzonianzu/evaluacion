@@ -3,7 +3,7 @@
     class Conexion extends PDO{
 
         private $motor = "mysql";
-        private $host = "localhost";
+        private $host = "10.1.0.104";
         private $user = "root";
         private $pass = "Rathian996";
         private $bd = "evaluaciones";
@@ -35,12 +35,11 @@
         }
 
         public function bdError($e){
-
-            echo "
-                <div class=\"alert alert-danger\">
-                    <p>Fallo la conexion con el servidor: ". $e->getMessage(). "</p>
-                </div>"; 
-
+            error_log($e->getMessage(), 0);
+            echo "<script>
+                    alert('Ha ocurrido un error. Por favor intente mas tarde.');
+                    location.replace('/');
+                </script>";
         }
 
     }
