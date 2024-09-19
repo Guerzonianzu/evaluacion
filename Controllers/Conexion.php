@@ -4,7 +4,7 @@
 
         private $motor = "mysql";
         private $host = "10.1.0.104";
-        private $user = "root";
+        private $user = "user_evaluaciones";
         private $pass = "Rathian996";
         private $bd = "evaluaciones";
 
